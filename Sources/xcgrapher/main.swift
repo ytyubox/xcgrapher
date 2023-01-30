@@ -1,7 +1,7 @@
 import Foundation
 import XCGrapherLib
 
-let options = XCGrapherArguments.parseOrExit()
+let options = XCGrapherArguments.parseOrExit().options
 
 do {
     try XCGrapher.run(with: options)

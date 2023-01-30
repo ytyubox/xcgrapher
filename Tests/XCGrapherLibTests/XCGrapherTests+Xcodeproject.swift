@@ -4,26 +4,21 @@ import XCTest
 
 /// `sut` fail to execute `dot`, however we don't care as we are just reading the output text file
 final class XCGrapherXcodeprojectTests: XCTestCase {
-
     private var sut: ((XCGrapherOptions) throws -> Void)!
-    private var options: ConcreteGrapherOptions!
+    private var options: XCGrapherOptions!
     let dotfile = "/tmp/xcgrapher.dot"
-
-    override class func setUp() {
-        super.setUp()
-
-        let someAppRoot = ConcreteGrapherOptions.someAppRoot
-        if !FileManager.default.directoryExists(atPath: someAppRoot.appendingPathComponent("Pods")) {
-            XCTFail("Run `pod install` in \(someAppRoot) before running these tests.")
-        }
-    }
 
     override func setUpWithError() throws {
         try super.setUpWithError()
+        let someAppRoot = someAppRoot
+        if !FileManager.default.directoryExists(atPath: someAppRoot.appendingPathComponent("Pods")) {
+            throw XCTSkip("Run `pod install` in \(someAppRoot) before running these tests.")
+        }
         sut = XCGrapher.run
-        options = ConcreteGrapherOptions()
+        options = ConcreteGrapherOptions
 
         try? FileManager.default.removeItem(atPath: dotfile)
+        Logger.log = { _ in }
     }
 
     func testSomeAppPods() throws {
@@ -31,7 +26,7 @@ final class XCGrapherXcodeprojectTests: XCTestCase {
         options.pods = true
 
         // WHEN we generate a digraph
-        try? sut(options)
+        try sut(options)
         let digraph = try String(contentsOfFile: dotfile)
 
         // THEN the digraph only contains these edges
@@ -45,7 +40,7 @@ final class XCGrapherXcodeprojectTests: XCTestCase {
         options.spm = true
 
         // WHEN we generate a digraph
-        try? sut(options)
+        try sut(options)
         let digraph = try String(contentsOfFile: dotfile)
 
         // THEN the digraph only contains these edges
@@ -60,7 +55,7 @@ final class XCGrapherXcodeprojectTests: XCTestCase {
         options.pods = true
 
         // WHEN we generate a digraph
-        try? sut(options)
+        try sut(options)
         let digraph = try String(contentsOfFile: dotfile)
 
         // THEN the digraph only contains these edges
@@ -74,7 +69,7 @@ final class XCGrapherXcodeprojectTests: XCTestCase {
         options.apple = true
 
         // WHEN we generate a digraph
-        try? sut(options)
+        try sut(options)
         let digraph = try String(contentsOfFile: dotfile)
 
         // THEN the digraph only contains these edges
@@ -89,7 +84,7 @@ final class XCGrapherXcodeprojectTests: XCTestCase {
         options.spm = true
 
         // WHEN we generate a digraph
-        try? sut(options)
+        try sut(options)
         let digraph = try String(contentsOfFile: dotfile)
 
         // THEN the digraph only contains these edges
@@ -105,40 +100,52 @@ final class XCGrapherXcodeprojectTests: XCTestCase {
         options.pods = true
 
         // WHEN we generate a digraph
-        try? sut(options)
+        try sut(options)
         let digraph = try String(contentsOfFile: dotfile)
 
         // THEN the digraph only contains these edges
-        let expectedEdges = KnownEdges.apple + KnownEdges.spm + KnownEdges.appleFromSPM + KnownEdges.pods + KnownEdges.appleFromPods
+        let expectedEdges = KnownEdges.apple + KnownEdges.spm + KnownEdges.appleFromSPM + KnownEdges.pods + KnownEdges
+            .appleFromPods
 
         XCGrapherAssertDigraphIsMadeFromEdges(digraph, expectedEdges)
     }
-
 }
 
-private struct ConcreteGrapherOptions: XCGrapherOptions {
-
-    static let someAppRoot = URL(fileURLWithPath: #file)
-        .deletingLastPathComponent()
-        .deletingLastPathComponent()
-        .appendingPathComponent("SampleProjects")
-        .appendingPathComponent("SomeApp")
-        .path
-
+private let someAppRoot = URL(fileURLWithPath: #file)
+    .deletingLastPathComponent()
+    .deletingLastPathComponent()
+    .appendingPathComponent("SampleProjects")
+    .appendingPathComponent("SomeApp")
+    .path
+private let ConcreteGrapherOptions: XCGrapherOptions = {
     var startingPoint: StartingPoint = .xcodeProject(someAppRoot.appendingPathComponent("SomeApp.xcodeproj"))
-    var target: String = "SomeApp"
+    var target = "SomeApp"
     var podlock: String = someAppRoot.appendingPathComponent("Podfile.lock")
-    var output: String = "/tmp/xcgraphertests.png"
-    var apple: Bool = false
-    var spm: Bool = false
-    var pods: Bool = false
-    var force: Bool = false
-    var plugin: String = defaultXCGrapherPluginLocation()
-
-}
+    var output = "/tmp/xcgraphertests.png"
+    var apple = false
+    var spm = false
+    var pods = false
+    var force = false
+    var json = false
+    var version = false
+    var currentDirectory: URL = .init(string: "some.url")!
+    return .init(
+        currentDirectory: currentDirectory,
+        startingPoint: startingPoint,
+        target: target,
+        podlock: podlock,
+        output: output,
+        apple: apple,
+        spm: spm,
+        pods: pods,
+        force: force,
+        json: json,
+        verbose: true,
+        version: version
+    )
+}()
 
 private enum KnownEdges {
-
     static let pods = [
         ("SomeApp", "RxSwift"),
         ("SomeApp", "RxCocoa"),
@@ -193,5 +200,4 @@ private enum KnownEdges {
     static let appleFromPods: [(String, String)] = [
         // Unsupported at this time
     ]
-
 }

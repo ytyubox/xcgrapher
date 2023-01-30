@@ -1,5 +1,4 @@
 import Foundation
-import XCGrapherPluginSupport
 
 struct CocoapodsManager {
     /// Contains something like:

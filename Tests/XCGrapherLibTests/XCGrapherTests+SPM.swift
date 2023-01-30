@@ -4,17 +4,17 @@ import XCTest
 
 /// `sut` fail to execute `dot`, however we don't care as we are just reading the output text file
 final class XCGrapherSPMTests: XCTestCase {
-
     private var sut: ((XCGrapherOptions) throws -> Void)!
-    private var options: ConcreteGrapherOptions!
+    private var options: XCGrapherOptions!
     let dotfile = "/tmp/xcgrapher.dot"
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         sut = XCGrapher.run
-        options = ConcreteGrapherOptions()
+        options = concreteGrapherOptions
 
         try? FileManager.default.removeItem(atPath: dotfile) // Remove if needed only
+        Logger.log = { _ in }
     }
 
     func testSomeAppSPM() throws {
@@ -22,7 +22,7 @@ final class XCGrapherSPMTests: XCTestCase {
         options.spm = true
 
         // WHEN we generate a digraph
-        try? sut(options)
+        try sut(options)
         let digraph = try String(contentsOfFile: dotfile)
 
         // THEN the digraph only contains these edges
@@ -37,7 +37,7 @@ final class XCGrapherSPMTests: XCTestCase {
         options.spm = true
 
         // WHEN we generate a digraph
-        try? sut(options)
+        try sut(options)
         let digraph = try String(contentsOfFile: dotfile)
 
         // THEN the digraph only contains these edges
@@ -45,12 +45,12 @@ final class XCGrapherSPMTests: XCTestCase {
 
         XCGrapherAssertDigraphIsMadeFromEdges(digraph, expectedEdges)
     }
-
 }
 
-private struct ConcreteGrapherOptions: XCGrapherOptions {
+private let concreteGrapherOptions: XCGrapherOptions = {
+    var currentDirectory: URL { .init(string: "some.url")! }
 
-    static let somePackageRoot = URL(fileURLWithPath: #file)
+    let somePackageRoot = URL(fileURLWithPath: #file)
         .deletingLastPathComponent()
         .deletingLastPathComponent()
         .appendingPathComponent("SampleProjects")
@@ -58,19 +58,32 @@ private struct ConcreteGrapherOptions: XCGrapherOptions {
         .path
 
     var startingPoint: StartingPoint = .swiftPackage(somePackageRoot)
-    var target: String = "SomePackage"
-    var podlock: String = ""
-    var output: String = "/tmp/xcgraphertests.png"
-    var apple: Bool = false
-    var spm: Bool = false
-    var pods: Bool = false
-    var force: Bool = false
-    var plugin: String = defaultXCGrapherPluginLocation()
-
-}
+    var target = "SomePackage"
+    var podlock = ""
+    var output = "/tmp/xcgraphertests.png"
+    var apple = false
+    var spm = false
+    var pods = false
+    var force = false
+    var json = false
+    var version = false
+    return XCGrapherOptions(
+        currentDirectory: currentDirectory,
+        startingPoint: startingPoint,
+        target: target,
+        podlock: podlock,
+        output: output,
+        apple: apple,
+        spm: spm,
+        pods: pods,
+        force: force,
+        json: json,
+        verbose: true,
+        version: version
+    )
+}()
 
 private enum KnownEdges {
-
     static let spm = [
         ("SomePackage", "Kingfisher"),
         ("SomePackage", "Moya"),
@@ -105,5 +118,4 @@ private enum KnownEdges {
         ("Moya", "Foundation"),
         ("Moya", "UIKit"),
     ]
-
 }
