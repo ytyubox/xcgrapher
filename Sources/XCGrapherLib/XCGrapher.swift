@@ -1,14 +1,24 @@
 import Foundation
 
 public enum XCGrapher {
-
     public static func run(with options: XCGrapherOptions) throws {
+        if options.version {
+            Log(" 0.0.1")
+            return
+        }
+
+        if options.verbose == false {
+            Logger.log = { _ in }
+        }
+
         // MARK: - Load the plugin
 
-        Log("Loading plugin \(options.plugin)")
-        let pluginHandler = try PluginSupport(pluginPath: options.plugin)
+        let pluginHandler = PluginSupport()
 
         // MARK: - Prepare the --target source file list
+
+        Log("ruby version: \(try TerminalCommand(cmd: "ruby --version").execute())")
+        Log("xcodeproj version: \(try TerminalCommand(cmd: "xcodeproj --version").execute())")
 
         Log("Generating list of source files in \(options.startingPoint.localisedName)")
         var sources: [FileManager.Path] = []
@@ -18,7 +28,8 @@ public enum XCGrapher {
             sources = try xcodeproj.compileSourcesList()
         case let .swiftPackage(packagePath):
             let package = SwiftPackage(clone: packagePath)
-            guard let target = try package.targets().first(where: { $0.name == options.target }) else { die("Could not locate target '\(options.target)'") }
+            guard let target = try package.targets().first(where: { $0.name == options.target })
+            else { die("Could not locate target '\(options.target)'") }
             sources = target.sources
         }
 
@@ -28,8 +39,14 @@ public enum XCGrapher {
             Log("Building Swift Package list")
             let swiftPackageDependencySource: SwiftPackageDependencySource
             switch options.startingPoint {
-            case .xcodeProject: swiftPackageDependencySource = Xcodebuild(projectFile: options.startingPoint.path, target: options.target)
-            case .swiftPackage: swiftPackageDependencySource = SwiftBuild(packagePath: options.startingPoint.path, product: options.target)
+            case .xcodeProject: swiftPackageDependencySource = Xcodebuild(
+                    projectFile: options.startingPoint.path,
+                    target: options.target
+                )
+            case .swiftPackage: swiftPackageDependencySource = SwiftBuild(
+                    packagePath: options.startingPoint.path,
+                    product: options.target
+                )
             }
             let swiftPackageClones = try swiftPackageDependencySource.swiftPackageDependencies()
             let swiftPackageManager = try SwiftPackageManager(packageClones: swiftPackageClones)
@@ -55,27 +72,48 @@ public enum XCGrapher {
             let unknownManager = UnmanagedDependencyManager()
             pluginHandler.unknownManager = unknownManager
         }
-
-        // MARK: - Graphing
-
-        Log("Graphing...")
-
         let digraph = try pluginHandler.generateDigraph(
             target: options.target,
             projectSourceFiles: sources
         )
 
-        // MARK: - Writing
+        if options.json {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            let data = try encoder.encode(digraph.json())
+            if options.output.isEmpty,
+               let text = String(data: data, encoding: .utf8) {
+                print(text)
+            } else {
+                let url = expandPath(options.output, in: options.currentDirectory.path)
 
-        let digraphOutput = "/tmp/xcgrapher.dot"
+                try data.write(to: url)
 
-        try digraph.build()
-            .data(using: .utf8)!
-            .write(to: URL(fileURLWithPath: digraphOutput))
+                Log("Result written to", options.output)
+            }
+        } else {
+            // MARK: - Graphing
 
-        try Graphviz(input: digraphOutput, output: options.output).execute()
+            Log("Graphing...")
 
-        Log("Result written to", options.output)
+            // MARK: - Writing
+
+            let digraphOutput = "/tmp/xcgrapher.dot"
+
+            try digraph.build()
+                .data(using: .utf8)!
+                .write(to: URL(fileURLWithPath: digraphOutput))
+            Log("Result written to", options.output)
+        }
     }
+}
 
+func expandPath(_ path: String, in directory: String) -> URL {
+    if path.hasPrefix("/") {
+        return URL(fileURLWithPath: path).standardized
+    }
+    if path.hasPrefix("~") {
+        return URL(fileURLWithPath: NSString(string: path).expandingTildeInPath).standardized
+    }
+    return URL(fileURLWithPath: directory).appendingPathComponent(path).standardized
 }

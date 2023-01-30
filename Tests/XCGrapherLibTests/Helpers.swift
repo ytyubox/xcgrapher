@@ -11,7 +11,7 @@ func XCGrapherAssertDigraphIsMadeFromEdges(_ digraph: String, _ edges: [(String,
     for (edgeFrom, edgeTo) in edges {
         let expectedEdge = "\"\(edgeFrom)\" -> \"\(edgeTo)\""
         guard let lineWithExpectedEdge = digraphEdgeStrings.firstIndex(where: { $0.contains(expectedEdge) }) else {
-            XCTFail("The digraph does not contain the edge \(expectedEdge)", file: file, line: line)
+            XCTFail("The digraph does not contain the edge \(expectedEdge) - edges: \(edges)", file: file, line: line)
             continue
         }
         digraphEdgeStrings.remove(at: lineWithExpectedEdge)

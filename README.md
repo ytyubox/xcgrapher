@@ -18,8 +18,7 @@ You could also pass `--apple` to include native frameworks in the graph. See `xc
 ### Installation
 
 ```sh
-brew tap maxchuquimia/scripts
-brew install xcgrapher
+mint install ytyubox/xcgrapher
 gem install xcodeproj # If you use Cocoapods you probably don't need to do this
 ```
 

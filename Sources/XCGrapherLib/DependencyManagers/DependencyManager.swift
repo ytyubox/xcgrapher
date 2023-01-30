@@ -1,5 +1,4 @@
 import Foundation
-import XCGrapherPluginSupport
 
 protocol DependencyManager {
 

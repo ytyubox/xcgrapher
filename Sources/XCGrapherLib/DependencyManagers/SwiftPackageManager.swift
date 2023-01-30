@@ -1,5 +1,4 @@
 import Foundation
-import XCGrapherPluginSupport
 
 struct SwiftPackageManager {
 
@@ -26,6 +25,7 @@ extension SwiftPackageManager: DependencyManager {
 
     func dependencies(of module: String) -> [String] {
         guard let target = knownSPMTargets.first(where: { $0.name == module }) else { return [] }
+
         return ImportFinder(fileList: target.sources).allImportedModules()
     }
 

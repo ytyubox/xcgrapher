@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.7
 
 import PackageDescription
 
@@ -9,14 +9,12 @@ let package = Package(
     ],
     products: [
         .executable(name: "xcgrapher", targets: ["xcgrapher"]),
-        .library(name: "XCGrapherModuleImportPlugin", type: .dynamic, targets: ["XCGrapherModuleImportPlugin"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-argument-parser", .upToNextMinor(from: "0.4.0")),
-        .package(url: "https://github.com/maxchuquimia/XCGrapherPluginSupport", .upToNextMinor(from: "0.0.6")),
+        .package(url: "https://github.com/apple/swift-argument-parser", from: "0.4.0"),
     ],
     targets: [
-        .target(
+        .executableTarget(
             name: "xcgrapher",
             dependencies: [
                 "XCGrapherLib",
@@ -24,16 +22,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: "XCGrapherLib", // Main source added to a separate framework for testability reasons
-            dependencies: [
-                "XCGrapherPluginSupport",
-            ]
-        ),
-        .target(
-            name: "XCGrapherModuleImportPlugin",
-            dependencies: [
-                "XCGrapherPluginSupport",
-            ]
+            name: "XCGrapherLib" // Main source added to a separate framework for testability reasons
         ),
         .testTarget(
             name: "XCGrapherLibTests",

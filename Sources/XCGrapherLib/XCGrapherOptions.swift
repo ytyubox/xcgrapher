@@ -1,19 +1,49 @@
 import Foundation
 
-public protocol XCGrapherOptions {
-    var startingPoint: StartingPoint { get }
-    var target: String { get }
-    var podlock: String { get }
-    var output: String { get }
-    var apple: Bool { get }
-    var spm: Bool { get }
-    var pods: Bool { get }
-    var force: Bool { get }
-    var plugin: String { get }
+public struct XCGrapherOptions {
+    public init(
+        currentDirectory: URL,
+        startingPoint: StartingPoint,
+        target: String,
+        podlock: String,
+        output: String,
+        apple: Bool,
+        spm: Bool,
+        pods: Bool,
+        force: Bool,
+        json: Bool,
+        verbose: Bool,
+        version: Bool
+    ) {
+        self.currentDirectory = currentDirectory
+        self.startingPoint = startingPoint
+        self.target = target
+        self.podlock = podlock
+        self.output = output
+        self.apple = apple
+        self.spm = spm
+        self.pods = pods
+        self.force = force
+        self.json = json
+        self.verbose = verbose
+        self.version = version
+    }
+
+    public var currentDirectory: URL
+    public var startingPoint: StartingPoint
+    public var target: String
+    public var podlock: String
+    public var output: String
+    public var apple: Bool
+    public var spm: Bool
+    public var pods: Bool
+    public var force: Bool
+    public var json: Bool
+    public var verbose: Bool
+    public var version: Bool
 }
 
 public enum StartingPoint {
-
     case xcodeProject(String)
     case swiftPackage(String)
 
@@ -37,5 +67,4 @@ public enum StartingPoint {
         case let .swiftPackage(packagePath): return packagePath
         }
     }
-
 }

@@ -8,11 +8,10 @@ import Foundation
 /// }
 /// ```
 class Digraph {
-
     /// The name of the digraph structure
     let name: String
 
-    private var edges: [Edge] = []
+    private(set) var edges: [Edge] = []
 
     init(name: String) {
         self.name = name
@@ -48,7 +47,7 @@ class Digraph {
 
 }
 
-private extension Digraph {
+extension Digraph {
 
     struct Edge {
         let a: String
@@ -70,5 +69,20 @@ private extension Digraph {
             .map { "  ".appending($0.string) }
             .sortedAscendingCaseInsensitively()
     }
+}
 
+extension Digraph {
+    struct JSONEdge: Codable, Equatable {
+        var a: String
+        var b: String
+    }
+
+    func json() -> [JSONEdge] {
+        edges
+            .map { edge in
+                .init(a: edge.a, b: edge.b)
+            }
+            .sorted(by: { ($0.a.lowercased(), $0.b.lowercased()) < ($1.a.lowercased(), $1.b.lowercased())
+            })
+    }
 }

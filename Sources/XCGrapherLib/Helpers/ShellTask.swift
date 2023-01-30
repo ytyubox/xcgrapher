@@ -1,17 +1,14 @@
 import Foundation
 
 protocol ShellTask {
-
     /// The raw shell representation of the command.
     var stringRepresentation: String { get }
 
     /// A localised string to be displayed when the command cannot be found.
     var commandNotFoundInstructions: String { get }
-
 }
 
 extension ShellTask {
-
     @discardableResult
     func execute() throws -> String {
         let task = Process()
@@ -41,11 +38,9 @@ extension ShellTask {
             throw CommandError.failure(stderr: String(data: errorOutput, encoding: .utf8)!)
         }
     }
-
 }
 
 enum CommandError: LocalizedError {
-
     case failure(stderr: String)
     case commandNotFound(message: String)
 
@@ -55,5 +50,13 @@ enum CommandError: LocalizedError {
         case let .commandNotFound(message): return message
         }
     }
+}
 
+struct  TerminalCommand: ShellTask {
+    var cmd: String
+    var stringRepresentation: String { cmd }
+
+    var commandNotFoundInstructions: String {
+        "\(cmd) not found"
+    }
 }

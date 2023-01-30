@@ -1,6 +1,22 @@
 import Foundation
 
-public func die(_ message: String? = nil, file: String = #file, function: String = #function, line: Int = #line) -> Never {
+enum Logger {
+    static var log: (String) -> Void = {
+        print($0)
+    }
+
+    static var logError: (String) -> Void = {
+        let data = Data($0.utf8)
+        FileHandle.standardError.write(data)
+    }
+}
+
+public func die(
+    _ message: String? = nil,
+    file: String = #file,
+    function: String = #function,
+    line: Int = #line
+) -> Never {
     if let message = message {
         LogError(message, file: file)
     } else {
@@ -11,11 +27,11 @@ public func die(_ message: String? = nil, file: String = #file, function: String
 
 func Log(_ items: Any..., dim: Bool = false, file: String = #file) {
     let color = dim ? Colors.dim : ""
-    print(items.reduce(color + logPrefix(file: file)) { $0 + " \($1)" } + Colors.reset)
+    Logger.log(items.reduce(color + logPrefix(file: file)) { $0 + " \($1)" } + Colors.reset)
 }
 
 func LogError(_ items: Any..., file: String = #file) {
-    print(items.reduce(Colors.red + logPrefix(file: file)) { $0 + " \($1)" } + Colors.reset)
+    Logger.logError(items.reduce(Colors.red + logPrefix(file: file)) { $0 + " \($1)" } + Colors.reset)
 }
 
 func failWithContext<T>(attempt: @autoclosure () throws -> T, context: Any, file: String = #file) throws -> T {

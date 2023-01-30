@@ -1,5 +1,4 @@
 import Foundation
-import XCGrapherPluginSupport
 
 extension XCGrapherImport.ModuleType {
 
