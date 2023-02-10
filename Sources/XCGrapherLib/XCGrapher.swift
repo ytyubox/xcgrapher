@@ -37,17 +37,13 @@ public enum XCGrapher {
 
         if options.spm || options.startingPoint.isSPM {
             Log("Building Swift Package list")
-            let swiftPackageDependencySource: SwiftPackageDependencySource
+          let maker: (FileManager.Path, String) -> SwiftPackageDependencySource
             switch options.startingPoint {
-            case .xcodeProject: swiftPackageDependencySource = Xcodebuild(
-                    projectFile: options.startingPoint.path,
-                    target: options.target
-                )
-            case .swiftPackage: swiftPackageDependencySource = SwiftBuild(
-                    packagePath: options.startingPoint.path,
-                    product: options.target
-                )
+            case .xcodeProject: maker = Xcodebuild.init
+            case .swiftPackage: maker = SwiftBuild.init
             }
+
+            let swiftPackageDependencySource: SwiftPackageDependencySource = maker( options.startingPoint.path, options.target )
             let swiftPackageClones = try swiftPackageDependencySource.swiftPackageDependencies()
             let swiftPackageManager = try SwiftPackageManager(packageClones: swiftPackageClones)
             pluginHandler.swiftPackageManager = swiftPackageManager
