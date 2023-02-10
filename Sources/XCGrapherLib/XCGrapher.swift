@@ -3,7 +3,7 @@ import Foundation
 public enum XCGrapher {
     public static func run(with options: XCGrapherOptions) throws {
         if options.version {
-            Log(" 0.0.12")
+            Log(" 0.0.13")
             return
         }
 
