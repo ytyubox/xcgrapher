@@ -61,7 +61,7 @@ public struct XCGrapherArguments: ParsableCommand {
     if path.hasSuffix(".xcodeproj") {
       guard Self.directoryExists(path) else { throw die("'\(path)' is not a valid xcode project.") }
       if (spm || apple || pods) == false {
-        print("no dependency set, run with --apple")
+        print("no dependency set, run with --apple.")
       }
     } else if path.hasSuffix("Package.swift") {
       guard Self.fileExists(path) else { throw die("'\(path)' is not a valid Swift Package") }
@@ -94,7 +94,7 @@ public extension XCGrapherArguments {
 
 func targetGuarding(input: String) throws -> String {
   if input.isEmpty {
-    throw die("--target must not be empty")
+    throw die("--target must not be empty.")
   }
   return input
 }

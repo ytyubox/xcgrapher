@@ -143,7 +143,7 @@ final class XCGrapherArgumentsTests: XCTestCase {
     let expectExitCode: Int32 = 64
     let expectMessage =
       """
-      Error: The value '' is invalid for '--target <target>': Error Domain=--target must not be empty Code=1 "(null)"
+      Error: The value '' is invalid for '--target <target>': Error Domain=--target must not be empty. Code=1 "(null)"
       Help:  --target <target>  The name of the Xcode project target (or Swift Package product) to use as a starting point
       Usage: xcgrapher <path> --target <target> [--podlock <podlock>] [--output <output>] [--apple] [--spm] [--pods] [--json] [--verbose]
         See 'xcgrapher --help' for more information.
