@@ -124,14 +124,34 @@ final class XCGrapherArgumentsTests: XCTestCase {
     )
   }
 
-  func testSomeTarget() async throws {
+  func testPackageSomeTarget() async throws {
     let args = ["Package.swift", "--target", "SOME"]
     let v = try sut(args)
     XCTAssertNoDifference(
       v,
       .init(
         currentDirectory: anyURL,
-        startingPoint: .swiftPackage("Package.swift"),
+        startingPoint: .swiftPackage("."),
+        target: "SOME",
+        podlock: "./Podfile.lock",
+        output: "",
+        apple: true,
+        spm: false,
+        pods: false,
+        json: false,
+        verbose: false
+      )
+    )
+  }
+
+  func testSubfolderPackageSomeTarget() async throws {
+    let args = ["SOME/Package.swift", "--target", "SOME"]
+    let v = try sut(args)
+    XCTAssertNoDifference(
+      v,
+      .init(
+        currentDirectory: anyURL,
+        startingPoint: .swiftPackage("SOME"),
         target: "SOME",
         podlock: "./Podfile.lock",
         output: "",
@@ -151,7 +171,7 @@ final class XCGrapherArgumentsTests: XCTestCase {
       v,
       .init(
         currentDirectory: anyURL,
-        startingPoint: .swiftPackage("Package.swift"),
+        startingPoint: .swiftPackage("."),
         target: "SOME",
         podlock: "./Podfile.lock",
         output: "",

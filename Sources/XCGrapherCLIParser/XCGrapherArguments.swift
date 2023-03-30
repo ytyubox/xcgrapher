@@ -51,7 +51,12 @@ public struct XCGrapherArguments: ParsableCommand {
 
   var startingPoint: StartingPoint {
     if path.hasSuffix("Package.swift") {
-      return .swiftPackage(path)
+      if path == "Package.swift" {
+        return .swiftPackage(".")
+      } else {
+        let str = NSString(string: path)
+        return .swiftPackage(str.deletingLastPathComponent)
+      }
     } else {
       return .xcodeProject(path)
     }
