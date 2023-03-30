@@ -81,7 +81,6 @@ final class XCGrapherArgumentsTests: XCTestCase {
         apple: true,
         spm: false,
         pods: false,
-        force: false,
         json: false,
         verbose: false
       )

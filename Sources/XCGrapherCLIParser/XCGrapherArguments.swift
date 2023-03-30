@@ -85,7 +85,6 @@ public extension XCGrapherArguments {
       apple: computedApple,
       spm: spm,
       pods: pods,
-      force: false,
       json: json,
       verbose: verbose
     )
