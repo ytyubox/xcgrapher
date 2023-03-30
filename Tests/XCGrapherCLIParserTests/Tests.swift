@@ -14,7 +14,7 @@ final class Tests: XCTestCase {
   @discardableResult
   fileprivate func assert(
     _ args: [String],
-    _ expectExitCode: Int32 = 0,
+    _ expectExitCode: Int32? = nil,
     _ expectMessage: String,
     file: StaticString = #filePath,
     line: UInt = #line
