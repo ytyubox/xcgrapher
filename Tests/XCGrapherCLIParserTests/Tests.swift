@@ -65,6 +65,7 @@ final class Tests: XCTestCase {
     let expectMessage =
       """
       """
-    assert(args, expectExitCode, expectMessage)
+    let v = assert(args, expectExitCode, expectMessage)
+    XCTAssertNoDifference(v?.target, "SOME")
   }
 }
