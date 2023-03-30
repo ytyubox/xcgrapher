@@ -33,10 +33,13 @@ final class XCGrapherArgumentsTests: XCTestCase {
     file: StaticString = #filePath,
     line: UInt = #line
   ) throws -> XCGrapherOptions {
+    return try XCGrapherArguments.parse(args).options
+  }
+
+  override func setUpWithError() throws {
     XCGrapherArguments.fileExists = { _ in true }
     XCGrapherArguments.directoryExists = { _ in true }
     XCGrapherArguments.currentDirectory = { anyURL }
-    return try XCGrapherArguments.parse(args).options
   }
 
   func testVersion() async throws {
@@ -78,13 +81,25 @@ final class XCGrapherArgumentsTests: XCTestCase {
     try assert(args, expectExitCode, expectMessage)
   }
 
-  func testFailPath() async throws {
+  func testEmptyPath() async throws {
     let args = ["", "--target", "SOME"]
     try assert(
       args,
       1,
       """
       Error: The operation couldn’t be completed. (--project or --package must be provided. error 1.)
+      """
+    )
+  }
+
+  func testFailPath() async throws {
+    XCGrapherArguments.fileExists = { _ in false }
+    let args = ["SOME/Package.swift", "--target", "SOME"]
+    try assert(
+      args,
+      1,
+      """
+      Error: The operation couldn’t be completed. (\'SOME/Package.swift\' is not a valid Swift Package error 1.)
       """
     )
   }
