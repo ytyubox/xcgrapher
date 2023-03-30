@@ -31,7 +31,7 @@ final class Tests: XCTestCase {
     let expectExitCode: Int32 = 0
     let expectMessage =
       """
-      USAGE: xcgrapher <path> [--target <target>] [--podlock <podlock>] [--output <output>] [--apple] [--spm] [--pods] [--force] [--json] [--verbose]
+      USAGE: xcgrapher <path> [--target <target>] [--podlock <podlock>] [--output <output>] [--apple] [--spm] [--pods] [--json] [--verbose]
 
       ARGUMENTS:
         <path>                  The path to the .xcodeproj or Package.swift
@@ -46,11 +46,6 @@ final class Tests: XCTestCase {
                                 and readable-source --spm packages)
         --spm                   Include Swift Package Manager frameworks in the graph
         --pods                  Include Cocoapods frameworks in the graph
-        --force                 Show frameworks that no dependency manager claims to
-                                be managing (perhaps there are name discrepancies?).
-                                Using this option doesn't make sense unless you are
-                                also using all the other include flags relevant to
-                                your project.
         --json                  Output json
         --verbose               Display verbose information
         --version               Show the version.
