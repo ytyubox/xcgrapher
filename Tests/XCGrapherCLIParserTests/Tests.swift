@@ -11,20 +11,22 @@ import XCTest
 
 @MainActor
 final class Tests: XCTestCase {
+  @discardableResult
   fileprivate func assert(
     _ args: [String],
     _ expectExitCode: Int32 = 0,
     _ expectMessage: String,
     file: StaticString = #filePath,
     line: UInt = #line
-  ) {
+  ) -> XCGrapherArguments! {
     XCGrapherArguments.fileExists = { _ in true }
     XCGrapherArguments.directoryExists = { _ in true }
     do {
-      _ = try XCGrapherArguments.parse(args)
+      return try XCGrapherArguments.parse(args)
     } catch {
       XCTAssertNoDifference(XCGrapherArguments.exitCode(for: error).rawValue, expectExitCode, file: file, line: line)
       XCTAssertNoDifference(XCGrapherArguments.fullMessage(for: error), expectMessage, file: file, line: line)
+      return nil
     }
   }
 
@@ -62,8 +64,6 @@ final class Tests: XCTestCase {
     let expectExitCode: Int32 = 1
     let expectMessage =
       """
-
-
       """
     assert(args, expectExitCode, expectMessage)
   }
