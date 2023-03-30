@@ -26,7 +26,7 @@ final class Tests: XCTestCase {
     }
   }
 
-  func test() async throws {
+  func testHelp() async throws {
     let args = ["--help"]
     let expectExitCode: Int32 = 0
     let expectMessage =
