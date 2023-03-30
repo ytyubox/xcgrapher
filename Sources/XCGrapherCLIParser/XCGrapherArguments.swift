@@ -4,7 +4,7 @@ import XCGrapherLib
 
 /// Needs this name for `ParsableArguments`'s help text to be correct
 public struct XCGrapherArguments: ParsableCommand {
-  public static var configuration = CommandConfiguration(commandName: "xcgrapher", version: "0.0.13")
+  public static var configuration = CommandConfiguration(commandName: "xcgrapher", version: "0.0.14")
   public static var fileExists: (String) -> Bool = { path in
     FileManager.default.directoryExists(atPath: path)
   }

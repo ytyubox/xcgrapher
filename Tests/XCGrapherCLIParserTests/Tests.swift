@@ -39,6 +39,16 @@ final class XCGrapherArgumentsTests: XCTestCase {
     return try XCGrapherArguments.parse(args).options
   }
 
+  func testVersion() async throws {
+    let args = ["--version"]
+    let expectExitCode: Int32 = 0
+    let expectMessage =
+      """
+      0.0.14
+      """
+    try assert(args, expectExitCode, expectMessage)
+  }
+
   func testHelp() async throws {
     let args = ["--help"]
     let expectExitCode: Int32 = 0
