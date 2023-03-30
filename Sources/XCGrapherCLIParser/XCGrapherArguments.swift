@@ -2,17 +2,20 @@ import ArgumentParser
 import Foundation
 import XCGrapherLib
 
-public typealias XCGrapherArguments = xcgrapher
-
 /// Needs this name for `ParsableArguments`'s help text to be correct
-public struct xcgrapher: ParsableCommand {
-  public static var configuration = CommandConfiguration(version: "0.0.13")
+public struct XCGrapherArguments: ParsableCommand {
+  public static var configuration = CommandConfiguration(commandName: "xcgrapher", version: "0.0.13")
   public static var fileExists: (String) -> Bool = { path in
     FileManager.default.directoryExists(atPath: path)
   }
 
   public static var directoryExists: (String) -> Bool = { path in
     FileManager.default.directoryExists(atPath: path)
+  }
+
+  public static var currentDirectory: () -> URL = {
+    URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+      .standardizedFileURL
   }
 
   public init() {}
@@ -68,17 +71,18 @@ public struct xcgrapher: ParsableCommand {
 }
 
 public extension XCGrapherArguments {
+  var computedApple: Bool {
+    apple || (pods || spm) == false
+  }
+
   var options: XCGrapherOptions {
-    let currentDirectory =
-      URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-        .standardizedFileURL
-    return .init(
-      currentDirectory: currentDirectory,
+    .init(
+      currentDirectory: Self.currentDirectory(),
       startingPoint: startingPoint,
       target: target,
       podlock: podlock,
       output: output,
-      apple: apple,
+      apple: computedApple,
       spm: spm,
       pods: pods,
       force: false,

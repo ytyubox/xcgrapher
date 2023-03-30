@@ -1,6 +1,6 @@
 import Foundation
 
-public struct XCGrapherOptions {
+public struct XCGrapherOptions: Equatable {
   public init(
     currentDirectory: URL,
     startingPoint: StartingPoint,
@@ -40,7 +40,7 @@ public struct XCGrapherOptions {
   public var verbose: Bool
 }
 
-public enum StartingPoint {
+public enum StartingPoint: Equatable {
   case xcodeProject(String)
   case swiftPackage(String)
 

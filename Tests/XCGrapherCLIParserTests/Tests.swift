@@ -7,10 +7,11 @@
 
 import CustomDump
 import XCGrapherCLIParser
+import XCGrapherLib
 import XCTest
 
 @MainActor
-final class Tests: XCTestCase {
+final class XCGrapherArgumentsTests: XCTestCase {
   fileprivate func assert(
     _ args: [String],
     _ expectExitCode: Int32 = 0,
@@ -30,10 +31,11 @@ final class Tests: XCTestCase {
     _ args: [String],
     file: StaticString = #filePath,
     line: UInt = #line
-  ) throws -> XCGrapherArguments {
+  ) throws -> XCGrapherOptions {
     XCGrapherArguments.fileExists = { _ in true }
     XCGrapherArguments.directoryExists = { _ in true }
-    return try XCGrapherArguments.parse(args)
+    XCGrapherArguments.currentDirectory = { anyURL }
+    return try XCGrapherArguments.parse(args).options
   }
 
   func testHelp() async throws {
@@ -68,7 +70,22 @@ final class Tests: XCTestCase {
   func testSomeTarget() async throws {
     let args = ["Package.swift", "--target", "SOME"]
     let v = try sut(args)
-    XCTAssertNoDifference(v.target, "SOME")
+    XCTAssertNoDifference(
+      v,
+      .init(
+        currentDirectory: anyURL,
+        startingPoint: .swiftPackage("Package.swift"),
+        target: "SOME",
+        podlock: "./Podfile.lock",
+        output: "",
+        apple: true,
+        spm: false,
+        pods: false,
+        force: false,
+        json: false,
+        verbose: false
+      )
+    )
   }
 
   func testEmptyTarget() async throws {
@@ -81,3 +98,5 @@ final class Tests: XCTestCase {
     try assert(args, expectExitCode, expectMessage)
   }
 }
+
+private var anyURL = URL(string: "any.url")!
