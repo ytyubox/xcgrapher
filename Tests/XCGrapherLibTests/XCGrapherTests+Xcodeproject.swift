@@ -140,8 +140,7 @@ private let ConcreteGrapherOptions: XCGrapherOptions = {
         pods: pods,
         force: force,
         json: json,
-        verbose: true,
-        version: version
+        verbose: true
     )
 }()
 
