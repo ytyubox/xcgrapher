@@ -23,7 +23,8 @@ public struct XCGrapherArguments: ParsableCommand {
   public var path: String
   @Option(
     name: .long,
-    help: "The name of the Xcode project target (or Swift Package product) to use as a starting point"
+    help: "The name of the Xcode project target (or Swift Package product) to use as a starting point",
+    transform: targetGuarding
   )
   public var target: String
 
@@ -89,4 +90,11 @@ public extension XCGrapherArguments {
       verbose: verbose
     )
   }
+}
+
+func targetGuarding(input: String) throws -> String {
+  if input.isEmpty {
+    throw die("--target must not be empty")
+  }
+  return input
 }

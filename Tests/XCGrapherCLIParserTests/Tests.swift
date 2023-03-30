@@ -21,6 +21,7 @@ final class XCGrapherArgumentsTests: XCTestCase {
   ) throws {
     do {
       _ = try sut(args)
+      XCTFail("expect to fail to parse success", file: file, line: line)
     } catch {
       XCTAssertNoDifference(XCGrapherArguments.exitCode(for: error).rawValue, expectExitCode, file: file, line: line)
       XCTAssertNoDifference(XCGrapherArguments.fullMessage(for: error), expectMessage, file: file, line: line)
@@ -129,10 +130,13 @@ final class XCGrapherArgumentsTests: XCTestCase {
 
   func testEmptyTarget() async throws {
     let args = ["Package.swift", "--target", ""]
-    let expectExitCode: Int32 = 1
+    let expectExitCode: Int32 = 64
     let expectMessage =
       """
-      Error: The operation couldn’t be completed. (--target must not be empty. error 1.)
+      Error: The value '' is invalid for '--target <target>': Error Domain=--target must not be empty Code=1 "(null)"
+      Help:  --target <target>  The name of the Xcode project target (or Swift Package product) to use as a starting point
+      Usage: xcgrapher <path> --target <target> [--podlock <podlock>] [--output <output>] [--apple] [--spm] [--pods] [--json] [--verbose]
+        See 'xcgrapher --help' for more information.
       """
     try assert(args, expectExitCode, expectMessage)
   }
