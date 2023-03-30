@@ -54,4 +54,15 @@ final class Tests: XCTestCase {
       """
     assert(args, expectExitCode, expectMessage)
   }
+
+  func testEmptyTarget() async throws {
+    let args = ["Package.swift", "--target", "SOME"]
+    let expectExitCode: Int32 = 0
+    let expectMessage =
+      """
+
+
+      """
+    assert(args, expectExitCode, expectMessage)
+  }
 }
