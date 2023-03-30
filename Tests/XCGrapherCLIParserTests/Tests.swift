@@ -99,7 +99,7 @@ final class XCGrapherArgumentsTests: XCTestCase {
       args,
       1,
       """
-      Error: The operation couldn’t be completed. (\'SOME/Package.swift\' is not a valid Swift Package error 1.)
+      Error: The operation couldn’t be completed. ('SOME/Package.swift' is not a valid Swift Package error 1.)
       """
     )
   }
