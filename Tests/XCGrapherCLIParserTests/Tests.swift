@@ -11,23 +11,29 @@ import XCTest
 
 @MainActor
 final class Tests: XCTestCase {
-  @discardableResult
   fileprivate func assert(
     _ args: [String],
-    _ expectExitCode: Int32? = nil,
+    _ expectExitCode: Int32 = 0,
     _ expectMessage: String,
     file: StaticString = #filePath,
     line: UInt = #line
-  ) -> XCGrapherArguments! {
-    XCGrapherArguments.fileExists = { _ in true }
-    XCGrapherArguments.directoryExists = { _ in true }
+  ) throws {
     do {
-      return try XCGrapherArguments.parse(args)
+      _ = try sut(args)
     } catch {
       XCTAssertNoDifference(XCGrapherArguments.exitCode(for: error).rawValue, expectExitCode, file: file, line: line)
       XCTAssertNoDifference(XCGrapherArguments.fullMessage(for: error), expectMessage, file: file, line: line)
-      return nil
     }
+  }
+
+  fileprivate func sut(
+    _ args: [String],
+    file: StaticString = #filePath,
+    line: UInt = #line
+  ) throws -> XCGrapherArguments {
+    XCGrapherArguments.fileExists = { _ in true }
+    XCGrapherArguments.directoryExists = { _ in true }
+    return try XCGrapherArguments.parse(args)
   }
 
   func testHelp() async throws {
@@ -56,17 +62,13 @@ final class Tests: XCTestCase {
         -h, --help              Show help information.
 
       """
-    assert(args, expectExitCode, expectMessage)
+    try assert(args, expectExitCode, expectMessage)
   }
 
   func testSomeTarget() async throws {
     let args = ["Package.swift", "--target", "SOME"]
-    let expectExitCode: Int32 = 0
-    let expectMessage =
-      """
-      """
-    let v = assert(args, expectExitCode, expectMessage)
-    XCTAssertNoDifference(v?.target, "SOME")
+    let v = try sut(args)
+    XCTAssertNoDifference(v.target, "SOME")
   }
 
   func testEmptyTarget() async throws {
@@ -76,6 +78,6 @@ final class Tests: XCTestCase {
       """
       Error: The operation couldn’t be completed. (--target must not be empty. error 1.)
       """
-    assert(args, expectExitCode, expectMessage)
+    try assert(args, expectExitCode, expectMessage)
   }
 }
