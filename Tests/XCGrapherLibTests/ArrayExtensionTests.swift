@@ -24,6 +24,7 @@ final class ArrayExtensionTests: XCTestCase {
     let sut = Array<String>.sortedAscendingCaseInsensitively
 
     let output1 = sut(["baa", "dab", "Baa", "DAA"])()
+
     XCTAssertEqual(output1, ["Baa", "baa", "DAA", "dab"])
 
     let output2 = sut(["ABC", "ABX", "abx", "abc"])()
