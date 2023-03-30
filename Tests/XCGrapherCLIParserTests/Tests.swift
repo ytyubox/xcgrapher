@@ -62,6 +62,7 @@ final class Tests: XCTestCase {
     let expectMessage =
       """
 
+
       """
     assert(args, expectExitCode, expectMessage)
   }
