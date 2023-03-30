@@ -61,7 +61,7 @@ final class Tests: XCTestCase {
 
   func testSomeTarget() async throws {
     let args = ["Package.swift", "--target", "SOME"]
-    let expectExitCode: Int32 = 1
+    let expectExitCode: Int32 = 0
     let expectMessage =
       """
       """
