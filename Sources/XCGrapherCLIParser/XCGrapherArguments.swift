@@ -7,7 +7,11 @@ public typealias XCGrapherArguments = xcgrapher
 /// Needs this name for `ParsableArguments`'s help text to be correct
 public struct xcgrapher: ParsableCommand {
   public static var configuration = CommandConfiguration(version: "0.0.13")
-  public static var fileExist: (String) -> Bool = { path in
+  public static var fileExists: (String) -> Bool = { path in
+    FileManager.default.directoryExists(atPath: path)
+  }
+
+  public static var directoryExists: (String) -> Bool = { path in
     FileManager.default.directoryExists(atPath: path)
   }
 
@@ -51,12 +55,12 @@ public struct xcgrapher: ParsableCommand {
 
   public func validate() throws {
     if path.hasSuffix(".xcodeproj") {
-      guard FileManager.default.directoryExists(atPath: path) else { throw die("'\(path)' is not a valid xcode project.") }
+      guard Self.directoryExists(path) else { throw die("'\(path)' is not a valid xcode project.") }
       if (spm || apple || pods) == false {
         print("no dependency set, run with --apple")
       }
     } else if path.hasSuffix("Package.swift") {
-      guard FileManager.default.fileExists(atPath: path) else { throw die("'\(path)' is not a valid Swift Package") }
+      guard Self.fileExists(path) else { throw die("'\(path)' is not a valid Swift Package") }
     } else {
       throw die("--project or --package must be provided.")
     }

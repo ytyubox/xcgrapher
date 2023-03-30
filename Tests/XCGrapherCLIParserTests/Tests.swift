@@ -18,7 +18,8 @@ final class Tests: XCTestCase {
     file: StaticString = #filePath,
     line: UInt = #line
   ) {
-    XCGrapherArguments.fileExist = { _ in true }
+    XCGrapherArguments.fileExists = { _ in true }
+    XCGrapherArguments.directoryExists = { _ in true }
     do {
       _ = try XCGrapherArguments.parse(args)
     } catch {
