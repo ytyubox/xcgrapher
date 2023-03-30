@@ -68,4 +68,14 @@ final class Tests: XCTestCase {
     let v = assert(args, expectExitCode, expectMessage)
     XCTAssertNoDifference(v?.target, "SOME")
   }
+
+  func testEmptyTarget() async throws {
+    let args = ["Package.swift", "--target", ""]
+    let expectExitCode: Int32 = 1
+    let expectMessage =
+      """
+      Error: The operation couldn’t be completed. (--target must not be empty. error 1.)
+      """
+    assert(args, expectExitCode, expectMessage)
+  }
 }
