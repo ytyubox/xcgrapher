@@ -78,6 +78,11 @@ final class XCGrapherArgumentsTests: XCTestCase {
     try assert(args, expectExitCode, expectMessage)
   }
 
+  func testFailPath() async throws {
+    let args = ["FAILPATH", "--target", "SOME"]
+    try assert(args, 1, "Error: The operation couldn’t be completed. (--project or --package must be provided. error 1.)")
+  }
+
   func testXcodeprojSomeTarget() async throws {
     let args = ["SOME.xcodeproj", "--target", "SOME"]
     let v = try sut(args)
