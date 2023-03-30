@@ -87,6 +87,26 @@ final class XCGrapherArgumentsTests: XCTestCase {
     )
   }
 
+  func testSomeTargetOnySPM() async throws {
+    let args = ["Package.swift", "--target", "SOME", "--spm"]
+    let v = try sut(args)
+    XCTAssertNoDifference(
+      v,
+      .init(
+        currentDirectory: anyURL,
+        startingPoint: .swiftPackage("Package.swift"),
+        target: "SOME",
+        podlock: "./Podfile.lock",
+        output: "",
+        apple: false,
+        spm: true,
+        pods: false,
+        json: false,
+        verbose: false
+      )
+    )
+  }
+
   func testEmptyTarget() async throws {
     let args = ["Package.swift", "--target", ""]
     let expectExitCode: Int32 = 1
