@@ -15,7 +15,7 @@ public struct xcgrapher: ParsableCommand {
     name: .long,
     help: "The name of the Xcode project target (or Swift Package product) to use as a starting point"
   )
-  public var target: String?
+  public var target: String
 
   @Option(name: .long, help: "The path to the projects Podfile.lock")
   public var podlock: String = "./Podfile.lock"
@@ -58,8 +58,7 @@ public struct xcgrapher: ParsableCommand {
       throw die("--project or --package must be provided.")
     }
 
-    guard let target,
-          !target.isEmpty else { throw die("--target must not be empty.") }
+    guard !target.isEmpty else { throw die("--target must not be empty.") }
   }
 }
 

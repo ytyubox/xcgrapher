@@ -31,7 +31,7 @@ final class Tests: XCTestCase {
     let expectExitCode: Int32 = 0
     let expectMessage =
       """
-      USAGE: xcgrapher <path> [--target <target>] [--podlock <podlock>] [--output <output>] [--apple] [--spm] [--pods] [--json] [--verbose]
+      USAGE: xcgrapher <path> --target <target> [--podlock <podlock>] [--output <output>] [--apple] [--spm] [--pods] [--json] [--verbose]
 
       ARGUMENTS:
         <path>                  The path to the .xcodeproj or Package.swift
