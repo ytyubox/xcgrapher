@@ -6,7 +6,7 @@ import XCGrapherLib
 public struct XCGrapherArguments: ParsableCommand {
   public static var configuration = CommandConfiguration(commandName: "xcgrapher", version: "0.0.14")
   public static var fileExists: (String) -> Bool = { path in
-    FileManager.default.directoryExists(atPath: path)
+    FileManager.default.fileExists(atPath: path)
   }
 
   public static var directoryExists: (String) -> Bool = { path in
