@@ -64,7 +64,7 @@ public struct XCGrapherArguments: ParsableCommand {
         print("no dependency set, run with --apple.")
       }
     } else if path.hasSuffix("Package.swift") {
-      guard Self.fileExists(path) else { throw die("'\(path)' is not a valid Swift Package") }
+      guard Self.fileExists(path) else { throw die("'\(path)' is not a valid Swift Package.") }
     } else {
       throw die("--project or --package must be provided.")
     }
