@@ -12,8 +12,7 @@ public struct XCGrapherOptions {
         pods: Bool,
         force: Bool,
         json: Bool,
-        verbose: Bool,
-        version: Bool
+        verbose: Bool
     ) {
         self.currentDirectory = currentDirectory
         self.startingPoint = startingPoint
@@ -26,7 +25,6 @@ public struct XCGrapherOptions {
         self.force = force
         self.json = json
         self.verbose = verbose
-        self.version = version
     }
 
     public var currentDirectory: URL
@@ -40,7 +38,6 @@ public struct XCGrapherOptions {
     public var force: Bool
     public var json: Bool
     public var verbose: Bool
-    public var version: Bool
 }
 
 public enum StartingPoint {

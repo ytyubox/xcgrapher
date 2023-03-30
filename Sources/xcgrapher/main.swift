@@ -1,4 +1,5 @@
 import Foundation
+import XCGrapherCLIParser
 import XCGrapherLib
 
 let options = XCGrapherArguments.parseOrExit().options
@@ -6,5 +7,5 @@ let options = XCGrapherArguments.parseOrExit().options
 do {
     try XCGrapher.run(with: options)
 } catch {
-    die(error.localizedDescription)
+   throw die(error.localizedDescription)
 }

@@ -16,13 +16,8 @@ public func die(
     file: String = #file,
     function: String = #function,
     line: Int = #line
-) -> Never {
-    if let message = message {
-        LogError(message, file: file)
-    } else {
-        LogError("Fatal error: \(file):\(line) \(function)")
-    }
-    exit(1)
+) -> Error {
+  return NSError(domain: message ?? "N/A", code: 1)
 }
 
 func Log(_ items: Any..., dim: Bool = false, file: String = #file) {

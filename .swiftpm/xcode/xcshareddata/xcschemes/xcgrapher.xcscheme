@@ -48,6 +48,20 @@
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "XCGrapherCLIParser"
+               BuildableName = "XCGrapherCLIParser"
+               BlueprintName = "XCGrapherCLIParser"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -83,6 +97,16 @@
                BlueprintIdentifier = "XCGrapherLibEndToEndTests"
                BuildableName = "XCGrapherLibEndToEndTests"
                BlueprintName = "XCGrapherLibEndToEndTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "XCGrapherCLIParserTests"
+               BuildableName = "XCGrapherCLIParserTests"
+               BlueprintName = "XCGrapherCLIParserTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
