@@ -67,6 +67,26 @@ final class XCGrapherArgumentsTests: XCTestCase {
     try assert(args, expectExitCode, expectMessage)
   }
 
+  func testXcodeprojSomeTarget() async throws {
+    let args = ["SOME.xcodeproj", "--target", "SOME"]
+    let v = try sut(args)
+    XCTAssertNoDifference(
+      v,
+      .init(
+        currentDirectory: anyURL,
+        startingPoint: .xcodeProject("SOME.xcodeproj"),
+        target: "SOME",
+        podlock: "./Podfile.lock",
+        output: "",
+        apple: true,
+        spm: false,
+        pods: false,
+        json: false,
+        verbose: false
+      )
+    )
+  }
+
   func testSomeTarget() async throws {
     let args = ["Package.swift", "--target", "SOME"]
     let v = try sut(args)
