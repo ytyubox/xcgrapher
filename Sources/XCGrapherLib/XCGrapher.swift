@@ -3,7 +3,7 @@ import Foundation
 public enum XCGrapher {
   public static func run(with options: XCGrapherOptions) throws {
     var options = options
-    if [options.pods, options.spm].allSatisfy({$0 == false}) {
+    if [options.pods, options.spm].allSatisfy({ $0 == false }) {
       options.apple = true
     }
 
@@ -28,8 +28,7 @@ public enum XCGrapher {
       sources = try xcodeproj.compileSourcesList()
     case let .swiftPackage(packagePath):
       let package = SwiftPackage(clone: packagePath)
-      guard let target = try package.targets().first(where: { $0.name == options.target })
-      else { throw die("Could not locate target '\(options.target)'") }
+      guard let target = try package.targets().first(where: { $0.name == options.target }) else { throw die("Could not locate target '\(options.target)'") }
       sources = target.sources
     }
 

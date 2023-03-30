@@ -38,6 +38,10 @@ let package = Package(
       name: "XCGrapherLibTests",
       dependencies: ["XCGrapherLib"]
     ),
+//    .testTarget(
+//      name: "XCGrapherLibEndToEndTests",
+//      dependencies: ["XCGrapherLib"]
+//    ),
     .testTarget(
       name: "XCGrapherCLIParserTests",
       dependencies: [

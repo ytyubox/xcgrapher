@@ -1,50 +1,50 @@
 import Foundation
 
 enum Logger {
-    static var log: (String) -> Void = {
-        print($0)
-    }
+  static var log: (String) -> Void = {
+    print($0)
+  }
 
-    static var logError: (String) -> Void = {
-        let data = Data($0.utf8)
-        FileHandle.standardError.write(data)
-    }
+  static var logError: (String) -> Void = {
+    let data = Data($0.utf8)
+    FileHandle.standardError.write(data)
+  }
 }
 
 public func die(
-    _ message: String? = nil,
-    file: String = #file,
-    function: String = #function,
-    line: Int = #line
+  _ message: String? = nil,
+  file: String = #file,
+  function: String = #function,
+  line: Int = #line
 ) -> Error {
   return NSError(domain: message ?? "N/A", code: 1)
 }
 
 func Log(_ items: Any..., dim: Bool = false, file: String = #file) {
-    let color = dim ? Colors.dim : ""
-    Logger.log(items.reduce(color + logPrefix(file: file)) { $0 + " \($1)" } + Colors.reset)
+  let color = dim ? Colors.dim : ""
+  Logger.log(items.reduce(color + logPrefix(file: file)) { $0 + " \($1)" } + Colors.reset)
 }
 
 func LogError(_ items: Any..., file: String = #file) {
-    Logger.logError(items.reduce(Colors.red + logPrefix(file: file)) { $0 + " \($1)" } + Colors.reset)
+  Logger.logError(items.reduce(Colors.red + logPrefix(file: file)) { $0 + " \($1)" } + Colors.reset)
 }
 
 func failWithContext<T>(attempt: @autoclosure () throws -> T, context: Any, file: String = #file) throws -> T {
-    do {
-        return try attempt()
-    } catch {
-        LogError("Error context:", String(describing: context), file: file)
-        throw error
-    }
+  do {
+    return try attempt()
+  } catch {
+    LogError("Error context:", String(describing: context), file: file)
+    throw error
+  }
 }
 
 private func logPrefix(file: String) -> String {
-    let name = file.components(separatedBy: "/").last?.replacingOccurrences(of: ".swift", with: "") ?? "???"
-    return "[\(name)]"
+  let name = file.components(separatedBy: "/").last?.replacingOccurrences(of: ".swift", with: "") ?? "???"
+  return "[\(name)]"
 }
 
 private enum Colors {
-    static let red = "\u{001B}[0;31m"
-    static let dim = "\u{001B}[2m"
-    static let reset = "\u{001B}[0;0m"
+  static let red = "\u{001B}[0;31m"
+  static let dim = "\u{001B}[2m"
+  static let reset = "\u{001B}[0;0m"
 }

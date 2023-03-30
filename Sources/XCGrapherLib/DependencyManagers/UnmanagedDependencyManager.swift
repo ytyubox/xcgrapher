@@ -6,16 +6,16 @@ struct UnmanagedDependencyManager {}
 
 extension UnmanagedDependencyManager: DependencyManager {
 
-    var pluginModuleType: XCGrapherImport.ModuleType {
-        .other
-    }
+  var pluginModuleType: XCGrapherImport.ModuleType {
+    .other
+  }
 
-    func isManaging(module: String) -> Bool {
-        true
-    }
+  func isManaging(module: String) -> Bool {
+    true
+  }
 
-    func dependencies(of module: String) -> [String] {
-        []
-    }
+  func dependencies(of module: String) -> [String] {
+    []
+  }
 
 }

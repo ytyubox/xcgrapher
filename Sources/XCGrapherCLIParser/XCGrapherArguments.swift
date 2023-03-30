@@ -54,14 +54,12 @@ public struct xcgrapher: ParsableCommand {
 
   public func validate() throws {
     if path.hasSuffix(".xcodeproj") {
-      guard FileManager.default.directoryExists(atPath: path)
-      else { throw die("'\(path)' is not a valid xcode project.") }
+      guard FileManager.default.directoryExists(atPath: path) else { throw die("'\(path)' is not a valid xcode project.") }
       if (spm || apple || pods) == false {
         print("no dependency set, run with --apple")
       }
     } else if path.hasSuffix("Package.swift") {
-      guard FileManager.default.fileExists(atPath: path)
-      else { throw die("'\(path)' is not a valid Swift Package") }
+      guard FileManager.default.fileExists(atPath: path) else { throw die("'\(path)' is not a valid Swift Package") }
     } else {
       throw die("--project or --package must be provided.")
     }

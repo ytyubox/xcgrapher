@@ -3,39 +3,39 @@ import XCTest
 
 final class StringExtensionTests: XCTestCase {
 
-    func testScanBuilder() {
-        let given = "abc"
-        let sut = given.scan
+  func testScanBuilder() {
+    let given = "abc"
+    let sut = given.scan
 
-        let output = sut {
-            $0.scanAndStoreUpToAndIncluding(string: "b")
-        }
-
-        XCTAssertEqual(output, "ab")
+    let output = sut {
+      $0.scanAndStoreUpToAndIncluding(string: "b")
     }
 
-    func testAppendingPathComponent() {
-        let sut = String.appendingPathComponent
+    XCTAssertEqual(output, "ab")
+  }
 
-        XCTAssertEqual(sut("/a/b")("c"), "/a/b/c")
-        XCTAssertEqual(sut("/a/b")("/c"), "/a/b/c")
-        XCTAssertEqual(sut("/a/b/")("c"), "/a/b/c")
-        XCTAssertEqual(sut("/a/b/")("/c"), "/a/b/c")
-    }
+  func testAppendingPathComponent() {
+    let sut = String.appendingPathComponent
 
-    func testBreakIntoLines() {
-        let sut = String.breakIntoLines
+    XCTAssertEqual(sut("/a/b")("c"), "/a/b/c")
+    XCTAssertEqual(sut("/a/b")("/c"), "/a/b/c")
+    XCTAssertEqual(sut("/a/b/")("c"), "/a/b/c")
+    XCTAssertEqual(sut("/a/b/")("/c"), "/a/b/c")
+  }
 
-        XCTAssertEqual(sut("a\nb\nc")(), ["a", "b", "c"])
-        XCTAssertEqual(sut("abc")(), ["abc"])
-    }
+  func testBreakIntoLines() {
+    let sut = String.breakIntoLines
 
-    func testLastPathComponent() {
-        let sut = String.lastPathComponent
+    XCTAssertEqual(sut("a\nb\nc")(), ["a", "b", "c"])
+    XCTAssertEqual(sut("abc")(), ["abc"])
+  }
 
-        XCTAssertEqual(sut("a")(), "a")
-        XCTAssertEqual(sut("a/b/c")(), "c")
-        XCTAssertEqual(sut("a/b.swift")(), "b.swift")
-    }
+  func testLastPathComponent() {
+    let sut = String.lastPathComponent
+
+    XCTAssertEqual(sut("a")(), "a")
+    XCTAssertEqual(sut("a/b/c")(), "c")
+    XCTAssertEqual(sut("a/b.swift")(), "b.swift")
+  }
 
 }
