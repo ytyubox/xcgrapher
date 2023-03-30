@@ -7,6 +7,9 @@ public typealias XCGrapherArguments = xcgrapher
 /// Needs this name for `ParsableArguments`'s help text to be correct
 public struct xcgrapher: ParsableCommand {
   public static var configuration = CommandConfiguration(version: "0.0.13")
+  public static var fileExist: (String) -> Bool = { path in
+    FileManager.default.directoryExists(atPath: path)
+  }
 
   public init() {}
   @Argument(help: "The path to the .xcodeproj or Package.swift")
