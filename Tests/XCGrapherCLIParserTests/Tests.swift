@@ -79,7 +79,7 @@ final class XCGrapherArgumentsTests: XCTestCase {
   }
 
   func testFailPath() async throws {
-    let args = ["FAILPATH", "--target", "SOME"]
+    let args = ["", "--target", "SOME"]
     try assert(
       args,
       1,
