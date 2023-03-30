@@ -64,8 +64,6 @@ public struct xcgrapher: ParsableCommand {
     } else {
       throw die("--project or --package must be provided.")
     }
-
-//    guard !target.isEmpty else { throw die("--target must not be empty.") }
   }
 }
 
