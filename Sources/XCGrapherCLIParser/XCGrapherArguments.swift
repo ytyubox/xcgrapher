@@ -65,7 +65,7 @@ public struct xcgrapher: ParsableCommand {
       throw die("--project or --package must be provided.")
     }
 
-    guard !target.isEmpty else { throw die("--target must not be empty.") }
+//    guard !target.isEmpty else { throw die("--target must not be empty.") }
   }
 }
 
@@ -77,7 +77,7 @@ public extension XCGrapherArguments {
     return .init(
       currentDirectory: currentDirectory,
       startingPoint: startingPoint,
-      target: target ?? "",
+      target: target,
       podlock: podlock,
       output: output,
       apple: apple,
