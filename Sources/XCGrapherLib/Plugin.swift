@@ -3,8 +3,8 @@ import Foundation
 // MARK: - Custom Plugin
 
 public class XCGrapherModuleImportPlugin {
-  public func process(file: XCGrapherFile) throws -> [Any] {
-    [] // We don't care about reading file info manually for this particular plugin
+  public func process(file: XCGrapherFile) throws -> [ImportInfo] {
+    []
   }
 
   public func process(library: XCGrapherImport) throws -> [ImportInfo] {

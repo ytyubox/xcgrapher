@@ -230,7 +230,7 @@ private extension PluginSupport {
     }
   }
 
-  func plugin_process(file: XCGrapherFile) throws -> [Any] {
+  func plugin_process(file: XCGrapherFile) throws -> [ImportInfo] {
     do {
       return try plugin.process(file: file)
     } catch {
