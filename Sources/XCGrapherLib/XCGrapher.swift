@@ -1,6 +1,19 @@
 import Foundation
 
 public enum XCGrapher {
+  fileprivate static func source(_ options: XCGrapherOptions) throws -> [String] {
+    switch options.startingPoint {
+    case let .xcodeProject(project):
+      let xcodeproj = Xcodeproj(projectFile: project, target: options.target)
+      return try xcodeproj.compileSourcesList()
+    case let .swiftPackage(packagePath):
+      let package = SwiftPackage(clone: packagePath)
+      guard let target = try package.targets().first(where: { $0.name == options.target }) else {
+        throw die("Could not locate target '\(options.target)'")
+      }
+      return target.sources
+    }
+  }
 
   public static func run(with options: XCGrapherOptions) throws -> String {
     if options.verbose == false {
@@ -15,18 +28,7 @@ public enum XCGrapher {
     Log("xcodeproj version: \(try TerminalCommand(cmd: "xcodeproj --version").execute())")
 
     Log("Generating list of source files in \(options.startingPoint.localisedName)")
-    var sources: [FileManager.Path] = []
-    switch options.startingPoint {
-    case let .xcodeProject(project):
-      let xcodeproj = Xcodeproj(projectFile: project, target: options.target)
-      sources = try xcodeproj.compileSourcesList()
-    case let .swiftPackage(packagePath):
-      let package = SwiftPackage(clone: packagePath)
-      guard let target = try package.targets().first(where: { $0.name == options.target }) else {
-        throw die("Could not locate target '\(options.target)'")
-      }
-      sources = target.sources
-    }
+    let sources = try source(options)
 
     // MARK: - Create dependency manager lookups
 
