@@ -107,10 +107,7 @@ func expandPath(_ path: String, in directory: String) -> URL {
   return URL(fileURLWithPath: directory).appendingPathComponent(path).standardized
 }
 
-private func maker(
-  _ option: XCGrapherOptions
-)
-  -> SwiftPackageDependencySource {
+private func maker(_ option: XCGrapherOptions) -> SwiftPackageDependencySource {
   let path = option.startingPoint.path
   let target = option.target
   switch option.startingPoint {
