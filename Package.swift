@@ -1,5 +1,6 @@
 // swift-tools-version:5.7
 
+import Foundation
 import PackageDescription
 
 let package = Package(
@@ -51,3 +52,5 @@ let package = Package(
     ),
   ]
 )
+
+if ProcessInfo.processInfo.environment["END_TO_END_TEST"] == nil {}
