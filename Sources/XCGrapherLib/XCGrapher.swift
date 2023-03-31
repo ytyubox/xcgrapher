@@ -1,20 +1,6 @@
 import Foundation
 
 public enum XCGrapher {
-  fileprivate static func source(_ options: XCGrapherOptions) throws -> [String] {
-    switch options.startingPoint {
-    case let .xcodeProject(project):
-      let xcodeproj = Xcodeproj(projectFile: project, target: options.target)
-      return try xcodeproj.compileSourcesList()
-    case let .swiftPackage(packagePath):
-      let package = SwiftPackage(clone: packagePath)
-      guard let target = try package.targets().first(where: { $0.name == options.target }) else {
-        throw die("Could not locate target '\(options.target)'")
-      }
-      return target.sources
-    }
-  }
-
   public static func run(with options: XCGrapherOptions) throws -> String {
     if options.verbose == false {
       Logger.log = { _ in }
@@ -52,6 +38,8 @@ public enum XCGrapher {
       let nativeManager = try NativeDependencyManager()
       Handler.nativeManager = nativeManager
     }
+
+    dump(sources)
 
     if options.force {
       Log("Ensuring all additional modules are graphed")
@@ -113,5 +101,19 @@ private func maker(_ option: XCGrapherOptions) -> SwiftPackageDependencySource {
   switch option.startingPoint {
   case .xcodeProject: return Xcodebuild(projectFile: path, target: target)
   case .swiftPackage: return SwiftBuild(packagePath: path, product: path)
+  }
+}
+
+private func source(_ options: XCGrapherOptions) throws -> [String] {
+  switch options.startingPoint {
+  case let .xcodeProject(project):
+    let xcodeproj = Xcodeproj(projectFile: project, target: options.target)
+    return try xcodeproj.compileSourcesList()
+  case let .swiftPackage(packagePath):
+    let package = SwiftPackage(clone: packagePath)
+    guard let target = try package.targets().first(where: { $0.name == options.target }) else {
+      throw die("Could not locate target '\(options.target)'")
+    }
+    return target.sources
   }
 }
