@@ -3,7 +3,7 @@
 import Foundation
 import PackageDescription
 
-let package = Package(
+var package = Package(
   name: "xcgrapher",
   platforms: [
     .macOS(.v10_15),
@@ -39,10 +39,6 @@ let package = Package(
       name: "XCGrapherLibTests",
       dependencies: ["XCGrapherLib"]
     ),
-//    .testTarget(
-//      name: "XCGrapherLibEndToEndTests",
-//      dependencies: ["XCGrapherLib"]
-//    ),
     .testTarget(
       name: "XCGrapherCLIParserTests",
       dependencies: [
@@ -53,4 +49,11 @@ let package = Package(
   ]
 )
 
-if ProcessInfo.processInfo.environment["END_TO_END_TEST"] == nil {}
+if ProcessInfo.processInfo.environment["END_TO_END_TEST"] != nil {
+  package.targets.append(
+    .testTarget(
+      name: "XCGrapherLibEndToEndTests",
+      dependencies: ["XCGrapherLib"]
+    )
+  )
+}
