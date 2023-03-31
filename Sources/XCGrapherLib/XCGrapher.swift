@@ -34,12 +34,7 @@ public enum XCGrapher {
 
     if options.spm || options.startingPoint.isSPM {
       Log("Building Swift Package list")
-      let maker = extractedFunc(options.startingPoint)
-
-      let swiftPackageDependencySource: SwiftPackageDependencySource = maker(
-        options.startingPoint.path,
-        options.target
-      )
+      let swiftPackageDependencySource = extractedFunc(options)
 
       pluginHandler.swiftPackageManager = try SwiftPackageManager(
         packageClones: try swiftPackageDependencySource
@@ -112,10 +107,14 @@ func expandPath(_ path: String, in directory: String) -> URL {
   return URL(fileURLWithPath: directory).appendingPathComponent(path).standardized
 }
 
-private func extractedFunc(_ startingPoint: StartingPoint)
-  -> (String, String) -> SwiftPackageDependencySource {
-  switch startingPoint {
-  case .xcodeProject: return Xcodebuild.init
-  case .swiftPackage: return SwiftBuild.init
+private func extractedFunc(
+  _ option: XCGrapherOptions
+)
+  -> SwiftPackageDependencySource {
+  let path = option.startingPoint.path
+  let target = option.target
+  switch option.startingPoint {
+  case .xcodeProject: return Xcodebuild(projectFile: path, target: target)
+  case .swiftPackage: return SwiftBuild(packagePath: path, product: path)
   }
 }
