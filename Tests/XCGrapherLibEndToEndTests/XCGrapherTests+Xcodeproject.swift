@@ -21,24 +21,21 @@ final class XCGrapherXcodeprojectTests: XCTestCase {
 
     let digraph = try sut(options)
 
-    // THEN the digraph only contains these edges
-    let expectedEdges = KnownEdges.pods
-
     XCGrapherAssertDigraphIsMadeFromEdges(
       digraph, [
-        ("SomeApp", "RxSwift"),
-        ("SomeApp", "RxCocoa"),
+        ("Auth0", "JWTDecode"),
+        ("Auth0", "SimpleKeychain"),
+        ("Moya", "Moya/Core"),
+        ("Moya/Core", "Alamofire"),
+        ("NSObject_Rx", "RxSwift"),
+        ("RxCocoa", "RxRelay"),
+        ("RxCocoa", "RxSwift"),
+        ("RxRelay", "RxSwift"),
         ("SomeApp", "Auth0"),
         ("SomeApp", "Moya"),
         ("SomeApp", "NSObject_Rx"),
-        ("NSObject_Rx", "RxSwift"),
-        ("RxCocoa", "RxSwift"),
-        ("RxCocoa", "RxRelay"),
-        ("RxRelay", "RxSwift"),
-        ("Moya", "Moya/Core"),
-        ("Moya/Core", "Alamofire"),
-        ("Auth0", "JWTDecode"),
-        ("Auth0", "SimpleKeychain"),
+        ("SomeApp", "RxCocoa"),
+        ("SomeApp", "RxSwift"),
       ]
     )
   }
