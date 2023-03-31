@@ -10,7 +10,6 @@ final class XCGrapherXcodeprojectTests: XCTestCase {
 
   override func setUpWithError() throws {
     try super.setUpWithError()
-    let someAppRoot = someAppRoot
     sut = XCGrapher.run
     options = ConcreteGrapherOptions
 

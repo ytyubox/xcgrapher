@@ -26,7 +26,6 @@ extension SwiftBuild: ShellTask {
     """
     swift build \
     --package-path "\(packagePath)" \
-    --product \(product) \
     && \
     swift build \
     --package-path \(packagePath) \

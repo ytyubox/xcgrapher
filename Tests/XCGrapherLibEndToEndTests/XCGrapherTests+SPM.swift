@@ -14,7 +14,6 @@ final class XCGrapherSPMTests: XCTestCase {
     options = concreteGrapherOptions
 
     try? FileManager.default.removeItem(atPath: dotfile) // Remove if needed only
-//    Logger.log = { _ in }
   }
 
   func testSomeAppSPM() throws {
@@ -47,15 +46,15 @@ final class XCGrapherSPMTests: XCTestCase {
   }
 }
 
+let somePackageRoot = URL(fileURLWithPath: #file)
+  .deletingLastPathComponent()
+  .deletingLastPathComponent()
+  .appendingPathComponent("SampleProjects")
+  .appendingPathComponent("SomePackage")
+  .path
+
 private let concreteGrapherOptions: XCGrapherOptions = {
   var currentDirectory: URL { .init(string: "some.url")! }
-
-  let somePackageRoot = URL(fileURLWithPath: #file)
-    .deletingLastPathComponent()
-    .deletingLastPathComponent()
-    .appendingPathComponent("SampleProjects")
-    .appendingPathComponent("SomePackage")
-    .path
 
   var startingPoint: StartingPoint = .swiftPackage(somePackageRoot)
   var target = "SomePackage"

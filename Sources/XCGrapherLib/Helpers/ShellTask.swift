@@ -34,7 +34,17 @@ extension ShellTask {
       LogError(commandNotFoundInstructions)
       throw CommandError.commandNotFound(message: commandNotFoundInstructions)
     } else {
-      LogError("The command `\(stringRepresentation)` failed with exit code \(task.terminationStatus)")
+      LogError(
+        """
+        The command `\(stringRepresentation)` failed with exit code \(task.terminationStatus)
+        output:
+        \(String(data: output, encoding: .utf8)!)
+
+        error:
+        \(String(data: errorOutput, encoding: .utf8)!)
+        """
+      )
+
       throw CommandError.failure(stderr: String(data: errorOutput, encoding: .utf8)!)
     }
   }
