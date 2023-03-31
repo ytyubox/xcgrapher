@@ -20,6 +20,9 @@ lint:
 	swiftlint .
 	swiftformat .
 
+test: 
+	@END_TO_END_TEST=1 swift test
+
 clean:
 	rm -rf .build
 
