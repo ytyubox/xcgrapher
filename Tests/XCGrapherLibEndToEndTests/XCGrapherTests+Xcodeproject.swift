@@ -112,24 +112,18 @@ private let ConcreteGrapherOptions: XCGrapherOptions = {
   var target = "SomeApp"
   var podlock: String = someAppRoot.appendingPathComponent("Podfile.lock")
   var output = "/tmp/xcgraphertests.png"
-  var apple = false
-  var spm = false
-  var pods = false
-  var force = false
-  var json = false
-  var version = false
-  var currentDirectory: URL = .init(string: "some.url")!
+
   return .init(
-    currentDirectory: currentDirectory,
+    currentDirectory: .init(string: "some.url")!,
     startingPoint: startingPoint,
     target: target,
     podlock: podlock,
-    output: output,
-    apple: apple,
-    spm: spm,
-    pods: pods,
+    output: someAppRoot.appendingPathComponent("Podfile.lock"),
+    apple: false,
+    spm: false,
+    pods: false,
     force: false,
-    json: json,
+    json: false,
     verbose: true
   )
 }()
