@@ -1,7 +1,6 @@
 import Foundation
 
 struct SwiftBuild: SwiftPackageDependencySource {
-
   let packagePath: FileManager.Path
   let product: String
 
@@ -18,18 +17,25 @@ struct SwiftBuild: SwiftPackageDependencySource {
       .appendingPathComponent("checkouts")
     return checkoutsDirectory.absoluteString
   }
-
 }
 
 extension SwiftBuild: ShellTask {
-
   var stringRepresentation: String {
-    // We need to first build the package (which implicitly resolves its dependencies), and then print the binary path via `--show-bin-path`
-    "swift build --package-path \"\(packagePath)\" --product \"\(product)\" && swift build --package-path \"\(packagePath)\" --product \"\(product)\" --show-bin-path"
+    // We need to first build the package (which implicitly resolves its dependencies), and then print the binary path
+    // via `--show-bin-path`
+    """
+    swift build \
+    --package-path "\(packagePath)" \
+    --product \(product) \
+    && \
+    swift build \
+    --package-path \(packagePath) \
+    --product \(product) \
+    --show-bin-path
+    """
   }
 
   var commandNotFoundInstructions: String {
     "Missing command 'swift'"
   }
-
 }

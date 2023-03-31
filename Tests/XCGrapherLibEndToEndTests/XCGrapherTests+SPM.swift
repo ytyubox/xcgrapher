@@ -14,7 +14,7 @@ final class XCGrapherSPMTests: XCTestCase {
     options = concreteGrapherOptions
 
     try? FileManager.default.removeItem(atPath: dotfile) // Remove if needed only
-    Logger.log = { _ in }
+//    Logger.log = { _ in }
   }
 
   func testSomeAppSPM() throws {
