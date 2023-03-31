@@ -13,7 +13,7 @@ class PluginSupport {
     projectSourceFiles: [FileManager.Path]
   ) throws -> Digraph {
     let digraph = Digraph(name: "XCGrapher")
-    var nodes: [Any] = []
+    var nodes: [ImportInfo] = []
 
     // MARK: - Main Target
 
@@ -107,7 +107,7 @@ private extension PluginSupport {
     from module: String,
     importedBy importer: String,
     importerType: XCGrapherImport.ModuleType,
-    building nodeList: inout [Any],
+    building nodeList: inout [ImportInfo],
     skipping modulesToSkip: inout Set<String>
   ) throws {
     if swiftPackageManager?.isManaging(module: module) == true {
@@ -188,7 +188,7 @@ private extension PluginSupport {
     from module: String,
     importedBy importer: String,
     importerType: XCGrapherImport.ModuleType,
-    building nodeList: inout [Any],
+    building nodeList: inout [ImportInfo],
     skipping modulesToSkip: inout Set<String>
   ) throws {
     let _nodes = try plugin_process(library: XCGrapherImport(
@@ -219,7 +219,7 @@ private extension PluginSupport {
 // MARK: - Plugin Caller Proxies
 
 private extension PluginSupport {
-  func plugin_process(library: XCGrapherImport) throws -> [Any] {
+  func plugin_process(library: XCGrapherImport) throws -> [ImportInfo] {
     guard library.importerName != library.moduleName else { return [] } // Filter when the library imports itself
 
     do {
