@@ -20,12 +20,11 @@ public enum XCGrapher {
       Logger.log = { _ in }
     }
 
-    // MARK: - Load the plugin
-
     // MARK: - Prepare the --target source file list
 
     Log("ruby version: \(try TerminalCommand(cmd: "ruby --version").execute())")
     Log("xcodeproj version: \(try TerminalCommand(cmd: "xcodeproj --version").execute())")
+
     Log("Generating list of source files in \(options.startingPoint.localisedName)")
     let sources = try source(options)
 
