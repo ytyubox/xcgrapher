@@ -7,7 +7,7 @@ public class XCGrapherModuleImportPlugin {
     [] // We don't care about reading file info manually for this particular plugin
   }
 
-  public func process(library: XCGrapherImport) throws -> [Any] {
+  public func process(library: XCGrapherImport) throws -> [ImportInfo] {
     // We want to store:
     // - Who is being imported (library.moduleName)
     // - Who is doing the importing (library.importerName)

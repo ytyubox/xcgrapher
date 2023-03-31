@@ -8,7 +8,10 @@ class PluginSupport {
   var nativeManager: NativeDependencyManager?
   var unknownManager: UnmanagedDependencyManager?
 
-  func generateDigraph(target: String, projectSourceFiles: [FileManager.Path]) throws -> Digraph {
+  func generateDigraph(
+    target: String,
+    projectSourceFiles: [FileManager.Path]
+  ) throws -> Digraph {
     let digraph = Digraph(name: "XCGrapher")
     var nodes: [Any] = []
 
@@ -244,5 +247,4 @@ private extension PluginSupport {
       throw error
     }
   }
-
 }

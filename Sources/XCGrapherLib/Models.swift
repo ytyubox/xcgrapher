@@ -1,7 +1,13 @@
 import Foundation
 
-struct ImportInfo {
-  let importedModuleName: String
-  let importerModuleName: String
-  let color: String
+public struct ImportInfo {
+  public init(importedModuleName: String, importerModuleName: String, color: String) {
+    self.importedModuleName = importedModuleName
+    self.importerModuleName = importerModuleName
+    self.color = color
+  }
+
+  public let importedModuleName: String
+  public let importerModuleName: String
+  public let color: String
 }
