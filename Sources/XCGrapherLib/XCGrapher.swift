@@ -30,13 +30,13 @@ public enum XCGrapher {
 
     // MARK: - Create dependency manager lookups
 
-    let pluginHandler = PluginSupport()
+    let Handler = PluginSupport()
 
     if options.spm || options.startingPoint.isSPM {
       Log("Building Swift Package list")
       let swiftPackageDependencySource = maker(options)
 
-      pluginHandler.swiftPackageManager = try SwiftPackageManager(
+      Handler.swiftPackageManager = try SwiftPackageManager(
         packageClones: try swiftPackageDependencySource
           .swiftPackageDependencies()
       )
@@ -44,13 +44,13 @@ public enum XCGrapher {
 
     if options.pods {
       Log("Building Cocoapod list")
-      pluginHandler.cocoapodsManager = try CocoapodsManager(lockFile: options.podlock)
+      Handler.cocoapodsManager = try CocoapodsManager(lockFile: options.podlock)
     }
 
     if options.apple {
       Log("Building Apple framework list")
       let nativeManager = try NativeDependencyManager()
-      pluginHandler.nativeManager = nativeManager
+      Handler.nativeManager = nativeManager
     }
 
     if options.force {
@@ -58,9 +58,9 @@ public enum XCGrapher {
       // Don't ignore unknown dependencies - add a manager that claims it is reponsible for them being there.
       // MUST be last in `allDependencyManagers`.
       let unknownManager = UnmanagedDependencyManager()
-      pluginHandler.unknownManager = unknownManager
+      Handler.unknownManager = unknownManager
     }
-    let digraph = try pluginHandler.generateDigraph(
+    let digraph = try Handler.generateDigraph(
       target: options.target,
       projectSourceFiles: sources
     )
