@@ -4,17 +4,13 @@ import XCTest
 
 /// `sut` fail to execute `dot`, however we don't care as we are just reading the output text file
 final class XCGrapherXcodeprojectTests: XCTestCase {
-  private var sut: ((XCGrapherOptions) throws -> Void)!
+  private var sut: ((XCGrapherOptions) throws -> String)!
   private var options: XCGrapherOptions!
-  let dotfile = "/tmp/xcgrapher.dot"
 
   override func setUpWithError() throws {
     try super.setUpWithError()
     sut = XCGrapher.run
     options = ConcreteGrapherOptions
-
-    try? FileManager.default.removeItem(atPath: dotfile)
-    Logger.log = { _ in }
   }
 
   func testSomeAppPods() throws {
@@ -22,8 +18,8 @@ final class XCGrapherXcodeprojectTests: XCTestCase {
     options.pods = true
 
     // WHEN we generate a digraph
-    try sut(options)
-    let digraph = try String(contentsOfFile: dotfile)
+
+    let digraph = try sut(options)
 
     // THEN the digraph only contains these edges
     let expectedEdges = KnownEdges.pods
@@ -36,8 +32,7 @@ final class XCGrapherXcodeprojectTests: XCTestCase {
     options.spm = true
 
     // WHEN we generate a digraph
-    try sut(options)
-    let digraph = try String(contentsOfFile: dotfile)
+    let digraph = try sut(options)
 
     // THEN the digraph only contains these edges
     let expectedEdges = KnownEdges.spm
@@ -51,8 +46,8 @@ final class XCGrapherXcodeprojectTests: XCTestCase {
     options.pods = true
 
     // WHEN we generate a digraph
-    try sut(options)
-    let digraph = try String(contentsOfFile: dotfile)
+
+    let digraph = try sut(options)
 
     // THEN the digraph only contains these edges
     let expectedEdges = KnownEdges.spm + KnownEdges.pods
@@ -65,8 +60,8 @@ final class XCGrapherXcodeprojectTests: XCTestCase {
     options.apple = true
 
     // WHEN we generate a digraph
-    try sut(options)
-    let digraph = try String(contentsOfFile: dotfile)
+
+    let digraph = try sut(options)
 
     // THEN the digraph only contains these edges
     let expectedEdges = KnownEdges.apple
@@ -80,8 +75,8 @@ final class XCGrapherXcodeprojectTests: XCTestCase {
     options.spm = true
 
     // WHEN we generate a digraph
-    try sut(options)
-    let digraph = try String(contentsOfFile: dotfile)
+
+    let digraph = try sut(options)
 
     // THEN the digraph only contains these edges
     let expectedEdges = KnownEdges.apple + KnownEdges.spm + KnownEdges.appleFromSPM
@@ -96,8 +91,7 @@ final class XCGrapherXcodeprojectTests: XCTestCase {
     options.pods = true
 
     // WHEN we generate a digraph
-    try sut(options)
-    let digraph = try String(contentsOfFile: dotfile)
+    let digraph = try sut(options)
 
     // THEN the digraph only contains these edges
     let expectedEdges = KnownEdges.apple + KnownEdges.spm + KnownEdges.appleFromSPM + KnownEdges.pods + KnownEdges

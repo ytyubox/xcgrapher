@@ -29,6 +29,7 @@ extension ShellTask {
     task.waitUntilExit()
 
     if task.terminationStatus == 0 {
+      Log(String(data: output, encoding: .utf8)!)
       return String(data: output, encoding: .utf8)!
     } else if task.terminationStatus == 127 {
       LogError(commandNotFoundInstructions)

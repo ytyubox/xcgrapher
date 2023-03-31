@@ -9,7 +9,6 @@ final class ShellTaskTests: XCTestCase {
   override func setUpWithError() throws {
     try super.setUpWithError()
     mock = ConcreteShellTask()
-    Logger.log = { _ in }
   }
 
   func testCommandNotFound() {

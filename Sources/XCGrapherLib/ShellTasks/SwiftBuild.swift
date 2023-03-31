@@ -29,7 +29,6 @@ extension SwiftBuild: ShellTask {
     && \
     swift build \
     --package-path \(packagePath) \
-    --product \(product) \
     --show-bin-path
     """
   }

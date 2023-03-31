@@ -1,14 +1,13 @@
 import Foundation
 
 public enum XCGrapher {
-  public static func run(with options: XCGrapherOptions) throws {
+
+  public static func run(with options: XCGrapherOptions) throws -> String {
     if options.verbose == false {
       Logger.log = { _ in }
     }
 
     // MARK: - Load the plugin
-
-    let pluginHandler = PluginSupport()
 
     // MARK: - Prepare the --target source file list
 
@@ -23,33 +22,34 @@ public enum XCGrapher {
       sources = try xcodeproj.compileSourcesList()
     case let .swiftPackage(packagePath):
       let package = SwiftPackage(clone: packagePath)
-      guard let target = try package.targets().first(where: { $0.name == options.target }) else { throw die("Could not locate target '\(options.target)'") }
+      guard let target = try package.targets().first(where: { $0.name == options.target }) else {
+        throw die("Could not locate target '\(options.target)'")
+      }
       sources = target.sources
     }
 
     // MARK: - Create dependency manager lookups
 
+    let pluginHandler = PluginSupport()
+
     if options.spm || options.startingPoint.isSPM {
       Log("Building Swift Package list")
-      let maker: (FileManager.Path, String) -> SwiftPackageDependencySource
-      switch options.startingPoint {
-      case .xcodeProject: maker = Xcodebuild.init
-      case .swiftPackage: maker = SwiftBuild.init
-      }
+      let maker = extractedFunc(options.startingPoint)
 
       let swiftPackageDependencySource: SwiftPackageDependencySource = maker(
         options.startingPoint.path,
         options.target
       )
-      let swiftPackageClones = try swiftPackageDependencySource.swiftPackageDependencies()
-      let swiftPackageManager = try SwiftPackageManager(packageClones: swiftPackageClones)
-      pluginHandler.swiftPackageManager = swiftPackageManager
+
+      pluginHandler.swiftPackageManager = try SwiftPackageManager(
+        packageClones: try swiftPackageDependencySource
+          .swiftPackageDependencies()
+      )
     }
 
     if options.pods {
       Log("Building Cocoapod list")
-      let cocoapodsManager = try CocoapodsManager(lockFile: options.podlock)
-      pluginHandler.cocoapodsManager = cocoapodsManager
+      pluginHandler.cocoapodsManager = try CocoapodsManager(lockFile: options.podlock)
     }
 
     if options.apple {
@@ -92,12 +92,13 @@ public enum XCGrapher {
       // MARK: - Writing
 
       let digraphOutput = "/tmp/xcgrapher.dot"
-
-      try digraph.build()
-        .data(using: .utf8)!
+      let build = digraph.build()
+      try build.data(using: .utf8)!
         .write(to: URL(fileURLWithPath: digraphOutput))
       Log("Result written to", options.output)
+      return build
     }
+    return ""
   }
 }
 
@@ -109,4 +110,12 @@ func expandPath(_ path: String, in directory: String) -> URL {
     return URL(fileURLWithPath: NSString(string: path).expandingTildeInPath).standardized
   }
   return URL(fileURLWithPath: directory).appendingPathComponent(path).standardized
+}
+
+private func extractedFunc(_ startingPoint: StartingPoint)
+  -> (String, String) -> SwiftPackageDependencySource {
+  switch startingPoint {
+  case .xcodeProject: return Xcodebuild.init
+  case .swiftPackage: return SwiftBuild.init
+  }
 }
