@@ -57,7 +57,7 @@ final class XCGrapherArgumentsTests: XCTestCase {
     let expectExitCode: Int32 = 0
     let expectMessage =
       """
-      USAGE: xcgrapher <path> --target <target> [--podlock <podlock>] [--output <output>] [--apple] [--spm] [--pods] [--json] [--verbose]
+      USAGE: xcgrapher <path> --target <target> [--podlock <podlock>] [--output <output>] [--apple] [--spm] [--pods] [--force] [--json] [--verbose]
 
       ARGUMENTS:
         <path>                  The path to the .xcodeproj or Package.swift
@@ -72,12 +72,18 @@ final class XCGrapherArgumentsTests: XCTestCase {
                                 and readable-source --spm packages)
         --spm                   Include Swift Package Manager frameworks in the graph
         --pods                  Include Cocoapods frameworks in the graph
+        --force                 Show frameworks that no dependency manager claims to
+                                be managing (perhaps there are name discrepancies?).
+                                Using this option doesn't make sense unless you are
+                                also using all the other include flags relevant to
+                                your project.
         --json                  Output json
         --verbose               Display verbose information
         --version               Show the version.
         -h, --help              Show help information.
 
       """
+
     try assert(args, expectExitCode, expectMessage)
   }
 
@@ -118,6 +124,7 @@ final class XCGrapherArgumentsTests: XCTestCase {
         apple: true,
         spm: false,
         pods: false,
+        force: false,
         json: false,
         verbose: false
       )
@@ -138,6 +145,7 @@ final class XCGrapherArgumentsTests: XCTestCase {
         apple: true,
         spm: false,
         pods: false,
+        force: false,
         json: false,
         verbose: false
       )
@@ -158,6 +166,7 @@ final class XCGrapherArgumentsTests: XCTestCase {
         apple: true,
         spm: false,
         pods: false,
+        force: false,
         json: false,
         verbose: false
       )
@@ -178,6 +187,7 @@ final class XCGrapherArgumentsTests: XCTestCase {
         apple: false,
         spm: true,
         pods: false,
+        force: false,
         json: false,
         verbose: false
       )
@@ -191,7 +201,7 @@ final class XCGrapherArgumentsTests: XCTestCase {
       """
       Error: The value '' is invalid for '--target <target>': Error Domain=--target must not be empty. Code=1 "(null)"
       Help:  --target <target>  The name of the Xcode project target (or Swift Package product) to use as a starting point
-      Usage: xcgrapher <path> --target <target> [--podlock <podlock>] [--output <output>] [--apple] [--spm] [--pods] [--json] [--verbose]
+      Usage: xcgrapher <path> --target <target> [--podlock <podlock>] [--output <output>] [--apple] [--spm] [--pods] [--force] [--json] [--verbose]
         See 'xcgrapher --help' for more information.
       """
     try assert(args, expectExitCode, expectMessage)

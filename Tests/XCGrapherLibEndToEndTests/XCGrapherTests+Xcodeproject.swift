@@ -134,6 +134,7 @@ private let ConcreteGrapherOptions: XCGrapherOptions = {
     apple: apple,
     spm: spm,
     pods: pods,
+    force: false,
     json: json,
     verbose: true
   )

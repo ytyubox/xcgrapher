@@ -58,13 +58,13 @@ public enum XCGrapher {
       pluginHandler.nativeManager = nativeManager
     }
 
-//    if options.force {
-//      Log("Ensuring all additional modules are graphed")
-//      // Don't ignore unknown dependencies - add a manager that claims it is reponsible for them being there.
-//      // MUST be last in `allDependencyManagers`.
-//      let unknownManager = UnmanagedDependencyManager()
-//      pluginHandler.unknownManager = unknownManager
-//    }
+    if options.force {
+      Log("Ensuring all additional modules are graphed")
+      // Don't ignore unknown dependencies - add a manager that claims it is reponsible for them being there.
+      // MUST be last in `allDependencyManagers`.
+      let unknownManager = UnmanagedDependencyManager()
+      pluginHandler.unknownManager = unknownManager
+    }
     let digraph = try pluginHandler.generateDigraph(
       target: options.target,
       projectSourceFiles: sources

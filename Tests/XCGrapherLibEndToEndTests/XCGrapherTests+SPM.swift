@@ -75,6 +75,7 @@ private let concreteGrapherOptions: XCGrapherOptions = {
     apple: apple,
     spm: spm,
     pods: pods,
+    force: force,
     json: json,
     verbose: true
   )

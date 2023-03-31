@@ -10,6 +10,7 @@ public struct XCGrapherOptions: Equatable {
     apple: Bool,
     spm: Bool,
     pods: Bool,
+    force: Bool,
     json: Bool,
     verbose: Bool
   ) {
@@ -21,6 +22,7 @@ public struct XCGrapherOptions: Equatable {
     self.apple = apple
     self.spm = spm
     self.pods = pods
+    self.force = force
     self.json = json
     self.verbose = verbose
   }
@@ -33,6 +35,7 @@ public struct XCGrapherOptions: Equatable {
   public var apple: Bool
   public var spm: Bool
   public var pods: Bool
+  public var force: Bool
   public var json: Bool
   public var verbose: Bool
 }

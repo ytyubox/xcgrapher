@@ -43,6 +43,12 @@ public struct XCGrapherArguments: ParsableCommand {
   @Flag(name: .long, help: "Include Cocoapods frameworks in the graph")
   public var pods: Bool = false
 
+  @Flag(
+    name: .long,
+    help: "Show frameworks that no dependency manager claims to be managing (perhaps there are name discrepancies?). Using this option doesn't make sense unless you are also using all the other include flags relevant to your project."
+  )
+  public var force: Bool = false
+
   @Flag(name: .long, help: "Output json")
   public var json: Bool = false
 
@@ -91,6 +97,7 @@ public extension XCGrapherArguments {
       apple: computedApple,
       spm: spm,
       pods: pods,
+      force: force,
       json: json,
       verbose: verbose
     )
