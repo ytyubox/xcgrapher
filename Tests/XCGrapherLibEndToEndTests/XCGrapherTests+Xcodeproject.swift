@@ -107,26 +107,19 @@ private let someAppRoot = URL(fileURLWithPath: #file)
   .appendingPathComponent("SampleProjects")
   .appendingPathComponent("SomeApp")
   .path
-private let ConcreteGrapherOptions: XCGrapherOptions = {
-  var startingPoint: StartingPoint = .xcodeProject(someAppRoot.appendingPathComponent("SomeApp.xcodeproj"))
-  var target = "SomeApp"
-  var podlock: String = someAppRoot.appendingPathComponent("Podfile.lock")
-  var output = "/tmp/xcgraphertests.png"
-
-  return .init(
-    currentDirectory: .init(string: "some.url")!,
-    startingPoint: startingPoint,
-    target: target,
-    podlock: podlock,
-    output: someAppRoot.appendingPathComponent("Podfile.lock"),
-    apple: false,
-    spm: false,
-    pods: false,
-    force: false,
-    json: false,
-    verbose: true
-  )
-}()
+private let ConcreteGrapherOptions: XCGrapherOptions = .init(
+  currentDirectory: .init(string: "some.url")!,
+  startingPoint: .xcodeProject(someAppRoot.appendingPathComponent("SomeApp.xcodeproj")),
+  target: "SomeApp",
+  podlock: someAppRoot.appendingPathComponent("Podfile.lock"),
+  output: "",
+  apple: false,
+  spm: false,
+  pods: false,
+  force: false,
+  json: false,
+  verbose: true
+)
 
 private enum KnownEdges {
   static let pods = [
