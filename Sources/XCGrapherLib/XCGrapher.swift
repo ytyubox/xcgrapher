@@ -26,7 +26,6 @@ public enum XCGrapher {
 
     Log("ruby version: \(try TerminalCommand(cmd: "ruby --version").execute())")
     Log("xcodeproj version: \(try TerminalCommand(cmd: "xcodeproj --version").execute())")
-
     Log("Generating list of source files in \(options.startingPoint.localisedName)")
     let sources = try source(options)
 
