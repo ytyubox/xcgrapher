@@ -44,7 +44,32 @@ private func logPrefix(file: String) -> String {
 }
 
 private enum Colors {
-  static let red = "\u{001B}[0;31m"
-  static let dim = "\u{001B}[2m"
-  static let reset = "\u{001B}[0;0m"
+  static var red: String {
+    if amIBeingDebugged {return ""}
+    return "\u{001B}[0;31m"
+  }
+
+  static var dim: String {
+    if amIBeingDebugged {return ""}
+    return "\u{001B}[2m"
+  }
+
+  static var reset: String {
+    if amIBeingDebugged {return ""}
+    return "\u{001B}[0;0m"
+  }
 }
+
+let amIBeingDebugged: Bool = {
+  // Buffer for "sysctl(...)" call's result.
+  var info = kinfo_proc()
+  // Counts buffer's size in bytes (like C/C++'s `sizeof`).
+  var size = MemoryLayout.stride(ofValue: info)
+  // Tells we want info about own process.
+  var mib: [Int32] = [CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid()]
+  // Call the API (and assert success).
+  let junk = sysctl(&mib, UInt32(mib.count), &info, &size, nil, 0)
+  assert(junk == 0, "sysctl failed")
+  // Finally, checks if debugger's flag is present yet.
+  return (info.kp_proc.p_flag & P_TRACED) != 0
+}()
