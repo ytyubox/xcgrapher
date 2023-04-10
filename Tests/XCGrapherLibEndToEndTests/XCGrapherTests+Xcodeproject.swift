@@ -165,6 +165,7 @@ private enum KnownEdges {
     ("SomeApp", "Foundation"),
     ("SomeApp", "AVFoundation"),
     ("SomeApp", "UIKit"),
+    ("SomeApp", "Charts"),
   ]
 
   static let appleFromSPM = [

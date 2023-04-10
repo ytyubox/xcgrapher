@@ -25,7 +25,7 @@ final class ShellTaskTests: XCTestCase {
     }
   }
 
-  func testCommandFailed() {
+  func testCommandFail() {
     mock.stringRepresentation = "which"
     do {
       try sut.execute()
