@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "approvaltests.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/approvals/ApprovalTests.Swift",
+      "state" : {
+        "revision" : "f003524be9f86aef6d00c6ee2eb53ed682514348",
+        "version" : "2.0.0"
+      }
+    },
+    {
       "identity" : "swift-argument-parser",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-argument-parser",

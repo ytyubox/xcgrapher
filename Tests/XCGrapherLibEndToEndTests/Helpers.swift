@@ -18,7 +18,7 @@ func XCGrapherAssertDigraphIsMadeFromEdges(_ digraph: String, _ edges: [(String,
   }
 
   if !digraphEdgeStrings.isEmpty {
-    XCTFail("The digraph contains unexpected edges: \(digraphEdgeStrings)")
+    XCTFail("The digraph contains unexpected edges: \(digraphEdgeStrings)", file: file, line: line)
   }
 }
 

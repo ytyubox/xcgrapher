@@ -14,6 +14,7 @@ var package = Package(
   dependencies: [
     .package(url: "https://github.com/apple/swift-argument-parser", from: "0.4.0"),
     .package(url: "https://github.com/pointfreeco/swift-custom-dump", from: "0.0.1"),
+    .package(url: "https://github.com/approvals/ApprovalTests.Swift", from: "2.0.0"),
 
   ],
   targets: [
@@ -37,13 +38,14 @@ var package = Package(
     ),
     .testTarget(
       name: "XCGrapherLibTests",
-      dependencies: ["XCGrapherLib"]
+      dependencies: ["XCGrapherLib", "ApprovalTests.Swift"]
     ),
     .testTarget(
       name: "XCGrapherCLIParserTests",
       dependencies: [
         "XCGrapherCLIParser",
         .product(name: "CustomDump", package: "swift-custom-dump"),
+        "ApprovalTests.Swift",
       ]
     ),
   ]
@@ -53,7 +55,11 @@ if true || ProcessInfo.processInfo.environment["END_TO_END_TEST"] != nil {
   package.targets.append(
     .testTarget(
       name: "XCGrapherLibEndToEndTests",
-      dependencies: ["XCGrapherLib"]
+      dependencies: [
+        "XCGrapherLib",
+        .product(name: "CustomDump", package: "swift-custom-dump"),
+        "ApprovalTests.Swift",
+      ]
     )
   )
 }
