@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CasePaths
 
 public struct OBJ {
   public init(value: String) {

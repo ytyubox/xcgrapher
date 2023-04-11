@@ -110,16 +110,19 @@ private extension PluginSupport {
     building nodeList: inout [ImportInfo],
     skipping modulesToSkip: inout Set<String>
   ) throws {
+    if module == "CasePaths" {
+      print(module, swiftPackageManager!.knownSPMTargets)
+    }
     if swiftPackageManager?.isManaging(module: module) == true {
       // `module` is a Swift Package and `importer` is either a Swift Package or the main --target
-      let _nodes =
+      let nodes =
         try plugin_process(library: XCGrapherImport(
           moduleName: module,
           importerName: importer,
           moduleType: .spm,
           importerType: importerType
         ))
-      nodeList.append(contentsOf: _nodes)
+      nodeList.append(contentsOf: nodes)
 
       guard !modulesToSkip.contains(module) else { return }
       modulesToSkip.insert(module)
