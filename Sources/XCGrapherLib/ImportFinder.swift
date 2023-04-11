@@ -37,14 +37,20 @@ struct ImportFinder {
           .replacingOccurrences(of: " let ", with: " ")
           .replacingOccurrences(of: " func ", with: " ")
       }
-      .filter { $0 != "import Swift" && !$0.hasPrefix("import Swift.")
-      } // We should ignore "import Swift.Y" and "import Swift" - we can assume the project is dependent on Swift
       .map {
         $0.scan {
           $0.scanUpToAndIncluding(string: "import ")
           $0.scanAndStoreUpToCharacters(from: CharacterSet(charactersIn: " ."))
         }
       }
+      .map({ (raw:String) -> String in
+        var raw = raw
+
+        if let index = raw.firstIndex(of: "/") {
+          raw.removeSubrange(index...)
+        }
+        return raw
+      })
       .filter({$0 != "Swift"})
       .unique()
       .sortedAscendingCaseInsensitively()

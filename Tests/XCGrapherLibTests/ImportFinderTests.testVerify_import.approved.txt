@@ -18,7 +18,7 @@ Charts
 Cocoa
 Combine
 CommonCrypto
-Core//
+Core
 CoreFoundation
 CoreGraphics
 CoreImage

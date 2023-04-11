@@ -14,7 +14,8 @@ final class ImportFinderTests: XCTestCase {
         "@_spi(AA) import E",
         "#if canImport(F)",
         "import class G.H",
-        "import I//"
+        "import I//SOME COMMENT",
+        "import J // SOME COMMENT",
       ], contentsOfFile: { $0 })
         .allImportedModules(),
       [
@@ -22,7 +23,8 @@ final class ImportFinderTests: XCTestCase {
         "B",
         "E",
         "G",
-        "I"
+        "I",
+        "J",
       ]
     )
   }
