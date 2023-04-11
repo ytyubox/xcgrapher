@@ -8,6 +8,10 @@ digraph XCGrapher {
   "Alamofire" -> "Foundation"
   "Alamofire" -> "MobileCoreServices"
   "Alamofire" -> "SystemConfiguration"
+  "CasePaths" -> "Foundation"
+  "CasePaths" -> "XCTestDynamicOverlay"
+  "Core" -> "CasePaths"
+  "Core" -> "Foundation"
   "Kingfisher" -> "Accelerate"
   "Kingfisher" -> "AppKit"
   "Kingfisher" -> "AVKit"
@@ -27,9 +31,12 @@ digraph XCGrapher {
   "Moya" -> "Foundation"
   "Moya" -> "UIKit"
   "SomePackage" -> "Alamofire"
+  "SomePackage" -> "Core"
   "SomePackage" -> "CoreGraphics"
   "SomePackage" -> "Foundation"
   "SomePackage" -> "Kingfisher"
   "SomePackage" -> "Moya"
+  "XCTestDynamicOverlay" -> "Foundation"
+  "XCTestDynamicOverlay" -> "XCTest"
 
 }

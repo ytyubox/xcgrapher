@@ -116,6 +116,7 @@
       ],
       "sources" : [
         "AppleImports.swift",
+        "CoreImports.swift",
         "DependencyImports.swift",
         "SomePackage.swift"
       ],

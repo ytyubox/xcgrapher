@@ -3,6 +3,7 @@ digraph XCGrapher {
   graph [ nodesep = 0.5, ranksep = 4, overlap = false, splines = true ]
   node [ shape = box ]
 
+  "CasePaths" -> "XCTestDynamicOverlay"
   "Core" -> "CasePaths"
   "Moya" -> "Alamofire"
   "SomePackage" -> "Alamofire"
