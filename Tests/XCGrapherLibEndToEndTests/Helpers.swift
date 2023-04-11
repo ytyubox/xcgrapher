@@ -83,3 +83,9 @@ extension XCGrapherOptions {
     )
   }
 }
+
+extension Array where Element: CustomStringConvertible {
+  var lines: String {
+    map(\.description).sorted().joined(separator: "\n")
+  }
+}

@@ -1,0 +1,1219 @@
+/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/Alamofire
+{
+  "dependencies" : [
+
+  ],
+  "manifest_display_name" : "Alamofire",
+  "name" : "Alamofire",
+  "path" : "/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/Alamofire",
+  "platforms" : [
+    {
+      "name" : "macos",
+      "version" : "10.12"
+    },
+    {
+      "name" : "ios",
+      "version" : "10.0"
+    },
+    {
+      "name" : "tvos",
+      "version" : "10.0"
+    },
+    {
+      "name" : "watchos",
+      "version" : "3.0"
+    }
+  ],
+  "products" : [
+    {
+      "name" : "Alamofire",
+      "targets" : [
+        "Alamofire"
+      ],
+      "type" : {
+        "library" : [
+          "automatic"
+        ]
+      }
+    }
+  ],
+  "swift_languages_versions" : [
+    "5"
+  ],
+  "targets" : [
+    {
+      "c99name" : "AlamofireTests",
+      "module_type" : "SwiftTarget",
+      "name" : "AlamofireTests",
+      "path" : "Tests",
+      "sources" : [
+        "AFError+AlamofireTests.swift",
+        "AuthenticationInterceptorTests.swift",
+        "AuthenticationTests.swift",
+        "BaseTestCase.swift",
+        "CacheTests.swift",
+        "CachedResponseHandlerTests.swift",
+        "CombineTests.swift",
+        "DataStreamTests.swift",
+        "DownloadTests.swift",
+        "FileManager+AlamofireTests.swift",
+        "HTTPHeadersTests.swift",
+        "InternalRequestTests.swift",
+        "LeaksTests.swift",
+        "MultipartFormDataTests.swift",
+        "NSLoggingEventMonitor.swift",
+        "NetworkReachabilityManagerTests.swift",
+        "ParameterEncoderTests.swift",
+        "ParameterEncodingTests.swift",
+        "ProtectedTests.swift",
+        "RedirectHandlerTests.swift",
+        "RequestInterceptorTests.swift",
+        "RequestModifierTests.swift",
+        "RequestTests.swift",
+        "ResponseSerializationTests.swift",
+        "ResponseTests.swift",
+        "Result+Alamofire.swift",
+        "RetryPolicyTests.swift",
+        "ServerTrustEvaluatorTests.swift",
+        "SessionDelegateTests.swift",
+        "SessionTests.swift",
+        "TLSEvaluationTests.swift",
+        "TestHelpers.swift",
+        "URLProtocolTests.swift",
+        "UploadTests.swift",
+        "ValidationTests.swift"
+      ],
+      "target_dependencies" : [
+        "Alamofire"
+      ],
+      "type" : "test"
+    },
+    {
+      "c99name" : "Alamofire",
+      "module_type" : "SwiftTarget",
+      "name" : "Alamofire",
+      "path" : "Source",
+      "product_memberships" : [
+        "Alamofire"
+      ],
+      "sources" : [
+        "AFError.swift",
+        "Alamofire.swift",
+        "AlamofireExtended.swift",
+        "AuthenticationInterceptor.swift",
+        "CachedResponseHandler.swift",
+        "Combine.swift",
+        "DispatchQueue+Alamofire.swift",
+        "EventMonitor.swift",
+        "HTTPHeaders.swift",
+        "HTTPMethod.swift",
+        "MultipartFormData.swift",
+        "MultipartUpload.swift",
+        "NetworkReachabilityManager.swift",
+        "Notifications.swift",
+        "OperationQueue+Alamofire.swift",
+        "ParameterEncoder.swift",
+        "ParameterEncoding.swift",
+        "Protected.swift",
+        "RedirectHandler.swift",
+        "Request.swift",
+        "RequestInterceptor.swift",
+        "RequestTaskMap.swift",
+        "Response.swift",
+        "ResponseSerialization.swift",
+        "Result+Alamofire.swift",
+        "RetryPolicy.swift",
+        "ServerTrustEvaluation.swift",
+        "Session.swift",
+        "SessionDelegate.swift",
+        "StringEncoding+Alamofire.swift",
+        "URLConvertible+URLRequestConvertible.swift",
+        "URLEncodedFormEncoder.swift",
+        "URLRequest+Alamofire.swift",
+        "URLSessionConfiguration+Alamofire.swift",
+        "Validation.swift"
+      ],
+      "type" : "library"
+    }
+  ],
+  "tools_version" : "5.1"
+}
+
+/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/Kingfisher
+{
+  "dependencies" : [
+
+  ],
+  "manifest_display_name" : "Kingfisher",
+  "name" : "Kingfisher",
+  "path" : "/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/Kingfisher",
+  "platforms" : [
+    {
+      "name" : "ios",
+      "version" : "10.0"
+    },
+    {
+      "name" : "macos",
+      "version" : "10.12"
+    },
+    {
+      "name" : "tvos",
+      "version" : "10.0"
+    },
+    {
+      "name" : "watchos",
+      "version" : "3.0"
+    }
+  ],
+  "products" : [
+    {
+      "name" : "Kingfisher",
+      "targets" : [
+        "Kingfisher"
+      ],
+      "type" : {
+        "library" : [
+          "automatic"
+        ]
+      }
+    }
+  ],
+  "targets" : [
+    {
+      "c99name" : "Kingfisher",
+      "module_type" : "SwiftTarget",
+      "name" : "Kingfisher",
+      "path" : "Sources",
+      "product_memberships" : [
+        "Kingfisher"
+      ],
+      "sources" : [
+        "Cache/CacheSerializer.swift",
+        "Cache/DiskStorage.swift",
+        "Cache/FormatIndicatedCacheSerializer.swift",
+        "Cache/ImageCache.swift",
+        "Cache/MemoryStorage.swift",
+        "Cache/Storage.swift",
+        "Extensions/ImageView+Kingfisher.swift",
+        "Extensions/NSButton+Kingfisher.swift",
+        "Extensions/NSTextAttachment+Kingfisher.swift",
+        "Extensions/TVMonogramView+Kingfisher.swift",
+        "Extensions/UIButton+Kingfisher.swift",
+        "Extensions/WKInterfaceImage+Kingfisher.swift",
+        "General/ImageSource/AVAssetImageDataProvider.swift",
+        "General/ImageSource/ImageDataProvider.swift",
+        "General/ImageSource/Resource.swift",
+        "General/ImageSource/Source.swift",
+        "General/KF.swift",
+        "General/KFOptionsSetter.swift",
+        "General/Kingfisher.swift",
+        "General/KingfisherError.swift",
+        "General/KingfisherManager.swift",
+        "General/KingfisherOptionsInfo.swift",
+        "Image/Filter.swift",
+        "Image/GIFAnimatedImage.swift",
+        "Image/GraphicsContext.swift",
+        "Image/Image.swift",
+        "Image/ImageDrawing.swift",
+        "Image/ImageFormat.swift",
+        "Image/ImageProcessor.swift",
+        "Image/ImageProgressive.swift",
+        "Image/ImageTransition.swift",
+        "Image/Placeholder.swift",
+        "Networking/AuthenticationChallengeResponsable.swift",
+        "Networking/ImageDataProcessor.swift",
+        "Networking/ImageDownloader.swift",
+        "Networking/ImageDownloaderDelegate.swift",
+        "Networking/ImageModifier.swift",
+        "Networking/ImagePrefetcher.swift",
+        "Networking/RedirectHandler.swift",
+        "Networking/RequestModifier.swift",
+        "Networking/RetryStrategy.swift",
+        "Networking/SessionDataTask.swift",
+        "Networking/SessionDelegate.swift",
+        "SwiftUI/ImageBinder.swift",
+        "SwiftUI/KFImage.swift",
+        "SwiftUI/KFImageOptions.swift",
+        "Utility/Box.swift",
+        "Utility/CallbackQueue.swift",
+        "Utility/Delegate.swift",
+        "Utility/ExtensionHelpers.swift",
+        "Utility/Result.swift",
+        "Utility/Runtime.swift",
+        "Utility/SizeExtensions.swift",
+        "Utility/String+MD5.swift",
+        "Views/AnimatedImageView.swift",
+        "Views/Indicator.swift"
+      ],
+      "type" : "library"
+    }
+  ],
+  "tools_version" : "5.1"
+}
+
+/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/Moya
+{
+  "dependencies" : [
+    {
+      "identity" : "alamofire",
+      "requirement" : {
+        "range" : [
+          {
+            "lower_bound" : "5.0.0",
+            "upper_bound" : "6.0.0"
+          }
+        ]
+      },
+      "type" : "sourceControl",
+      "url" : "https://github.com/Alamofire/Alamofire.git"
+    },
+    {
+      "identity" : "reactiveswift",
+      "requirement" : {
+        "range" : [
+          {
+            "lower_bound" : "6.1.0",
+            "upper_bound" : "7.0.0"
+          }
+        ]
+      },
+      "type" : "sourceControl",
+      "url" : "https://github.com/Moya/ReactiveSwift.git"
+    },
+    {
+      "identity" : "rxswift",
+      "requirement" : {
+        "range" : [
+          {
+            "lower_bound" : "5.0.0",
+            "upper_bound" : "6.0.0"
+          }
+        ]
+      },
+      "type" : "sourceControl",
+      "url" : "https://github.com/ReactiveX/RxSwift.git"
+    }
+  ],
+  "manifest_display_name" : "Moya",
+  "name" : "Moya",
+  "path" : "/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/Moya",
+  "platforms" : [
+    {
+      "name" : "macos",
+      "version" : "10.12"
+    },
+    {
+      "name" : "ios",
+      "version" : "10.0"
+    },
+    {
+      "name" : "tvos",
+      "version" : "10.0"
+    },
+    {
+      "name" : "watchos",
+      "version" : "3.0"
+    }
+  ],
+  "products" : [
+    {
+      "name" : "Moya",
+      "targets" : [
+        "Moya"
+      ],
+      "type" : {
+        "library" : [
+          "automatic"
+        ]
+      }
+    },
+    {
+      "name" : "ReactiveMoya",
+      "targets" : [
+        "ReactiveMoya"
+      ],
+      "type" : {
+        "library" : [
+          "automatic"
+        ]
+      }
+    },
+    {
+      "name" : "RxMoya",
+      "targets" : [
+        "RxMoya"
+      ],
+      "type" : {
+        "library" : [
+          "automatic"
+        ]
+      }
+    }
+  ],
+  "targets" : [
+    {
+      "c99name" : "RxMoya",
+      "module_type" : "SwiftTarget",
+      "name" : "RxMoya",
+      "path" : "Sources/RxMoya",
+      "product_dependencies" : [
+        "RxSwift"
+      ],
+      "product_memberships" : [
+        "RxMoya"
+      ],
+      "sources" : [
+        "MoyaProvider+Rx.swift",
+        "Observable+Response.swift",
+        "Single+Response.swift"
+      ],
+      "target_dependencies" : [
+        "Moya"
+      ],
+      "type" : "library"
+    },
+    {
+      "c99name" : "ReactiveMoya",
+      "module_type" : "SwiftTarget",
+      "name" : "ReactiveMoya",
+      "path" : "Sources/ReactiveMoya",
+      "product_dependencies" : [
+        "ReactiveSwift"
+      ],
+      "product_memberships" : [
+        "ReactiveMoya"
+      ],
+      "sources" : [
+        "MoyaProvider+Reactive.swift",
+        "SignalProducer+Response.swift"
+      ],
+      "target_dependencies" : [
+        "Moya"
+      ],
+      "type" : "library"
+    },
+    {
+      "c99name" : "Moya",
+      "module_type" : "SwiftTarget",
+      "name" : "Moya",
+      "path" : "Sources/Moya",
+      "product_dependencies" : [
+        "Alamofire"
+      ],
+      "product_memberships" : [
+        "Moya",
+        "ReactiveMoya",
+        "RxMoya"
+      ],
+      "sources" : [
+        "AnyEncodable.swift",
+        "Cancellable.swift",
+        "Endpoint.swift",
+        "Image.swift",
+        "Moya+Alamofire.swift",
+        "MoyaError.swift",
+        "MoyaProvider+Defaults.swift",
+        "MoyaProvider+Internal.swift",
+        "MoyaProvider.swift",
+        "MultiTarget.swift",
+        "MultipartFormData.swift",
+        "Plugin.swift",
+        "Plugins/AccessTokenPlugin.swift",
+        "Plugins/CredentialsPlugin.swift",
+        "Plugins/NetworkActivityPlugin.swift",
+        "Plugins/NetworkLoggerPlugin.swift",
+        "RequestTypeWrapper.swift",
+        "Response.swift",
+        "TargetType.swift",
+        "Task.swift",
+        "URL+Moya.swift",
+        "URLRequest+Encoding.swift",
+        "ValidationType.swift"
+      ],
+      "type" : "library"
+    }
+  ],
+  "tools_version" : "5.0"
+}
+
+/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/ReactiveSwift
+{
+  "dependencies" : [
+
+  ],
+  "manifest_display_name" : "ReactiveSwift",
+  "name" : "ReactiveSwift",
+  "path" : "/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/ReactiveSwift",
+  "platforms" : [
+
+  ],
+  "products" : [
+    {
+      "name" : "ReactiveSwift",
+      "targets" : [
+        "ReactiveSwift"
+      ],
+      "type" : {
+        "library" : [
+          "automatic"
+        ]
+      }
+    }
+  ],
+  "swift_languages_versions" : [
+    "5"
+  ],
+  "targets" : [
+    {
+      "c99name" : "ReactiveSwift",
+      "module_type" : "SwiftTarget",
+      "name" : "ReactiveSwift",
+      "path" : "Sources",
+      "product_memberships" : [
+        "ReactiveSwift"
+      ],
+      "sources" : [
+        "Action.swift",
+        "Atomic.swift",
+        "Bag.swift",
+        "Deprecations+Removals.swift",
+        "Disposable.swift",
+        "Event.swift",
+        "EventLogger.swift",
+        "Flatten.swift",
+        "FoundationExtensions.swift",
+        "Lifetime.swift",
+        "Observer.swift",
+        "Optional.swift",
+        "Property.swift",
+        "Reactive.swift",
+        "ResultExtensions.swift",
+        "Scheduler.swift",
+        "Signal.swift",
+        "SignalProducer.swift",
+        "UnidirectionalBinding.swift",
+        "UninhabitedTypeGuards.swift",
+        "ValidatingProperty.swift"
+      ],
+      "type" : "library"
+    }
+  ],
+  "tools_version" : "5.0"
+}
+
+/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/RxSwift
+{
+  "dependencies" : [
+
+  ],
+  "manifest_display_name" : "RxSwift",
+  "name" : "RxSwift",
+  "path" : "/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/RxSwift",
+  "platforms" : [
+    {
+      "name" : "macos",
+      "version" : "10.10"
+    },
+    {
+      "name" : "ios",
+      "version" : "8.0"
+    },
+    {
+      "name" : "tvos",
+      "version" : "9.0"
+    },
+    {
+      "name" : "watchos",
+      "version" : "3.0"
+    }
+  ],
+  "products" : [
+    {
+      "name" : "RxSwift",
+      "targets" : [
+        "RxSwift"
+      ],
+      "type" : {
+        "library" : [
+          "automatic"
+        ]
+      }
+    },
+    {
+      "name" : "RxCocoa",
+      "targets" : [
+        "RxCocoa"
+      ],
+      "type" : {
+        "library" : [
+          "automatic"
+        ]
+      }
+    },
+    {
+      "name" : "RxRelay",
+      "targets" : [
+        "RxRelay"
+      ],
+      "type" : {
+        "library" : [
+          "automatic"
+        ]
+      }
+    },
+    {
+      "name" : "RxBlocking",
+      "targets" : [
+        "RxBlocking"
+      ],
+      "type" : {
+        "library" : [
+          "automatic"
+        ]
+      }
+    },
+    {
+      "name" : "RxTest",
+      "targets" : [
+        "RxTest"
+      ],
+      "type" : {
+        "library" : [
+          "automatic"
+        ]
+      }
+    }
+  ],
+  "swift_languages_versions" : [
+    "5"
+  ],
+  "targets" : [
+    {
+      "c99name" : "RxTest",
+      "module_type" : "SwiftTarget",
+      "name" : "RxTest",
+      "path" : "Sources/RxTest",
+      "product_memberships" : [
+        "RxTest"
+      ],
+      "sources" : [
+        "Any+Equatable.swift",
+        "Bag.swift",
+        "ColdObservable.swift",
+        "Deprecated.swift",
+        "Event+Equatable.swift",
+        "HotObservable.swift",
+        "Recorded+Event.swift",
+        "Recorded.swift",
+        "RxTest.swift",
+        "Subscription.swift",
+        "TestScheduler.swift",
+        "TestSchedulerVirtualTimeConverter.swift",
+        "TestableObservable.swift",
+        "TestableObserver.swift",
+        "XCTest+Rx.swift"
+      ],
+      "target_dependencies" : [
+        "RxSwift"
+      ],
+      "type" : "library"
+    },
+    {
+      "c99name" : "RxSwift",
+      "module_type" : "SwiftTarget",
+      "name" : "RxSwift",
+      "path" : "Sources/RxSwift",
+      "product_memberships" : [
+        "RxSwift",
+        "RxCocoa",
+        "RxRelay",
+        "RxBlocking",
+        "RxTest"
+      ],
+      "sources" : [
+        "AddRef.swift",
+        "Amb.swift",
+        "AnonymousDisposable.swift",
+        "AnonymousObserver.swift",
+        "AnyObserver.swift",
+        "AsMaybe.swift",
+        "AsSingle.swift",
+        "AsyncLock.swift",
+        "AsyncSubject.swift",
+        "AtomicInt.swift",
+        "Bag+Rx.swift",
+        "Bag.swift",
+        "BehaviorSubject.swift",
+        "BinaryDisposable.swift",
+        "BooleanDisposable.swift",
+        "Buffer.swift",
+        "Cancelable.swift",
+        "Catch.swift",
+        "CombineLatest+Collection.swift",
+        "CombineLatest+arity.swift",
+        "CombineLatest.swift",
+        "CompactMap.swift",
+        "Completable+AndThen.swift",
+        "Completable.swift",
+        "CompositeDisposable.swift",
+        "Concat.swift",
+        "ConcurrentDispatchQueueScheduler.swift",
+        "ConcurrentMainScheduler.swift",
+        "ConnectableObservableType.swift",
+        "Create.swift",
+        "CurrentThreadScheduler.swift",
+        "Date+Dispatch.swift",
+        "Debounce.swift",
+        "Debug.swift",
+        "DefaultIfEmpty.swift",
+        "Deferred.swift",
+        "Delay.swift",
+        "DelaySubscription.swift",
+        "Dematerialize.swift",
+        "Deprecated.swift",
+        "DispatchQueue+Extensions.swift",
+        "DispatchQueueConfiguration.swift",
+        "Disposable.swift",
+        "Disposables.swift",
+        "DisposeBag.swift",
+        "DisposeBase.swift",
+        "DistinctUntilChanged.swift",
+        "Do.swift",
+        "ElementAt.swift",
+        "Empty.swift",
+        "Enumerated.swift",
+        "Error.swift",
+        "Errors.swift",
+        "Event.swift",
+        "Filter.swift",
+        "First.swift",
+        "Generate.swift",
+        "GroupBy.swift",
+        "GroupedObservable.swift",
+        "HistoricalScheduler.swift",
+        "HistoricalSchedulerTimeConverter.swift",
+        "ImmediateSchedulerType.swift",
+        "InfiniteSequence.swift",
+        "InvocableScheduledItem.swift",
+        "InvocableType.swift",
+        "Just.swift",
+        "Lock.swift",
+        "LockOwnerType.swift",
+        "MainScheduler.swift",
+        "Map.swift",
+        "Materialize.swift",
+        "Maybe.swift",
+        "Merge.swift",
+        "Multicast.swift",
+        "Never.swift",
+        "NopDisposable.swift",
+        "Observable.swift",
+        "ObservableConvertibleType.swift",
+        "ObservableType+Extensions.swift",
+        "ObservableType+PrimitiveSequence.swift",
+        "ObservableType.swift",
+        "ObserveOn.swift",
+        "ObserverBase.swift",
+        "ObserverType.swift",
+        "OperationQueueScheduler.swift",
+        "Optional.swift",
+        "Platform.Darwin.swift",
+        "Platform.Linux.swift",
+        "PrimitiveSequence+Zip+arity.swift",
+        "PrimitiveSequence.swift",
+        "PriorityQueue.swift",
+        "Producer.swift",
+        "PublishSubject.swift",
+        "Queue.swift",
+        "Range.swift",
+        "Reactive.swift",
+        "RecursiveLock.swift",
+        "RecursiveScheduler.swift",
+        "Reduce.swift",
+        "RefCountDisposable.swift",
+        "Repeat.swift",
+        "ReplaySubject.swift",
+        "RetryWhen.swift",
+        "Rx.swift",
+        "RxMutableBox.swift",
+        "Sample.swift",
+        "Scan.swift",
+        "ScheduledDisposable.swift",
+        "ScheduledItem.swift",
+        "ScheduledItemType.swift",
+        "SchedulerServices+Emulation.swift",
+        "SchedulerType.swift",
+        "Sequence.swift",
+        "SerialDispatchQueueScheduler.swift",
+        "SerialDisposable.swift",
+        "ShareReplayScope.swift",
+        "Single.swift",
+        "SingleAssignmentDisposable.swift",
+        "SingleAsync.swift",
+        "Sink.swift",
+        "Skip.swift",
+        "SkipUntil.swift",
+        "SkipWhile.swift",
+        "StartWith.swift",
+        "SubjectType.swift",
+        "SubscribeOn.swift",
+        "SubscriptionDisposable.swift",
+        "SwiftSupport.swift",
+        "Switch.swift",
+        "SwitchIfEmpty.swift",
+        "SynchronizedDisposeType.swift",
+        "SynchronizedOnType.swift",
+        "SynchronizedUnsubscribeType.swift",
+        "TailRecursiveSink.swift",
+        "Take.swift",
+        "TakeLast.swift",
+        "TakeUntil.swift",
+        "TakeWhile.swift",
+        "Throttle.swift",
+        "Timeout.swift",
+        "Timer.swift",
+        "ToArray.swift",
+        "Using.swift",
+        "VirtualTimeConverterType.swift",
+        "VirtualTimeScheduler.swift",
+        "Window.swift",
+        "WithLatestFrom.swift",
+        "Zip+Collection.swift",
+        "Zip+arity.swift",
+        "Zip.swift"
+      ],
+      "type" : "library"
+    },
+    {
+      "c99name" : "RxRelay",
+      "module_type" : "SwiftTarget",
+      "name" : "RxRelay",
+      "path" : "Sources/RxRelay",
+      "product_memberships" : [
+        "RxCocoa",
+        "RxRelay"
+      ],
+      "sources" : [
+        "BehaviorRelay.swift",
+        "Observable+Bind.swift",
+        "PublishRelay.swift",
+        "Utils.swift"
+      ],
+      "target_dependencies" : [
+        "RxSwift"
+      ],
+      "type" : "library"
+    },
+    {
+      "c99name" : "RxCocoaRuntime",
+      "module_type" : "ClangTarget",
+      "name" : "RxCocoaRuntime",
+      "path" : "Sources/RxCocoaRuntime",
+      "product_memberships" : [
+        "RxCocoa"
+      ],
+      "sources" : [
+        "_RX.m",
+        "_RXDelegateProxy.m",
+        "_RXKVOObserver.m",
+        "_RXObjCRuntime.m"
+      ],
+      "target_dependencies" : [
+        "RxSwift"
+      ],
+      "type" : "library"
+    },
+    {
+      "c99name" : "RxCocoa",
+      "module_type" : "SwiftTarget",
+      "name" : "RxCocoa",
+      "path" : "Sources/RxCocoa",
+      "product_memberships" : [
+        "RxCocoa"
+      ],
+      "sources" : [
+        "BehaviorRelay+Driver.swift",
+        "Binder.swift",
+        "ControlEvent+Driver.swift",
+        "ControlEvent+Signal.swift",
+        "ControlEvent.swift",
+        "ControlProperty+Driver.swift",
+        "ControlProperty.swift",
+        "ControlTarget.swift",
+        "DelegateProxy.swift",
+        "DelegateProxyType.swift",
+        "Deprecated.swift",
+        "DispatchQueue+Extensions.swift",
+        "Driver+Subscription.swift",
+        "Driver.swift",
+        "ItemEvents.swift",
+        "KVORepresentable+CoreGraphics.swift",
+        "KVORepresentable+Swift.swift",
+        "KVORepresentable.swift",
+        "KeyPathBinder.swift",
+        "Logging.swift",
+        "NSButton+Rx.swift",
+        "NSControl+Rx.swift",
+        "NSImageView+Rx.swift",
+        "NSLayoutConstraint+Rx.swift",
+        "NSObject+Rx+KVORepresentable.swift",
+        "NSObject+Rx+RawRepresentable.swift",
+        "NSObject+Rx.swift",
+        "NSSlider+Rx.swift",
+        "NSTextField+Rx.swift",
+        "NSTextStorage+Rx.swift",
+        "NSTextView+Rx.swift",
+        "NSView+Rx.swift",
+        "NotificationCenter+Rx.swift",
+        "Observable+Bind.swift",
+        "ObservableConvertibleType+Driver.swift",
+        "ObservableConvertibleType+SharedSequence.swift",
+        "ObservableConvertibleType+Signal.swift",
+        "PublishRelay+Signal.swift",
+        "RxCocoa.swift",
+        "RxCocoaObjCRuntimeError+Extensions.swift",
+        "RxCollectionViewDataSourcePrefetchingProxy.swift",
+        "RxCollectionViewDataSourceProxy.swift",
+        "RxCollectionViewDataSourceType.swift",
+        "RxCollectionViewDelegateProxy.swift",
+        "RxCollectionViewReactiveArrayDataSource.swift",
+        "RxNavigationControllerDelegateProxy.swift",
+        "RxPickerViewAdapter.swift",
+        "RxPickerViewDataSourceProxy.swift",
+        "RxPickerViewDataSourceType.swift",
+        "RxPickerViewDelegateProxy.swift",
+        "RxScrollViewDelegateProxy.swift",
+        "RxSearchBarDelegateProxy.swift",
+        "RxSearchControllerDelegateProxy.swift",
+        "RxTabBarControllerDelegateProxy.swift",
+        "RxTabBarDelegateProxy.swift",
+        "RxTableViewDataSourcePrefetchingProxy.swift",
+        "RxTableViewDataSourceProxy.swift",
+        "RxTableViewDataSourceType.swift",
+        "RxTableViewDelegateProxy.swift",
+        "RxTableViewReactiveArrayDataSource.swift",
+        "RxTarget.swift",
+        "RxTextStorageDelegateProxy.swift",
+        "RxTextViewDelegateProxy.swift",
+        "RxWKNavigationDelegateProxy.swift",
+        "SchedulerType+SharedSequence.swift",
+        "SectionedViewDataSourceType.swift",
+        "SharedSequence+Operators+arity.swift",
+        "SharedSequence+Operators.swift",
+        "SharedSequence.swift",
+        "Signal+Subscription.swift",
+        "Signal.swift",
+        "TextInput.swift",
+        "UIActivityIndicatorView+Rx.swift",
+        "UIAlertAction+Rx.swift",
+        "UIApplication+Rx.swift",
+        "UIBarButtonItem+Rx.swift",
+        "UIButton+Rx.swift",
+        "UICollectionView+Rx.swift",
+        "UIControl+Rx.swift",
+        "UIDatePicker+Rx.swift",
+        "UIGestureRecognizer+Rx.swift",
+        "UIImageView+Rx.swift",
+        "UILabel+Rx.swift",
+        "UINavigationController+Rx.swift",
+        "UINavigationItem+Rx.swift",
+        "UIPageControl+Rx.swift",
+        "UIPickerView+Rx.swift",
+        "UIProgressView+Rx.swift",
+        "UIRefreshControl+Rx.swift",
+        "UIScrollView+Rx.swift",
+        "UISearchBar+Rx.swift",
+        "UISearchController+Rx.swift",
+        "UISegmentedControl+Rx.swift",
+        "UISlider+Rx.swift",
+        "UIStepper+Rx.swift",
+        "UISwitch+Rx.swift",
+        "UITabBar+Rx.swift",
+        "UITabBarController+Rx.swift",
+        "UITabBarItem+Rx.swift",
+        "UITableView+Rx.swift",
+        "UITextField+Rx.swift",
+        "UITextView+Rx.swift",
+        "UIView+Rx.swift",
+        "UIViewController+Rx.swift",
+        "URLSession+Rx.swift",
+        "WKWebView+Rx.swift"
+      ],
+      "target_dependencies" : [
+        "RxSwift",
+        "RxRelay",
+        "RxCocoaRuntime"
+      ],
+      "type" : "library"
+    },
+    {
+      "c99name" : "RxBlocking",
+      "module_type" : "SwiftTarget",
+      "name" : "RxBlocking",
+      "path" : "Sources/RxBlocking",
+      "product_memberships" : [
+        "RxBlocking"
+      ],
+      "sources" : [
+        "AtomicInt.swift",
+        "BlockingObservable+Operators.swift",
+        "BlockingObservable.swift",
+        "ObservableConvertibleType+Blocking.swift",
+        "Platform.Darwin.swift",
+        "Platform.Linux.swift",
+        "RecursiveLock.swift",
+        "Resources.swift",
+        "RunLoopLock.swift"
+      ],
+      "target_dependencies" : [
+        "RxSwift"
+      ],
+      "type" : "library"
+    }
+  ],
+  "tools_version" : "5.0"
+}
+
+/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/swift-case-paths
+{
+  "dependencies" : [
+    {
+      "identity" : "swift-benchmark",
+      "requirement" : {
+        "range" : [
+          {
+            "lower_bound" : "0.1.0",
+            "upper_bound" : "1.0.0"
+          }
+        ]
+      },
+      "type" : "sourceControl",
+      "url" : "https://github.com/google/swift-benchmark"
+    },
+    {
+      "identity" : "xctest-dynamic-overlay",
+      "requirement" : {
+        "range" : [
+          {
+            "lower_bound" : "0.8.0",
+            "upper_bound" : "1.0.0"
+          }
+        ]
+      },
+      "type" : "sourceControl",
+      "url" : "https://github.com/pointfreeco/xctest-dynamic-overlay"
+    },
+    {
+      "identity" : "swift-docc-plugin",
+      "requirement" : {
+        "range" : [
+          {
+            "lower_bound" : "1.0.0",
+            "upper_bound" : "2.0.0"
+          }
+        ]
+      },
+      "type" : "sourceControl",
+      "url" : "https://github.com/apple/swift-docc-plugin"
+    }
+  ],
+  "manifest_display_name" : "swift-case-paths",
+  "name" : "swift-case-paths",
+  "path" : "/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/swift-case-paths",
+  "platforms" : [
+    {
+      "name" : "ios",
+      "version" : "13.0"
+    },
+    {
+      "name" : "macos",
+      "version" : "10.15"
+    },
+    {
+      "name" : "tvos",
+      "version" : "13.0"
+    },
+    {
+      "name" : "watchos",
+      "version" : "6.0"
+    }
+  ],
+  "products" : [
+    {
+      "name" : "CasePaths",
+      "targets" : [
+        "CasePaths"
+      ],
+      "type" : {
+        "library" : [
+          "automatic"
+        ]
+      }
+    },
+    {
+      "name" : "swift-case-paths-benchmark",
+      "targets" : [
+        "swift-case-paths-benchmark"
+      ],
+      "type" : {
+        "executable" : null
+      }
+    }
+  ],
+  "targets" : [
+    {
+      "c99name" : "swift_case_paths_benchmark",
+      "module_type" : "SwiftTarget",
+      "name" : "swift-case-paths-benchmark",
+      "path" : "Sources/swift-case-paths-benchmark",
+      "product_dependencies" : [
+        "Benchmark"
+      ],
+      "product_memberships" : [
+        "swift-case-paths-benchmark"
+      ],
+      "sources" : [
+        "main.swift"
+      ],
+      "target_dependencies" : [
+        "CasePaths"
+      ],
+      "type" : "executable"
+    },
+    {
+      "c99name" : "CasePathsTests",
+      "module_type" : "SwiftTarget",
+      "name" : "CasePathsTests",
+      "path" : "Tests/CasePathsTests",
+      "sources" : [
+        "CasePathsTests.swift",
+        "ReflectionTests.swift",
+        "XCTModifyTests.swift",
+        "XCTUnwrapTests.swift"
+      ],
+      "target_dependencies" : [
+        "CasePaths"
+      ],
+      "type" : "test"
+    },
+    {
+      "c99name" : "CasePaths",
+      "module_type" : "SwiftTarget",
+      "name" : "CasePaths",
+      "path" : "Sources/CasePaths",
+      "product_dependencies" : [
+        "XCTestDynamicOverlay"
+      ],
+      "product_memberships" : [
+        "CasePaths",
+        "swift-case-paths-benchmark"
+      ],
+      "sources" : [
+        "CasePath.swift",
+        "CasePaths.swift",
+        "EnumReflection.swift",
+        "Internal/OpenExistential.swift",
+        "Internal/TypeName.swift",
+        "Operators.swift",
+        "XCTUnwrap.swift"
+      ],
+      "type" : "library"
+    }
+  ],
+  "tools_version" : "5.5"
+}
+
+/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/xctest-dynamic-overlay
+{
+  "dependencies" : [
+    {
+      "identity" : "swift-docc-plugin",
+      "requirement" : {
+        "range" : [
+          {
+            "lower_bound" : "1.0.0",
+            "upper_bound" : "2.0.0"
+          }
+        ]
+      },
+      "type" : "sourceControl",
+      "url" : "https://github.com/apple/swift-docc-plugin"
+    }
+  ],
+  "manifest_display_name" : "xctest-dynamic-overlay",
+  "name" : "xctest-dynamic-overlay",
+  "path" : "/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/xctest-dynamic-overlay",
+  "platforms" : [
+    {
+      "name" : "ios",
+      "version" : "13.0"
+    },
+    {
+      "name" : "macos",
+      "version" : "10.15"
+    },
+    {
+      "name" : "tvos",
+      "version" : "13.0"
+    },
+    {
+      "name" : "watchos",
+      "version" : "6.0"
+    }
+  ],
+  "products" : [
+    {
+      "name" : "XCTestDynamicOverlay",
+      "targets" : [
+        "XCTestDynamicOverlay"
+      ],
+      "type" : {
+        "library" : [
+          "automatic"
+        ]
+      }
+    }
+  ],
+  "targets" : [
+    {
+      "c99name" : "XCTestDynamicOverlayTests",
+      "module_type" : "SwiftTarget",
+      "name" : "XCTestDynamicOverlayTests",
+      "path" : "Tests/XCTestDynamicOverlayTests",
+      "sources" : [
+        "CurrentTestCaseTests.swift",
+        "GeneratePlaceholderTests.swift",
+        "HostAppDetectionTests.swift",
+        "TestHelpers.swift",
+        "UnimplementedTests.swift",
+        "XCTFailRegressionTests.swift",
+        "XCTFailTests.swift"
+      ],
+      "target_dependencies" : [
+        "XCTestDynamicOverlay"
+      ],
+      "type" : "test"
+    },
+    {
+      "c99name" : "XCTestDynamicOverlay",
+      "module_type" : "SwiftTarget",
+      "name" : "XCTestDynamicOverlay",
+      "path" : "Sources/XCTestDynamicOverlay",
+      "product_memberships" : [
+        "XCTestDynamicOverlay"
+      ],
+      "sources" : [
+        "Internal/DefaultInitializable.swift",
+        "Internal/Deprecations.swift",
+        "Internal/GeneratePlaceholder.swift",
+        "Internal/RuntimeWarnings.swift",
+        "Internal/XCTCurrentTestCase.swift",
+        "Unimplemented.swift",
+        "XCTFail.swift",
+        "XCTIsTesting.swift"
+      ],
+      "type" : "library"
+    }
+  ],
+  "tools_version" : "5.5"
+}

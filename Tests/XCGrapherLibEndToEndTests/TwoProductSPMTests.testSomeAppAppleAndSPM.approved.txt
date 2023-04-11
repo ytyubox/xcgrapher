@@ -1,0 +1,35 @@
+digraph XCGrapher {
+
+  graph [ nodesep = 0.5, ranksep = 4, overlap = false, splines = true ]
+  node [ shape = box ]
+
+  "Alamofire" -> "Combine"
+  "Alamofire" -> "CoreServices"
+  "Alamofire" -> "Foundation"
+  "Alamofire" -> "MobileCoreServices"
+  "Alamofire" -> "SystemConfiguration"
+  "Kingfisher" -> "Accelerate"
+  "Kingfisher" -> "AppKit"
+  "Kingfisher" -> "AVKit"
+  "Kingfisher" -> "Combine"
+  "Kingfisher" -> "CoreGraphics"
+  "Kingfisher" -> "CoreImage"
+  "Kingfisher" -> "CoreServices"
+  "Kingfisher" -> "Foundation"
+  "Kingfisher" -> "ImageIO"
+  "Kingfisher" -> "MobileCoreServices"
+  "Kingfisher" -> "SwiftUI"
+  "Kingfisher" -> "TVUIKit"
+  "Kingfisher" -> "UIKit"
+  "Kingfisher" -> "WatchKit"
+  "Moya" -> "Alamofire"
+  "Moya" -> "AppKit"
+  "Moya" -> "Foundation"
+  "Moya" -> "UIKit"
+  "SomePackage" -> "Alamofire"
+  "SomePackage" -> "CoreGraphics"
+  "SomePackage" -> "Foundation"
+  "SomePackage" -> "Kingfisher"
+  "SomePackage" -> "Moya"
+
+}

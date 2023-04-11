@@ -1,0 +1,7 @@
+/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/Alamofire
+/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/Kingfisher
+/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/Moya
+/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/ReactiveSwift
+/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/RxSwift
+/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/swift-case-paths
+/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts/xctest-dynamic-overlay

@@ -1,7 +1,6 @@
 import Foundation
 
 struct SwiftPackage {
-
   let clone: FileManager.Path
 
   func targets() throws -> [PackageDescription.Target] {
@@ -10,11 +9,9 @@ struct SwiftPackage {
     let description = try JSONDecoder().decode(PackageDescription.self, from: jsonData)
     return description.targets
   }
-
 }
 
 extension SwiftPackage: ShellTask {
-
   var stringRepresentation: String {
     "swift package --package-path \"\(clone)\" describe --type json"
   }
@@ -22,5 +19,4 @@ extension SwiftPackage: ShellTask {
   var commandNotFoundInstructions: String {
     "Missing command 'swift'"
   }
-
 }

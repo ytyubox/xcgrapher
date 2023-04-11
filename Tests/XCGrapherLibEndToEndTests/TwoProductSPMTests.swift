@@ -11,7 +11,7 @@ final class TwoProductSPMTests: XCTestCase {
   func testSomeAppSPM() throws {
     // GIVEN we only pass --spm to xcgrapher
 
-    let digraph = try sut(option(apple: true))
+    let digraph = try sut(option(spm: true))
 
     try Approvals.verify(digraph)
   }
@@ -21,10 +21,30 @@ final class TwoProductSPMTests: XCTestCase {
 
     let digraph = try sut(option(apple: true, spm: true))
 
-    // THEN the digraph only contains these edges
-    let expectedEdges = KnownEdges.apple + KnownEdges.spm + KnownEdges.appleFromSPM
+    try Approvals.verify(digraph)
+  }
 
-    XCGrapherAssertDigraphIsMadeFromEdges(digraph, expectedEdges)
+  func test_SPMRaw_ComputeCheckoutsDirectory() throws {
+    let builder = SwiftBuild(packagePath: root, product: "SomePackage")
+    try Approvals.verify(builder.computeCheckoutsDirectory())
+  }
+
+  func test_SPMRaw_swiftPackageDependencies() throws {
+    let builder = SwiftBuild(packagePath: root, product: "SomePackage")
+    try Approvals.verify(builder.swiftPackageDependencies().lines)
+  }
+
+  func test_SPMRaw_SwiftPackageDescriptionJSONs() throws {
+    let builder = SwiftBuild(packagePath: root, product: "SomePackage")
+
+    let packageDescriptions = try builder.swiftPackageDependencies()
+      .map(SwiftPackage.init)
+      .map {
+        let json = try $0.execute()
+        return $0.clone + "\n" + json
+      }
+
+    try Approvals.verify(packageDescriptions.lines)
   }
 }
 

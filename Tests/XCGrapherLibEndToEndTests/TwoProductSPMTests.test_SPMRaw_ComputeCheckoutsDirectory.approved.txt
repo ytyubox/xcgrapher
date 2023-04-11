@@ -1,0 +1,1 @@
+/Users/yuyu/code/xcgrapher/Tests/SampleProjects/SomePackage_TwoTarget/.build/checkouts
