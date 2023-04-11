@@ -34,6 +34,14 @@ final class TwoProductSPMTests: XCTestCase {
     try Approvals.verify(builder.swiftPackageDependencies().lines)
   }
 
+  func test_SPMRaw_MainSwiftPackageDescriptionJSON() throws {
+    let json = try SwiftPackage(clone: root)
+      .execute()
+
+
+    try Approvals.verify(json)
+  }
+
   func test_SPMRaw_SwiftPackageDescriptionJSONs() throws {
     let builder = SwiftBuild(packagePath: root, product: "SomePackage")
 
