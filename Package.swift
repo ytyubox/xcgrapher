@@ -38,7 +38,11 @@ var package = Package(
     ),
     .testTarget(
       name: "XCGrapherLibTests",
-      dependencies: ["XCGrapherLib", "ApprovalTests.Swift"]
+      dependencies: [
+        "XCGrapherLib",
+        "ApprovalTests.Swift",
+        .product(name: "CustomDump", package: "swift-custom-dump"),
+      ]
     ),
     .testTarget(
       name: "XCGrapherCLIParserTests",
@@ -51,7 +55,7 @@ var package = Package(
   ]
 )
 
-if true || ProcessInfo.processInfo.environment["END_TO_END_TEST"] != nil {
+if ProcessInfo.processInfo.environment["END_TO_END_TEST"] != nil {
   package.targets.append(
     .testTarget(
       name: "XCGrapherLibEndToEndTests",

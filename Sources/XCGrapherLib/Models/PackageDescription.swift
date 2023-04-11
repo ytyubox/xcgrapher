@@ -1,36 +1,30 @@
 import Foundation
 
-struct PackageDescription: Decodable {
+struct PackageDescription: Decodable, Equatable {
   let name: String
   let path: String
-  let targets: [Target]
-
-  struct Target: Decodable {
-    let name: String
-    let path: String
-    let sources: [String]
-    let type: String
+  let _targets: [Target]
+  var targets:[Target] {
+    _targets.map{postHandler($0, path: path)}
   }
 
-  init(from decoder: Decoder) throws {
-    let values = try decoder.container(keyedBy: CodingKeys.self)
-    name = try values.decode(String.self, forKey: .name)
-    path = try values.decode(String.self, forKey: .path)
-    // Map all target-related paths to be absolute.
-    targets = try values.decode([Target].self, forKey: .targets)
-      .map { [path] target -> Target in
-        let path = path.appendingPathComponent(target.path)
-        let sources = target.sources.map { path.appendingPathComponent($0) }
-        return Target(
-          name: target.name,
-          path: path,
-          sources: sources,
-          type: target.type
-        )
-      }
+  struct Target: Decodable,Equatable {
+    var name: String
+    var path: String
+    var sources: [String]
+    var target_dependencies: [String]?
+    var type: String
   }
 
   enum CodingKeys: String, CodingKey {
-    case name, path, targets
+    case name, path, _targets = "targets"
   }
+}
+
+// Map all target-related paths to be absolute.
+private func postHandler(_ target: PackageDescription.Target, path: String) -> PackageDescription.Target {
+  var target = target
+  target.path = path.appendingPathComponent(target.path)
+  target.sources = target.sources.map { path.appendingPathComponent($0) }
+  return target
 }
