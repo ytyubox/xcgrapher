@@ -45,6 +45,7 @@ struct ImportFinder {
           $0.scanAndStoreUpToCharacters(from: CharacterSet(charactersIn: " ."))
         }
       }
+      .filter({$0 != "Swift"})
       .unique()
       .sortedAscendingCaseInsensitively()
   }
