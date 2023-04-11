@@ -21,13 +21,13 @@ public enum XCGrapher {
     if options.spm || options.startingPoint.isSPM {
       Log("Building Swift Package list")
       let swiftPackageDependencySource = maker(options)
+      var swiftPackageDependencies = try swiftPackageDependencySource.swiftPackageDependencies()
 
       if options.startingPoint.isSPM {
-
+        swiftPackageDependencies.append(options.startingPoint.path)
       }
       handler.swiftPackageManager = try SwiftPackageManager(
-        packageClones: try swiftPackageDependencySource
-          .swiftPackageDependencies()
+        packageClones: swiftPackageDependencies
       )
     }
 
