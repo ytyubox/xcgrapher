@@ -42,7 +42,7 @@ final class XCGrapherSPMTests: XCTestCase {
   }
 }
 
-let somePackageRoot = URL(fileURLWithPath: #file)
+private let somePackageRoot = URL(fileURLWithPath: #file)
   .deletingLastPathComponent()
   .deletingLastPathComponent()
   .appendingPathComponent("SampleProjects")
