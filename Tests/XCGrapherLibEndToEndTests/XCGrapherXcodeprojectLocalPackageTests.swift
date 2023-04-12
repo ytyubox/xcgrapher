@@ -10,16 +10,12 @@ final class XCGrapherXcodeprojLocalPackageTests: XCTestCase {
   }
 
   func testXcodeprojGetLocalPackages() throws {
-    do {
-      let packages = try XcodeprojGetLocalPackages(projectFile: ConcreteGrapherOptions.startingPoint.path)
-        .localPackages()
-      XCTAssertNoDifference(
-        packages.map(\.lastPathComponent),
-        ["SomeAppCore"]
-      )
-    } catch {
-      print(error)
-    }
+    let packages = try XcodeprojGetLocalPackages(projectFile: ConcreteGrapherOptions.startingPoint.path)
+      .localPackages()
+    XCTAssertNoDifference(
+      packages.map(\.lastPathComponent),
+      ["SomeAppCore"]
+    )
   }
 
   func testSomeAppPods() throws {

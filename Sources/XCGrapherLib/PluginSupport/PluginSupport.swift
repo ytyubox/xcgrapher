@@ -110,9 +110,6 @@ private extension PluginSupport {
     building nodeList: inout [ImportInfo],
     skipping modulesToSkip: inout Set<String>
   ) throws {
-    if module == "CasePaths" {
-      print(module, swiftPackageManager!.knownSPMTargets)
-    }
     if swiftPackageManager?.isManaging(module: module) == true {
       // `module` is a Swift Package and `importer` is either a Swift Package or the main --target
       let nodes =
