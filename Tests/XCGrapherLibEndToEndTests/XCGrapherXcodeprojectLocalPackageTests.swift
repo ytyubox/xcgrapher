@@ -1,9 +1,14 @@
-import XCTest
 import CustomDump
+import ApprovalTests_Swift
 @testable import XCGrapherLib
+import XCTest
 
 /// `sut` fail to execute `dot`, however we don't care as we are just reading the output text file
-final class XCGrapherXcodeprojectLocalPackageTests: XCTestCase {
+final class XCGrapherXcodeprojLocalPackageTests: XCTestCase {
+  private func sut(_ options: XCGrapherOptions) throws -> String {
+    try XCGrapher.run(with: options)
+  }
+
   func testXcodeprojGetLocalPackages() throws {
     do {
       let packages = try XcodeprojGetLocalPackages(projectFile: ConcreteGrapherOptions.startingPoint.path)
@@ -16,6 +21,7 @@ final class XCGrapherXcodeprojectLocalPackageTests: XCTestCase {
       print(error)
     }
   }
+
 //  private var sut: ((XCGrapherOptions) throws -> String)!
 //  private var options: XCGrapherOptions!
 //
@@ -80,19 +86,21 @@ final class XCGrapherXcodeprojectLocalPackageTests: XCTestCase {
 //    XCGrapherAssertDigraphIsMadeFromEdges(digraph, expectedEdges)
 //  }
 //
-//  func testSomeAppApple() throws {
-//    // GIVEN we only pass --apple to xcgrapher
-//    options.apple = true
-//
-//    // WHEN we generate a digraph
-//
-//    let digraph = try sut(options)
-//
-//    // THEN the digraph only contains these edges
-//    let expectedEdges = KnownEdges.apple
-//
-//    XCGrapherAssertDigraphIsMadeFromEdges(digraph, expectedEdges)
-//  }
+  func testSomeAppApple() throws {
+    // GIVEN we only pass --apple to xcgrapher
+
+    // WHEN we generate a digraph
+
+    let digraph = try sut(
+      .fixture(
+        startingPoint: .xcodeProject(root.appendingPathComponent("SomeApp.xcodeproj")),
+        target: "SomeApp",
+        apple: true
+      )
+    )
+
+    try Approvals.verify(digraph)
+  }
 //
 //  func testSomeAppAppleAndSPM() throws {
 //    // GIVEN we pass --apple and --spm to xcgrapher
@@ -147,6 +155,7 @@ private let ConcreteGrapherOptions: XCGrapherOptions = .init(
 )
 
 private enum KnownEdges {
+
   static let pods = [
     ("SomeApp", "RxSwift"),
     ("SomeApp", "RxCocoa"),
