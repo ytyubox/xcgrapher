@@ -1,8 +1,8 @@
-  "Algorithms" -> "RealModule"
-  "Charts" -> "Algorithms"
-  "RealModule" -> "_NumericsShims"
-  "RealmSwift" -> "Realm"
-  "SomeApp" -> "Charts"
-  "SomeApp" -> "Lottie"
-  "SomeApp" -> "RealmSwift"
-  "SomeApp" -> "SomeAppCore"
+  "Algorithms" -> "RealModule"        // spm
+  "Charts" -> "Algorithms"            // spm
+  "RealModule" -> "_NumericsShims"    // spm
+  "RealmSwift" -> "Realm"             // spm
+  "SomeApp" -> "Charts"               // spm
+  "SomeApp" -> "Lottie"               // spm
+  "SomeApp" -> "RealmSwift"           // spm
+  "SomeApp" -> "SomeAppCore"          // spm

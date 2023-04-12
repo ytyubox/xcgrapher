@@ -1,40 +1,40 @@
-  "Algorithms" -> "RealModule"
-  "Auth0" -> "JWTDecode"
-  "Auth0" -> "SimpleKeychain"
-  "Charts" -> "Algorithms"
-  "Charts" -> "AppKit"
-  "Charts" -> "Cocoa"
-  "Charts" -> "CoreGraphics"
-  "Charts" -> "Foundation"
-  "Charts" -> "Quartz"
-  "Charts" -> "QuartzCore"
-  "Charts" -> "UIKit"
-  "Lottie" -> "AppKit"
-  "Lottie" -> "CoreGraphics"
-  "Lottie" -> "CoreText"
-  "Lottie" -> "Foundation"
-  "Lottie" -> "QuartzCore"
-  "Lottie" -> "UIKit"
-  "Moya" -> "Moya/Core"
-  "Moya/Core" -> "Alamofire"
-  "NSObject_Rx" -> "RxSwift"
-  "RealModule" -> "_NumericsShims"
-  "RealmSwift" -> "Combine"
-  "RealmSwift" -> "Foundation"
-  "RealmSwift" -> "Realm"
-  "RealmSwift" -> "SwiftUI"
-  "RxCocoa" -> "RxRelay"
-  "RxCocoa" -> "RxSwift"
-  "RxRelay" -> "RxSwift"
-  "SomeApp" -> "Auth0"
-  "SomeApp" -> "AVFoundation"
-  "SomeApp" -> "Charts"
-  "SomeApp" -> "Foundation"
-  "SomeApp" -> "Lottie"
-  "SomeApp" -> "Moya"
-  "SomeApp" -> "NSObject_Rx"
-  "SomeApp" -> "RealmSwift"
-  "SomeApp" -> "RxCocoa"
-  "SomeApp" -> "RxSwift"
-  "SomeApp" -> "SomeAppCore"
-  "SomeApp" -> "UIKit"
+  "Algorithms" -> "RealModule"        // spm
+  "Auth0" -> "JWTDecode"              // cocoapods
+  "Auth0" -> "SimpleKeychain"         // cocoapods
+  "Charts" -> "Algorithms"            // spm
+  "Charts" -> "AppKit"                // apple
+  "Charts" -> "Cocoa"                 // apple
+  "Charts" -> "CoreGraphics"          // apple
+  "Charts" -> "Foundation"            // apple
+  "Charts" -> "Quartz"                // apple
+  "Charts" -> "QuartzCore"            // apple
+  "Charts" -> "UIKit"                 // apple
+  "Lottie" -> "AppKit"                // apple
+  "Lottie" -> "CoreGraphics"          // apple
+  "Lottie" -> "CoreText"              // apple
+  "Lottie" -> "Foundation"            // apple
+  "Lottie" -> "QuartzCore"            // apple
+  "Lottie" -> "UIKit"                 // apple
+  "Moya" -> "Moya/Core"               // cocoapods
+  "Moya/Core" -> "Alamofire"          // cocoapods
+  "NSObject_Rx" -> "RxSwift"          // cocoapods
+  "RealModule" -> "_NumericsShims"    // spm
+  "RealmSwift" -> "Combine"           // apple
+  "RealmSwift" -> "Foundation"        // apple
+  "RealmSwift" -> "Realm"             // spm
+  "RealmSwift" -> "SwiftUI"           // apple
+  "RxCocoa" -> "RxRelay"              // cocoapods
+  "RxCocoa" -> "RxSwift"              // cocoapods
+  "RxRelay" -> "RxSwift"              // cocoapods
+  "SomeApp" -> "Auth0"                // cocoapods
+  "SomeApp" -> "AVFoundation"         // apple
+  "SomeApp" -> "Charts"               // spm
+  "SomeApp" -> "Foundation"           // apple
+  "SomeApp" -> "Lottie"               // spm
+  "SomeApp" -> "Moya"                 // cocoapods
+  "SomeApp" -> "NSObject_Rx"          // cocoapods
+  "SomeApp" -> "RealmSwift"           // spm
+  "SomeApp" -> "RxCocoa"              // cocoapods
+  "SomeApp" -> "RxSwift"              // cocoapods
+  "SomeApp" -> "SomeAppCore"          // spm
+  "SomeApp" -> "UIKit"                // apple

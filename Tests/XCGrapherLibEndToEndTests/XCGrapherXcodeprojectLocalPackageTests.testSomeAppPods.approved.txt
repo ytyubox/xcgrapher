@@ -1,13 +1,13 @@
-  "Auth0" -> "JWTDecode"
-  "Auth0" -> "SimpleKeychain"
-  "Moya" -> "Moya/Core"
-  "Moya/Core" -> "Alamofire"
-  "NSObject_Rx" -> "RxSwift"
-  "RxCocoa" -> "RxRelay"
-  "RxCocoa" -> "RxSwift"
-  "RxRelay" -> "RxSwift"
-  "SomeApp" -> "Auth0"
-  "SomeApp" -> "Moya"
-  "SomeApp" -> "NSObject_Rx"
-  "SomeApp" -> "RxCocoa"
-  "SomeApp" -> "RxSwift"
+  "Auth0" -> "JWTDecode"         // cocoapods
+  "Auth0" -> "SimpleKeychain"    // cocoapods
+  "Moya" -> "Moya/Core"          // cocoapods
+  "Moya/Core" -> "Alamofire"     // cocoapods
+  "NSObject_Rx" -> "RxSwift"     // cocoapods
+  "RxCocoa" -> "RxRelay"         // cocoapods
+  "RxCocoa" -> "RxSwift"         // cocoapods
+  "RxRelay" -> "RxSwift"         // cocoapods
+  "SomeApp" -> "Auth0"           // cocoapods
+  "SomeApp" -> "Moya"            // cocoapods
+  "SomeApp" -> "NSObject_Rx"     // cocoapods
+  "SomeApp" -> "RxCocoa"         // cocoapods
+  "SomeApp" -> "RxSwift"         // cocoapods

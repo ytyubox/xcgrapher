@@ -22,8 +22,8 @@ class Digraph {
   ///   - a: The element the arrow should originate from
   ///   - b: The element the arrow should point to
   ///   - color: The color of the line, e.g. `#FF0000`
-  func addEdge(from a: String, to b: String) {
-    edges.append(Edge(a: a, b: b))
+  func addEdge(from a: String, to b: String, color: String?) {
+    edges.append(Edge(a: a, b: b, tags: color))
   }
 
   /// Removes any edge with the name `a`
@@ -43,17 +43,31 @@ extension Digraph {
   struct Edge {
     let a: String
     let b: String
+    let tags: String?
 
     var string: String {
       """
       "\(a)" -> "\(b)"
       """
     }
+
+    func string(max: Int) -> String {
+      if let tags {
+        let offset = String(repeating: " ", count: max + 4 - string.count)
+        return
+          """
+          \(string)\(offset)// \(tags)
+          """
+      }
+      return string
+    }
   }
 
   var indentedEdgeStrings: [String] {
-    edges
-      .map { "  ".appending($0.string) }
+    let max = edges.map(\.string.count).max() ?? 0
+
+    return edges
+      .map { "  ".appending($0.string(max: max)) }
       .sortedAscendingCaseInsensitively()
   }
 }

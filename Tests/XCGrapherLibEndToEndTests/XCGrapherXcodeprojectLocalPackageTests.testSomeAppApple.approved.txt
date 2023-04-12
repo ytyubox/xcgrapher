@@ -1,4 +1,4 @@
-  "SomeApp" -> "AVFoundation"
-  "SomeApp" -> "Charts"
-  "SomeApp" -> "Foundation"
-  "SomeApp" -> "UIKit"
+  "SomeApp" -> "AVFoundation"    // apple
+  "SomeApp" -> "Charts"          // apple
+  "SomeApp" -> "Foundation"      // apple
+  "SomeApp" -> "UIKit"           // apple

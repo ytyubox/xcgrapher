@@ -1,35 +1,35 @@
-  "Alamofire" -> "Combine"
-  "Alamofire" -> "CoreServices"
-  "Alamofire" -> "Foundation"
-  "Alamofire" -> "MobileCoreServices"
-  "Alamofire" -> "SystemConfiguration"
-  "CasePaths" -> "Foundation"
-  "CasePaths" -> "XCTestDynamicOverlay"
-  "Core" -> "CasePaths"
-  "Core" -> "Foundation"
-  "Kingfisher" -> "Accelerate"
-  "Kingfisher" -> "AppKit"
-  "Kingfisher" -> "AVKit"
-  "Kingfisher" -> "Combine"
-  "Kingfisher" -> "CoreGraphics"
-  "Kingfisher" -> "CoreImage"
-  "Kingfisher" -> "CoreServices"
-  "Kingfisher" -> "Foundation"
-  "Kingfisher" -> "ImageIO"
-  "Kingfisher" -> "MobileCoreServices"
-  "Kingfisher" -> "SwiftUI"
-  "Kingfisher" -> "TVUIKit"
-  "Kingfisher" -> "UIKit"
-  "Kingfisher" -> "WatchKit"
-  "Moya" -> "Alamofire"
-  "Moya" -> "AppKit"
-  "Moya" -> "Foundation"
-  "Moya" -> "UIKit"
-  "SomePackage" -> "Alamofire"
-  "SomePackage" -> "Core"
-  "SomePackage" -> "CoreGraphics"
-  "SomePackage" -> "Foundation"
-  "SomePackage" -> "Kingfisher"
-  "SomePackage" -> "Moya"
-  "XCTestDynamicOverlay" -> "Foundation"
-  "XCTestDynamicOverlay" -> "XCTest"
+  "Alamofire" -> "Combine"                  // apple
+  "Alamofire" -> "CoreServices"             // apple
+  "Alamofire" -> "Foundation"               // apple
+  "Alamofire" -> "MobileCoreServices"       // apple
+  "Alamofire" -> "SystemConfiguration"      // apple
+  "CasePaths" -> "Foundation"               // apple
+  "CasePaths" -> "XCTestDynamicOverlay"     // spm
+  "Core" -> "CasePaths"                     // spm
+  "Core" -> "Foundation"                    // apple
+  "Kingfisher" -> "Accelerate"              // apple
+  "Kingfisher" -> "AppKit"                  // apple
+  "Kingfisher" -> "AVKit"                   // apple
+  "Kingfisher" -> "Combine"                 // apple
+  "Kingfisher" -> "CoreGraphics"            // apple
+  "Kingfisher" -> "CoreImage"               // apple
+  "Kingfisher" -> "CoreServices"            // apple
+  "Kingfisher" -> "Foundation"              // apple
+  "Kingfisher" -> "ImageIO"                 // apple
+  "Kingfisher" -> "MobileCoreServices"      // apple
+  "Kingfisher" -> "SwiftUI"                 // apple
+  "Kingfisher" -> "TVUIKit"                 // apple
+  "Kingfisher" -> "UIKit"                   // apple
+  "Kingfisher" -> "WatchKit"                // apple
+  "Moya" -> "Alamofire"                     // spm
+  "Moya" -> "AppKit"                        // apple
+  "Moya" -> "Foundation"                    // apple
+  "Moya" -> "UIKit"                         // apple
+  "SomePackage" -> "Alamofire"              // spm
+  "SomePackage" -> "Core"                   // spm
+  "SomePackage" -> "CoreGraphics"           // apple
+  "SomePackage" -> "Foundation"             // apple
+  "SomePackage" -> "Kingfisher"             // spm
+  "SomePackage" -> "Moya"                   // spm
+  "XCTestDynamicOverlay" -> "Foundation"    // apple
+  "XCTestDynamicOverlay" -> "XCTest"        // apple

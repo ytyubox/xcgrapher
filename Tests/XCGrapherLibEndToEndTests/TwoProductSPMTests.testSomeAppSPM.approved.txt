@@ -1,7 +1,7 @@
-  "CasePaths" -> "XCTestDynamicOverlay"
-  "Core" -> "CasePaths"
-  "Moya" -> "Alamofire"
-  "SomePackage" -> "Alamofire"
-  "SomePackage" -> "Core"
-  "SomePackage" -> "Kingfisher"
-  "SomePackage" -> "Moya"
+  "CasePaths" -> "XCTestDynamicOverlay"    // spm
+  "Core" -> "CasePaths"                    // spm
+  "Moya" -> "Alamofire"                    // spm
+  "SomePackage" -> "Alamofire"             // spm
+  "SomePackage" -> "Core"                  // spm
+  "SomePackage" -> "Kingfisher"            // spm
+  "SomePackage" -> "Moya"                  // spm

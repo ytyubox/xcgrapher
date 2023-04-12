@@ -3,12 +3,16 @@ import Foundation
 protocol ShellTask {
   /// The raw shell representation of the command.
   var stringRepresentation: String { get }
+  var file: String { get }
+  var debugDescription: String { get }
 
   /// A localised string to be displayed when the command cannot be found.
   var commandNotFoundInstructions: String { get }
 }
 
 extension ShellTask {
+  var debugDescription: String { stringRepresentation }
+  var file: String { #filePath }
   @discardableResult
   func execute() throws -> String {
     let task = Process()
@@ -20,8 +24,7 @@ extension ShellTask {
     task.arguments = ["-c", stringRepresentation]
     task.launchPath = "/bin/bash"
     task.launch()
-
-    Log(stringRepresentation, dim: true)
+    Log(debugDescription, dim: true, file: file)
 
     let output = stdout.fileHandleForReading.readDataToEndOfFile()
     let errorOutput = stderr.fileHandleForReading.readDataToEndOfFile()

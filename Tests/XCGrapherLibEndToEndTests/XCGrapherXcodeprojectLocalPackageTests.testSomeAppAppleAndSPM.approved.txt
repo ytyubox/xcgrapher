@@ -1,27 +1,27 @@
-  "Algorithms" -> "RealModule"
-  "Charts" -> "Algorithms"
-  "Charts" -> "AppKit"
-  "Charts" -> "Cocoa"
-  "Charts" -> "CoreGraphics"
-  "Charts" -> "Foundation"
-  "Charts" -> "Quartz"
-  "Charts" -> "QuartzCore"
-  "Charts" -> "UIKit"
-  "Lottie" -> "AppKit"
-  "Lottie" -> "CoreGraphics"
-  "Lottie" -> "CoreText"
-  "Lottie" -> "Foundation"
-  "Lottie" -> "QuartzCore"
-  "Lottie" -> "UIKit"
-  "RealModule" -> "_NumericsShims"
-  "RealmSwift" -> "Combine"
-  "RealmSwift" -> "Foundation"
-  "RealmSwift" -> "Realm"
-  "RealmSwift" -> "SwiftUI"
-  "SomeApp" -> "AVFoundation"
-  "SomeApp" -> "Charts"
-  "SomeApp" -> "Foundation"
-  "SomeApp" -> "Lottie"
-  "SomeApp" -> "RealmSwift"
-  "SomeApp" -> "SomeAppCore"
-  "SomeApp" -> "UIKit"
+  "Algorithms" -> "RealModule"        // spm
+  "Charts" -> "Algorithms"            // spm
+  "Charts" -> "AppKit"                // apple
+  "Charts" -> "Cocoa"                 // apple
+  "Charts" -> "CoreGraphics"          // apple
+  "Charts" -> "Foundation"            // apple
+  "Charts" -> "Quartz"                // apple
+  "Charts" -> "QuartzCore"            // apple
+  "Charts" -> "UIKit"                 // apple
+  "Lottie" -> "AppKit"                // apple
+  "Lottie" -> "CoreGraphics"          // apple
+  "Lottie" -> "CoreText"              // apple
+  "Lottie" -> "Foundation"            // apple
+  "Lottie" -> "QuartzCore"            // apple
+  "Lottie" -> "UIKit"                 // apple
+  "RealModule" -> "_NumericsShims"    // spm
+  "RealmSwift" -> "Combine"           // apple
+  "RealmSwift" -> "Foundation"        // apple
+  "RealmSwift" -> "Realm"             // spm
+  "RealmSwift" -> "SwiftUI"           // apple
+  "SomeApp" -> "AVFoundation"         // apple
+  "SomeApp" -> "Charts"               // spm
+  "SomeApp" -> "Foundation"           // apple
+  "SomeApp" -> "Lottie"               // spm
+  "SomeApp" -> "RealmSwift"           // spm
+  "SomeApp" -> "SomeAppCore"          // spm
+  "SomeApp" -> "UIKit"                // apple

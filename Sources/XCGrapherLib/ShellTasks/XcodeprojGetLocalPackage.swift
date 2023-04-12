@@ -3,15 +3,16 @@ struct XcodeprojGetLocalPackages {
   let projectFile: FileManager.Path
 
   func localPackages() throws -> [URL] {
-    try execute()
+    try shellTask
+      .execute()
       .breakIntoLines()
       .compactMap(URL.init)
       .filter { FileManager.default.fileExists(atPath: $0.appendingPathComponent("Package.swift").absoluteString) }
   }
 }
 
-extension XcodeprojGetLocalPackages: ShellTask {
-  var stringRepresentation: String {
+extension XcodeprojGetLocalPackages {
+  var shellTask: ShellTask {
     Ruby(
       require: "xcodeproj",
       script:
@@ -31,7 +32,6 @@ extension XcodeprojGetLocalPackages: ShellTask {
       end
       """
     )
-    .stringRepresentation
   }
 
   var commandNotFoundInstructions: String {

@@ -55,7 +55,7 @@ var package = Package(
   ]
 )
 
-if true || ProcessInfo.processInfo.environment["END_TO_END_TEST"] != nil {
+if ProcessInfo.processInfo.environment["END_TO_END_TEST"] != nil {
   package.targets.append(
     .testTarget(
       name: "XCGrapherLibEndToEndTests",
