@@ -27,6 +27,7 @@
 		55CB73502612D462000FB0B3 /* RxImports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB734F2612D462000FB0B3 /* RxImports.swift */; };
 		55CB73552612D4AF000FB0B3 /* Auth0Imports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB73542612D4AF000FB0B3 /* Auth0Imports.swift */; };
 		A7F769F045BDE665C9D46F0B /* Pods_SomeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F337E1111B60AEE48675B94C /* Pods_SomeApp.framework */; };
+		F049226729E6600000FD3638 /* LocalImports.swift in Sources */ = {isa = PBXBuildFile; fileRef = F049226629E6600000FD3638 /* LocalImports.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -63,6 +64,8 @@
 		55CB73542612D4AF000FB0B3 /* Auth0Imports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth0Imports.swift; sourceTree = "<group>"; };
 		6E2EFEEB4F7DAAEFF24DEA64 /* Pods-SomeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SomeApp.debug.xcconfig"; path = "Target Support Files/Pods-SomeApp/Pods-SomeApp.debug.xcconfig"; sourceTree = "<group>"; };
 		AD971342226A177C5E24001D /* Pods-SomeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SomeApp.release.xcconfig"; path = "Target Support Files/Pods-SomeApp/Pods-SomeApp.release.xcconfig"; sourceTree = "<group>"; };
+		F049226429E65FAA00FD3638 /* SomeAppCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SomeAppCore; sourceTree = "<group>"; };
+		F049226629E6600000FD3638 /* LocalImports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalImports.swift; sourceTree = "<group>"; };
 		F337E1111B60AEE48675B94C /* Pods_SomeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SomeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -123,6 +126,7 @@
 		55CB73192612D090000FB0B3 = {
 			isa = PBXGroup;
 			children = (
+				F049226429E65FAA00FD3638 /* SomeAppCore */,
 				55CB73242612D090000FB0B3 /* SomeApp */,
 				55CB73232612D090000FB0B3 /* Products */,
 				F72A94DD378EA162FE435312 /* Pods */,
@@ -156,11 +160,20 @@
 		55CB734C2612D455000FB0B3 /* Imports */ = {
 			isa = PBXGroup;
 			children = (
+				F049226529E65FF000FD3638 /* Local */,
 				51A1710F26169C3E00A7C0FD /* Pods */,
 				51A1710D26169C3800A7C0FD /* SPM */,
 				51A1710B26169C3100A7C0FD /* Apple */,
 			);
 			path = Imports;
+			sourceTree = "<group>";
+		};
+		F049226529E65FF000FD3638 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				F049226629E6600000FD3638 /* LocalImports.swift */,
+			);
+			path = Local;
 			sourceTree = "<group>";
 		};
 		F72A94DD378EA162FE435312 /* Pods */ = {
@@ -309,6 +322,7 @@
 				51A1710926169C2500A7C0FD /* FoundationImportrs.swift in Sources */,
 				55CB73282612D090000FB0B3 /* SceneDelegate.swift in Sources */,
 				55CB73552612D4AF000FB0B3 /* Auth0Imports.swift in Sources */,
+				F049226729E6600000FD3638 /* LocalImports.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
