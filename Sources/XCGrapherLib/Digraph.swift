@@ -22,7 +22,7 @@ class Digraph {
   ///   - a: The element the arrow should originate from
   ///   - b: The element the arrow should point to
   ///   - color: The color of the line, e.g. `#FF0000`
-  func addEdge(from a: String, to b: String, color: String?) {
+  func addEdge(from a: String, to b: String, color: String) {
     edges.append(Edge(a: a, b: b, tags: color))
   }
 
@@ -43,7 +43,7 @@ extension Digraph {
   struct Edge {
     let a: String
     let b: String
-    let tags: String?
+    let tags: String
 
     var string: String {
       """
@@ -52,14 +52,11 @@ extension Digraph {
     }
 
     func string(max: Int) -> String {
-      if let tags {
-        let offset = String(repeating: " ", count: max + 4 - string.count)
-        return
-          """
-          \(string)\(offset)// \(tags)
-          """
-      }
-      return string
+      let offset = String(repeating: " ", count: max + 4 - string.count)
+      return
+        """
+        \(string)\(offset)// \(tags)
+        """
     }
   }
 
@@ -76,12 +73,13 @@ extension Digraph {
   struct JSONEdge: Codable, Equatable {
     var a: String
     var b: String
+    var tags: String
   }
 
   func json() -> [JSONEdge] {
     edges
       .map { edge in
-        .init(a: edge.a, b: edge.b)
+        .init(a: edge.a, b: edge.b, tags: edge.tags)
       }
       .sorted(by: { ($0.a.lowercased(), $0.b.lowercased()) < ($1.a.lowercased(), $1.b.lowercased())
       })
