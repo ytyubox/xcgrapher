@@ -34,15 +34,8 @@ class Digraph {
   }
 
   func build() -> String {
-    var lines = ["digraph \(name) {"]
-    lines.append("")
-    lines.append("  graph [ nodesep = 0.5, ranksep = 4, overlap = false, splines = true ]") // splines=ortho,
-    lines.append("  node [ shape = box ]")
-    lines.append("")
-    lines.append(contentsOf: indentedEdgeStrings)
-    lines.append("")
-    lines.append("}")
-    return lines.joined(separator: "\n")
+    indentedEdgeStrings
+      .joined(separator: "\n")
   }
 }
 

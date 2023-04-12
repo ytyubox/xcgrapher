@@ -1,8 +1,3 @@
-digraph XCGrapher {
-
-  graph [ nodesep = 0.5, ranksep = 4, overlap = false, splines = true ]
-  node [ shape = box ]
-
   "Alamofire" -> "Combine"
   "Alamofire" -> "CoreServices"
   "Alamofire" -> "Foundation"
@@ -38,5 +33,3 @@ digraph XCGrapher {
   "SomePackage" -> "Moya"
   "XCTestDynamicOverlay" -> "Foundation"
   "XCTestDynamicOverlay" -> "XCTest"
-
-}

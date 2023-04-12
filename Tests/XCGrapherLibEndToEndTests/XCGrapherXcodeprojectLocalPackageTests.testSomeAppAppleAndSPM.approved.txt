@@ -1,8 +1,3 @@
-digraph XCGrapher {
-
-  graph [ nodesep = 0.5, ranksep = 4, overlap = false, splines = true ]
-  node [ shape = box ]
-
   "Algorithms" -> "RealModule"
   "Charts" -> "Algorithms"
   "Charts" -> "AppKit"
@@ -30,5 +25,3 @@ digraph XCGrapher {
   "SomeApp" -> "RealmSwift"
   "SomeApp" -> "SomeAppCore"
   "SomeApp" -> "UIKit"
-
-}

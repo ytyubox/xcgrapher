@@ -1,11 +1,4 @@
-digraph XCGrapher {
-
-  graph [ nodesep = 0.5, ranksep = 4, overlap = false, splines = true ]
-  node [ shape = box ]
-
   "SomeApp" -> "AVFoundation"
   "SomeApp" -> "Charts"
   "SomeApp" -> "Foundation"
   "SomeApp" -> "UIKit"
-
-}

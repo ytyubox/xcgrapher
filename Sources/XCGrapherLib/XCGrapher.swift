@@ -66,6 +66,7 @@ public enum XCGrapher {
       if options.output.isEmpty,
          let text = String(data: data, encoding: .utf8) {
         print(text)
+        return text
       } else {
         let url = expandPath(options.output, in: options.currentDirectory.path)
 
