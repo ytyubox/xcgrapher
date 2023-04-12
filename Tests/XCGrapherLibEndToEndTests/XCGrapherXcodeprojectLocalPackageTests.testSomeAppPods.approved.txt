@@ -1,0 +1,20 @@
+digraph XCGrapher {
+
+  graph [ nodesep = 0.5, ranksep = 4, overlap = false, splines = true ]
+  node [ shape = box ]
+
+  "Auth0" -> "JWTDecode"
+  "Auth0" -> "SimpleKeychain"
+  "Moya" -> "Moya/Core"
+  "Moya/Core" -> "Alamofire"
+  "NSObject_Rx" -> "RxSwift"
+  "RxCocoa" -> "RxRelay"
+  "RxCocoa" -> "RxSwift"
+  "RxRelay" -> "RxSwift"
+  "SomeApp" -> "Auth0"
+  "SomeApp" -> "Moya"
+  "SomeApp" -> "NSObject_Rx"
+  "SomeApp" -> "RxCocoa"
+  "SomeApp" -> "RxSwift"
+
+}

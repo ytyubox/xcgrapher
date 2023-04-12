@@ -1,5 +1,5 @@
-import CustomDump
 import ApprovalTests_Swift
+import CustomDump
 @testable import XCGrapherLib
 import XCTest
 
@@ -22,70 +22,35 @@ final class XCGrapherXcodeprojLocalPackageTests: XCTestCase {
     }
   }
 
-//  private var sut: ((XCGrapherOptions) throws -> String)!
-//  private var options: XCGrapherOptions!
-//
-//  override func setUpWithError() throws {
-//    try super.setUpWithError()
-//    sut = XCGrapher.run
-//    options = ConcreteGrapherOptions
-//  }
-//
-//  func testSomeAppPods() throws {
-//    // GIVEN we only pass --pods to xcgrapher
-//    options.pods = true
-//
-//    // WHEN we generate a digraph
-//
-//    let digraph = try sut(options)
-//
-//    XCGrapherAssertDigraphIsMadeFromEdges(
-//      digraph, [
-//        ("Auth0", "JWTDecode"),
-//        ("Auth0", "SimpleKeychain"),
-//        ("Moya", "Moya/Core"),
-//        ("Moya/Core", "Alamofire"),
-//        ("NSObject_Rx", "RxSwift"),
-//        ("RxCocoa", "RxRelay"),
-//        ("RxCocoa", "RxSwift"),
-//        ("RxRelay", "RxSwift"),
-//        ("SomeApp", "Auth0"),
-//        ("SomeApp", "Moya"),
-//        ("SomeApp", "NSObject_Rx"),
-//        ("SomeApp", "RxCocoa"),
-//        ("SomeApp", "RxSwift"),
-//      ]
-//    )
-//  }
-//
-//  func testSomeAppSPM() throws {
-//    // GIVEN we only pass --spm to xcgrapher
-//    options.spm = true
-//
-//    // WHEN we generate a digraph
-//    let digraph = try sut(options)
-//
-//    // THEN the digraph only contains these edges
-//    let expectedEdges = KnownEdges.spm
-//
-//    XCGrapherAssertDigraphIsMadeFromEdges(digraph, expectedEdges)
-//  }
-//
-//  func testSomeAppPodsAndSPM() throws {
-//    // GIVEN we pass both --spm and --pods to xcgrapher
-//    options.spm = true
-//    options.pods = true
-//
-//    // WHEN we generate a digraph
-//
-//    let digraph = try sut(options)
-//
-//    // THEN the digraph only contains these edges
-//    let expectedEdges = KnownEdges.spm + KnownEdges.pods
-//
-//    XCGrapherAssertDigraphIsMadeFromEdges(digraph, expectedEdges)
-//  }
-//
+  func testSomeAppPods() throws {
+    let digraph = try sut(
+      .fixture(
+        startingPoint: .xcodeProject(root.appendingPathComponent("SomeApp.xcodeproj")),
+        target: "SomeApp",
+        podlock: root.appendingPathComponent("Podfile.lock"),
+        pods: true
+      )
+    )
+
+    try Approvals.verify(digraph)
+  }
+
+  func testSomeAppSPM() throws {
+    // GIVEN we only pass --apple to xcgrapher
+
+    // WHEN we generate a digraph
+
+    let digraph = try sut(
+      .fixture(
+        startingPoint: .xcodeProject(root.appendingPathComponent("SomeApp.xcodeproj")),
+        target: "SomeApp",
+        spm: true
+      )
+    )
+
+    try Approvals.verify(digraph)
+  }
+
   func testSomeAppApple() throws {
     // GIVEN we only pass --apple to xcgrapher
 
@@ -101,37 +66,36 @@ final class XCGrapherXcodeprojLocalPackageTests: XCTestCase {
 
     try Approvals.verify(digraph)
   }
-//
-//  func testSomeAppAppleAndSPM() throws {
-//    // GIVEN we pass --apple and --spm to xcgrapher
-//    options.apple = true
-//    options.spm = true
-//
-//    // WHEN we generate a digraph
-//
-//    let digraph = try sut(options)
-//
-//    // THEN the digraph only contains these edges
-//    let expectedEdges = KnownEdges.apple + KnownEdges.spm + KnownEdges.appleFromSPM
-//
-//    XCGrapherAssertDigraphIsMadeFromEdges(digraph, expectedEdges)
-//  }
-//
-//  func testSomeAppAppleAndSPMAndPods() throws {
-//    // GIVEN we pass --apple and --spm and --pods to xcgrapher
-//    options.apple = true
-//    options.spm = true
-//    options.pods = true
-//
-//    // WHEN we generate a digraph
-//    let digraph = try sut(options)
-//
-//    // THEN the digraph only contains these edges
-//    let expectedEdges = KnownEdges.apple + KnownEdges.spm + KnownEdges.appleFromSPM + KnownEdges.pods + KnownEdges
-//      .appleFromPods
-//
-//    XCGrapherAssertDigraphIsMadeFromEdges(digraph, expectedEdges)
-//  }
+
+  func testSomeAppAppleAndSPM() throws {
+    // GIVEN we pass --apple and --spm to xcgrapher
+    let digraph = try sut(
+      .fixture(
+        startingPoint: .xcodeProject(root.appendingPathComponent("SomeApp.xcodeproj")),
+        target: "SomeApp",
+        apple: true,
+        spm: true
+      )
+    )
+
+    try Approvals.verify(digraph)
+  }
+
+  func testSomeAppAppleAndSPMAndPods() throws {
+    // GIVEN we pass --apple and --spm and --pods to xcgrapher
+
+    let digraph = try sut(
+      .fixture(
+        startingPoint: .xcodeProject(root.appendingPathComponent("SomeApp.xcodeproj")),
+        target: "SomeApp",
+        podlock: root.appendingPathComponent("Podfile.lock"),
+        apple: true,
+        spm: true,
+        pods: true
+      )
+    )
+    try Approvals.verify(digraph)
+  }
 }
 
 private let root = URL(fileURLWithPath: #file)
@@ -155,7 +119,6 @@ private let ConcreteGrapherOptions: XCGrapherOptions = .init(
 )
 
 private enum KnownEdges {
-
   static let pods = [
     ("SomeApp", "RxSwift"),
     ("SomeApp", "RxCocoa"),

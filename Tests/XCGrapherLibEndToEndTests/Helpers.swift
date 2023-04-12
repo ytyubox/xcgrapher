@@ -66,7 +66,7 @@ extension XCGrapherOptions {
     pods: Bool = false,
     force: Bool = false,
     json: Bool = false,
-    verbose: Bool = false
+    verbose: Bool = true
   ) -> Self {
     .init(
       currentDirectory: currentDirectory,

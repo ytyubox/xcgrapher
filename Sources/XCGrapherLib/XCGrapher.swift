@@ -20,11 +20,16 @@ public enum XCGrapher {
 
     if options.spm || options.startingPoint.isSPM {
       Log("Building Swift Package list")
-      let swiftPackageDependencySource = maker(options)
+      let swiftPackageDependencySource = try maker(options)
       var swiftPackageDependencies = try swiftPackageDependencySource.swiftPackageDependencies()
 
       if options.startingPoint.isSPM {
         swiftPackageDependencies.append(options.startingPoint.path)
+      } else {
+        let localPackages = try XcodeprojGetLocalPackages(projectFile: options.startingPoint.path).localPackages()
+        if localPackages.isEmpty == false {
+          swiftPackageDependencies.append(contentsOf: localPackages.map(\.absoluteString))
+        }
       }
       handler.swiftPackageManager = try SwiftPackageManager(
         packageClones: swiftPackageDependencies
@@ -96,7 +101,7 @@ func expandPath(_ path: String, in directory: String) -> URL {
   return URL(fileURLWithPath: directory).appendingPathComponent(path).standardized
 }
 
-private func maker(_ option: XCGrapherOptions) -> SwiftPackageDependencySource {
+private func maker(_ option: XCGrapherOptions) throws -> SwiftPackageDependencySource {
   let path = option.startingPoint.path
   let target = option.target
   switch option.startingPoint {

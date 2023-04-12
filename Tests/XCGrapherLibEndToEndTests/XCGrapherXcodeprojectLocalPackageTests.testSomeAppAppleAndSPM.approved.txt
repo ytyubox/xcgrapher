@@ -1,0 +1,34 @@
+digraph XCGrapher {
+
+  graph [ nodesep = 0.5, ranksep = 4, overlap = false, splines = true ]
+  node [ shape = box ]
+
+  "Algorithms" -> "RealModule"
+  "Charts" -> "Algorithms"
+  "Charts" -> "AppKit"
+  "Charts" -> "Cocoa"
+  "Charts" -> "CoreGraphics"
+  "Charts" -> "Foundation"
+  "Charts" -> "Quartz"
+  "Charts" -> "QuartzCore"
+  "Charts" -> "UIKit"
+  "Lottie" -> "AppKit"
+  "Lottie" -> "CoreGraphics"
+  "Lottie" -> "CoreText"
+  "Lottie" -> "Foundation"
+  "Lottie" -> "QuartzCore"
+  "Lottie" -> "UIKit"
+  "RealModule" -> "_NumericsShims"
+  "RealmSwift" -> "Combine"
+  "RealmSwift" -> "Foundation"
+  "RealmSwift" -> "Realm"
+  "RealmSwift" -> "SwiftUI"
+  "SomeApp" -> "AVFoundation"
+  "SomeApp" -> "Charts"
+  "SomeApp" -> "Foundation"
+  "SomeApp" -> "Lottie"
+  "SomeApp" -> "RealmSwift"
+  "SomeApp" -> "SomeAppCore"
+  "SomeApp" -> "UIKit"
+
+}

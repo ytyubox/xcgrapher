@@ -1,0 +1,15 @@
+digraph XCGrapher {
+
+  graph [ nodesep = 0.5, ranksep = 4, overlap = false, splines = true ]
+  node [ shape = box ]
+
+  "Algorithms" -> "RealModule"
+  "Charts" -> "Algorithms"
+  "RealModule" -> "_NumericsShims"
+  "RealmSwift" -> "Realm"
+  "SomeApp" -> "Charts"
+  "SomeApp" -> "Lottie"
+  "SomeApp" -> "RealmSwift"
+  "SomeApp" -> "SomeAppCore"
+
+}
