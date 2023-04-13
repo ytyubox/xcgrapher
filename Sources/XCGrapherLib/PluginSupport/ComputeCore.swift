@@ -114,7 +114,7 @@ class ComputeCore {
 
     // MARK: - Finish up
 
-    let edges = try plugin_makeArrows(from: nodes)
+    let edges = try plugin_makeArrows(from: box_nodes.value)
     for edge in Set(edges) {
       digraph.addEdge(from: edge.origin, to: edge.destination, color: edge.color)
     }
