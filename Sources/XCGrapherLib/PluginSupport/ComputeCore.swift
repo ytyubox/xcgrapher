@@ -26,10 +26,11 @@ class ComputeCore {
   var unknownManager: UnmanagedDependencyManager?
 
   func generateDigraph(
+    title: String = "XCGrapher",
     target: String,
     projectSourceFiles: [FileManager.Path]
   ) throws -> Digraph {
-    var digraph = Digraph(name: "XCGrapher")
+    var digraph = Digraph(name: title)
     var nodes: [ImportInfo] = []
     let box_nodes: Box<[ImportInfo]> = .init([])
 
