@@ -1,6 +1,9 @@
 import Foundation
 
 struct SwiftPackageManager {
+  internal init(knownSPMTargets: [PackageDescription.Target]) {
+    self.knownSPMTargets = knownSPMTargets
+  }
 
   let knownSPMTargets: [PackageDescription.Target]
 
@@ -13,7 +16,6 @@ struct SwiftPackageManager {
 }
 
 extension SwiftPackageManager: DependencyManager {
-
   var pluginModuleType: XCGrapherImport.ModuleType {
     .spm
   }
@@ -27,11 +29,9 @@ extension SwiftPackageManager: DependencyManager {
 
     return ImportFinder(fileList: target.sources).allImportedModules()
   }
-
 }
 
 struct LocalSwiftPackageManager {
-
   let knownSPMTargets: [PackageDescription.Target]
 
   /// - Parameter packageClones: A list of directories, each a cloned SPM dependency.
@@ -43,7 +43,6 @@ struct LocalSwiftPackageManager {
 }
 
 extension LocalSwiftPackageManager: DependencyManager {
-
   var pluginModuleType: XCGrapherImport.ModuleType {
     .local
   }
@@ -57,5 +56,4 @@ extension LocalSwiftPackageManager: DependencyManager {
 
     return ImportFinder(fileList: target.sources).allImportedModules()
   }
-
 }

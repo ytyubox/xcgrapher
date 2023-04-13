@@ -35,4 +35,26 @@ final class ATests: XCTestCase {
       )
     )
   }
+
+  func testSPM() async throws {
+    XCTAssertNoDifference(
+      try ComputeCore(swiftPackageManager: .init(
+        knownSPMTargets:
+        [
+          .init(name: "A", path: "", sources: [], type: ""),
+        ]
+      ))
+      .generateDigraph(
+        title: "title",
+        target: "some",
+        projectSourceFiles: [
+          "import A",
+        ]
+      ),
+      Digraph(
+        name: "title",
+        edges: [.init(a: "some", b: "A", tags: "spm")]
+      )
+    )
+  }
 }
