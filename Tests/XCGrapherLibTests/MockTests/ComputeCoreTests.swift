@@ -74,4 +74,29 @@ final class ATests: XCTestCase {
       )
     )
   }
+
+  func testCocoaPods() async throws {
+    XCTAssertNoDifference(
+      try ComputeCore(cocoapodsManager: .init(
+        lockFile:
+        """
+        PODS:
+          - A (1)
+        """
+      ))
+      .generateDigraph(
+        title: "title",
+        target: "some",
+        projectSourceFiles: [
+          "import A",
+        ]
+      ),
+      Digraph(
+        name: "title",
+        edges: [
+          .init(a: "some", b: "A", tags: "cocoapods"),
+        ]
+      )
+    )
+  }
 }
