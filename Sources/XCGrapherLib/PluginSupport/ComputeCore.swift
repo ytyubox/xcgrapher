@@ -192,7 +192,6 @@ private extension ComputeCore {
         )
       nodeList.append(contentsOf: _nodes)
       box_nodeList.value.append(contentsOf: _nodes)
-
     } else if unknownManager?.isManaging(module: module) == true {
       modulesToSkip.insert(module)
 
@@ -207,6 +206,7 @@ private extension ComputeCore {
           )
         )
       nodeList.append(contentsOf: _nodes)
+      box_nodeList.value.append(contentsOf: _nodes)
     }
   }
 
