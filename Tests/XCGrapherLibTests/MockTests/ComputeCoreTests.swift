@@ -19,7 +19,7 @@ final class ATests: XCTestCase {
     )
   }
 
-  func testFiles() async throws {
+  func testFilesApple() async throws {
     XCTAssertNoDifference(
       try ComputeCore(nativeManager: .init())
         .generateDigraph(
