@@ -43,7 +43,7 @@ class ComputeCore {
         filename: file.lastPathComponent(),
         filepath: file,
         fileContents: try failWithContext(
-          attempt: String(contentsOfFile: file),
+          attempt: Env.contentsOfFile(file),
           context: (target: target, file: file)
         ),
         origin: .target(name: target)

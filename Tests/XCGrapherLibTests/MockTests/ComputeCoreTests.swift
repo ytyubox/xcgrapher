@@ -11,10 +11,24 @@ import XCTest
 
 @MainActor
 final class ATests: XCTestCase {
-  func test() async throws {
+  func testEmpty() async throws {
     XCTAssertNoDifference(
       try ComputeCore()
         .generateDigraph(title: "title", target: "some", projectSourceFiles: []),
+      Digraph(name: "title")
+    )
+  }
+
+  func testFiles() async throws {
+    XCTAssertNoDifference(
+      try ComputeCore()
+        .generateDigraph(
+          title: "title",
+          target: "some",
+          projectSourceFiles: [
+            "import Foundation",
+          ]
+        ),
       Digraph(name: "title")
     )
   }

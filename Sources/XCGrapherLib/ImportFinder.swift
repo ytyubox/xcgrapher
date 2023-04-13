@@ -1,21 +1,26 @@
 import Foundation
+import XCTestDynamicOverlay
+
+enum Env {
+  static var contentsOfFile: (String) -> String = {
+    _XCTIsTesting
+      ? $0
+      : try! String(contentsOfFile: $0)
+  }
+}
 
 // Must also handle `@testable import X`, `import class X.Y` etc
 struct ImportFinder {
-  internal init(fileList: [FileManager.Path], contentsOfFile: @escaping (String) -> String = {
-    try! String(contentsOfFile: $0)
-  }) {
+  internal init(fileList: [FileManager.Path]) {
     self.fileList = fileList
-    self.contentsOfFile = contentsOfFile
   }
 
   let fileList: [FileManager.Path]
-  var contentsOfFile: (String) -> String
 
   func loadFiles() -> [String] {
     fileList
       // swiftlint:disable force_try
-      .map(contentsOfFile)
+      .map(Env.contentsOfFile)
       .flatMap { $0.breakIntoLines() }
   }
 

@@ -16,8 +16,8 @@ final class ImportFinderTests: XCTestCase {
         "import class G.H",
         "import I//SOME COMMENT",
         "import J // SOME COMMENT",
-      ], contentsOfFile: { $0 })
-        .allImportedModules(),
+      ])
+      .allImportedModules(),
       [
         "A",
         "B",
@@ -214,7 +214,7 @@ final class ImportFinderTests: XCTestCase {
       import var Foundation.NSURLErrorCancelled
       import var Foundation.NSURLErrorDomain
       """
-    let modules = ImportFinder(fileList: [importCodes], contentsOfFile: { $0 })
+    let modules = ImportFinder(fileList: [importCodes])
       .allImportedModules()
     try Approvals.verify(modules.sortedAscendingCaseInsensitively().joined(separator: "\n"))
   }

@@ -13,6 +13,7 @@ var package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/apple/swift-argument-parser", from: "0.4.0"),
+    .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "0.2.0"),
     .package(url: "https://github.com/pointfreeco/swift-custom-dump", from: "0.0.1"),
     .package(url: "https://github.com/approvals/ApprovalTests.Swift", from: "2.0.0"),
 
@@ -31,6 +32,7 @@ var package = Package(
       dependencies: [
         "XCGrapherLib",
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
+        .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
       ]
     ),
     .target(
