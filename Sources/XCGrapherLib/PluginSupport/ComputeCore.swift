@@ -18,6 +18,18 @@ class Box<T> {
 }
 
 class ComputeCore {
+  init(
+    swiftPackageManager: SwiftPackageManager? = nil,
+    cocoapodsManager: CocoapodsManager? = nil,
+    nativeManager: NativeDependencyManager? = nil,
+    unknownManager: UnmanagedDependencyManager? = nil
+  ) {
+    self.swiftPackageManager = swiftPackageManager
+    self.cocoapodsManager = cocoapodsManager
+    self.nativeManager = nativeManager
+    self.unknownManager = unknownManager
+  }
+
   let plugin: XCGrapherModuleImportPlugin = .init()
 
   var swiftPackageManager: SwiftPackageManager?

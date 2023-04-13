@@ -13,10 +13,6 @@ struct Digraph: Equatable {
 
   private(set) var edges: [Edge] = []
 
-  init(name: String) {
-    self.name = name
-  }
-
   /// Adds an arrow line from `a` to `b` in the graph.
   /// - Parameters:
   ///   - a: The element the arrow should originate from

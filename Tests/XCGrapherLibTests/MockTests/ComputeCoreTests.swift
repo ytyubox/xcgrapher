@@ -21,7 +21,7 @@ final class ATests: XCTestCase {
 
   func testFiles() async throws {
     XCTAssertNoDifference(
-      try ComputeCore()
+      try ComputeCore(nativeManager: .init())
         .generateDigraph(
           title: "title",
           target: "some",
@@ -29,7 +29,10 @@ final class ATests: XCTestCase {
             "import Foundation",
           ]
         ),
-      Digraph(name: "title")
+      Digraph(
+        name: "title",
+        edges: [.init(a: "some", b: "Foundation", tags: "apple")]
+      )
     )
   }
 }
