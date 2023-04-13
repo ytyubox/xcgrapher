@@ -41,7 +41,15 @@ final class ATests: XCTestCase {
       try ComputeCore(swiftPackageManager: .init(
         knownSPMTargets:
         [
-          .init(name: "A", path: "", sources: [], type: ""),
+          .init(
+            name: "A",
+            path: "",
+            sources:
+            [
+              "import B",
+            ],
+            type: ""
+          ),
         ]
       ))
       .generateDigraph(
