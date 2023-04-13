@@ -50,6 +50,12 @@ final class ATests: XCTestCase {
             ],
             type: ""
           ),
+          .init(
+            name: "B",
+            path: "",
+            sources: [],
+            type: ""
+          ),
         ]
       ))
       .generateDigraph(
@@ -61,7 +67,10 @@ final class ATests: XCTestCase {
       ),
       Digraph(
         name: "title",
-        edges: [.init(a: "some", b: "A", tags: "spm")]
+        edges: [
+          .init(a: "A", b: "B", tags: "spm"),
+          .init(a: "some", b: "A", tags: "spm"),
+        ]
       )
     )
   }
