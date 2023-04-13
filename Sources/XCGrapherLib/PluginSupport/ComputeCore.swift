@@ -78,6 +78,7 @@ class ComputeCore {
           importedBy: target,
           importerType: .target,
           building: &nodes,
+          building: box_nodes,
           skipping: &previouslyEncounteredModules
         )
       }
@@ -215,6 +216,7 @@ private extension ComputeCore {
     importedBy importer: String,
     importerType: XCGrapherImport.ModuleType,
     building nodeList: inout [ImportInfo],
+    building box_nodeList: Box<[ImportInfo]>,
     skipping modulesToSkip: inout Set<String>
   ) throws {
     let _nodes = try plugin_process(library: XCGrapherImport(
@@ -236,6 +238,7 @@ private extension ComputeCore {
         importedBy: module,
         importerType: .cocoapods,
         building: &nodeList,
+        building: box_nodeList,
         skipping: &modulesToSkip
       )
     }
