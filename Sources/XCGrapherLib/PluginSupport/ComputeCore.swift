@@ -158,7 +158,7 @@ private extension ComputeCore {
           filename: file.lastPathComponent(),
           filepath: file,
           fileContents: try failWithContext(
-            attempt: String(contentsOfFile: file),
+            attempt: Env.contentsOfFile(file),
             context: (package: module, file: file)
           ),
           origin: .spm(importName: module)
