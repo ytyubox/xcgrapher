@@ -31,6 +31,7 @@ class ComputeCore {
   ) throws -> Digraph {
     let digraph = Digraph(name: "XCGrapher")
     var nodes: [ImportInfo] = []
+    var _nodes: Box<[ImportInfo]> = .init([])
 
     // MARK: - Main Target
 
