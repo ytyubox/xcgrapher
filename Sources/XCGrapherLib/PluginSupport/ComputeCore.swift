@@ -162,6 +162,7 @@ private extension ComputeCore {
 
         let _nodes = try plugin_process(file: pluginFile)
         nodeList.append(contentsOf: _nodes)
+        box_nodeList.value.append(contentsOf: _nodes)
       }
 
       // Now recurse
