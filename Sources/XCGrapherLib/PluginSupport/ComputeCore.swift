@@ -226,6 +226,7 @@ private extension ComputeCore {
       importerType: importerType
     ))
     nodeList.append(contentsOf: _nodes)
+    box_nodeList.value.append(contentsOf: _nodes)
 
     guard !modulesToSkip.contains(module) else { return }
     modulesToSkip.insert(module)
