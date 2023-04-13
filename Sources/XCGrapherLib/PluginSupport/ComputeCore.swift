@@ -31,7 +31,7 @@ class ComputeCore {
   ) throws -> Digraph {
     let digraph = Digraph(name: "XCGrapher")
     var nodes: [ImportInfo] = []
-    var box_nodes: Box<[ImportInfo]> = .init([])
+    let box_nodes: Box<[ImportInfo]> = .init([])
 
     // MARK: - Main Target
 
@@ -64,6 +64,7 @@ class ComputeCore {
           importedBy: target,
           importerType: .target,
           building: &nodes,
+          building: box_nodes,
           skipping: &previouslyEncounteredModules
         )
       }
@@ -127,6 +128,7 @@ private extension ComputeCore {
     importedBy importer: String,
     importerType: XCGrapherImport.ModuleType,
     building nodeList: inout [ImportInfo],
+    building box_nodeList: Box<[ImportInfo]>,
     skipping modulesToSkip: inout Set<String>
   ) throws {
     if swiftPackageManager?.isManaging(module: module) == true {
@@ -139,6 +141,7 @@ private extension ComputeCore {
           importerType: importerType
         ))
       nodeList.append(contentsOf: nodes)
+      box_nodeList.value.append(contentsOf: nodes)
 
       guard !modulesToSkip.contains(module) else { return }
       modulesToSkip.insert(module)
@@ -169,6 +172,7 @@ private extension ComputeCore {
           importedBy: module,
           importerType: .spm,
           building: &nodeList,
+          building: box_nodeList,
           skipping: &modulesToSkip
         )
       }
