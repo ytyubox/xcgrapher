@@ -1,5 +1,22 @@
 import Foundation
 
+@dynamicMemberLookup
+class Box<T> {
+  init(_ value: T) {
+    self.value = value
+  }
+
+  var value: T
+  subscript<V>(dynamicMember keyPath: WritableKeyPath<T, V>) -> V {
+    get {
+      value[keyPath: keyPath]
+    }
+    set {
+      value[keyPath: keyPath] = newValue
+    }
+  }
+}
+
 class ComputeCore {
   let plugin: XCGrapherModuleImportPlugin = .init()
 
