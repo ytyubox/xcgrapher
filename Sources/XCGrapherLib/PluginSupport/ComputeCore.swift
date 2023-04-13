@@ -31,7 +31,7 @@ class ComputeCore {
   ) throws -> Digraph {
     let digraph = Digraph(name: "XCGrapher")
     var nodes: [ImportInfo] = []
-    var _nodes: Box<[ImportInfo]> = .init([])
+    var box_nodes: Box<[ImportInfo]> = .init([])
 
     // MARK: - Main Target
 
@@ -49,6 +49,7 @@ class ComputeCore {
       )
 
       let _nodes = try plugin_process(file: pluginFile)
+      box_nodes.value.append(contentsOf: _nodes)
       nodes.append(contentsOf: _nodes)
     }
 
