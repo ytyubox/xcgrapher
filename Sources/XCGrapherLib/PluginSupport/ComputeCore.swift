@@ -95,6 +95,7 @@ class ComputeCore {
             importerType: .target
           ))
         nodes.append(contentsOf: _nodes)
+        box_nodes.value.append(contentsOf: _nodes)
       }
 
       // Weird unknown cases
