@@ -16,7 +16,7 @@ struct CocoapodsManager {
 
   init(lockFile: FileManager.Path) throws {
     lockfilePodList =
-      try String(contentsOfFile: lockFile)
+      try Env.contentsOfFile(lockFile)
         .scan {
           $0.scanUpTo(string: "PODS:")
           $0.scanAndStoreUpTo(string: "\n\n")
@@ -28,7 +28,6 @@ struct CocoapodsManager {
 }
 
 extension CocoapodsManager: DependencyManager {
-
   var pluginModuleType: XCGrapherImport.ModuleType {
     .cocoapods
   }
@@ -52,5 +51,4 @@ extension CocoapodsManager: DependencyManager {
       .map { $0.components(separatedBy: " ")[0] }
       .map { $0.replacingOccurrences(of: "\"", with: "") }
   }
-
 }
