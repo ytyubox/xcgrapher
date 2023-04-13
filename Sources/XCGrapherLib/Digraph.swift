@@ -22,13 +22,6 @@ struct Digraph: Equatable {
     edges.append(Edge(a: a, b: b, tags: color))
   }
 
-  /// Removes any edge with the name `a`
-  mutating func removeEdges(referencing a: String) {
-    edges.removeAll {
-      $0.a == a || $0.b == a
-    }
-  }
-
   func build() -> String {
     indentedEdgeStrings
       .joined(separator: "\n")
