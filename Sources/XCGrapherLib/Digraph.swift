@@ -11,7 +11,7 @@ struct Digraph: Equatable {
   /// The name of the digraph structure
   let name: String
 
-  private(set) var edges: [Edge] = []
+  var edges: [Edge] = []
 
   /// Adds an arrow line from `a` to `b` in the graph.
   /// - Parameters:
@@ -29,7 +29,11 @@ struct Digraph: Equatable {
 }
 
 extension Digraph {
-  struct Edge: Equatable {
+  struct Edge: Equatable, Comparable {
+    static func < (lhs: Digraph.Edge, rhs: Digraph.Edge) -> Bool {
+      [lhs.string, rhs.string].sortedAscendingCaseInsensitively() == [lhs.string, rhs.string]
+    }
+
     let a: String
     let b: String
     let tags: String

@@ -68,8 +68,8 @@ final class ATests: XCTestCase {
       Digraph(
         name: "title",
         edges: [
-          .init(a: "some", b: "A", tags: "spm"),
           .init(a: "A", b: "B", tags: "spm"),
+          .init(a: "some", b: "A", tags: "spm"),
         ]
       )
     )

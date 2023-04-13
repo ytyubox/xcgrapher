@@ -132,6 +132,7 @@ class ComputeCore {
       digraph.addEdge(from: edge.origin, to: edge.destination, color: edge.color)
     }
 
+    digraph.edges.sort()
     return digraph
   }
 }
