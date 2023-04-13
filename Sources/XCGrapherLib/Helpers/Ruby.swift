@@ -35,6 +35,7 @@ struct Ruby: ShellTask {
   var file: String {
     #filePath
   }
+
   var debugDescription: String {
     script
   }

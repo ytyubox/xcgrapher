@@ -16,7 +16,7 @@ public enum XCGrapher {
 
     // MARK: - Create dependency manager lookups
 
-    let handler = PluginSupport()
+    let handler = ComputeCore()
 
     if options.spm || options.startingPoint.isSPM {
       Log("Building Swift Package list")

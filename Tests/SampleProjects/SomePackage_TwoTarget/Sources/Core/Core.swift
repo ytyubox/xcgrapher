@@ -5,8 +5,8 @@
 //  Created by Yu Yu on 2023/4/10.
 //
 
-import Foundation
 import CasePaths
+import Foundation
 
 public struct OBJ {
   public init(value: String) {

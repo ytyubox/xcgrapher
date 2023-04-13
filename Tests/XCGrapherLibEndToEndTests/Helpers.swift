@@ -54,36 +54,6 @@ func defaultXCGrapherPluginLocation() -> String {
     .appendingPathComponent("XCGrapherModuleImportPlugin")
 }
 
-extension XCGrapherOptions {
-  static func fixture(
-    currentDirectory: URL =  .init(string: "some.url")!,
-    startingPoint: StartingPoint,
-    target: String,
-    podlock: String = "",
-    output: String = "",
-    apple: Bool = false,
-    spm: Bool = false,
-    pods: Bool = false,
-    force: Bool = false,
-    json: Bool = false,
-    verbose: Bool = true
-  ) -> Self {
-    .init(
-      currentDirectory: currentDirectory,
-      startingPoint: startingPoint,
-      target: target,
-      podlock: podlock,
-      output: output,
-      apple: apple,
-      spm: spm,
-      pods: pods,
-      force: force,
-      json: json,
-      verbose: verbose
-    )
-  }
-}
-
 extension Array where Element: CustomStringConvertible {
   var lines: String {
     map(\.description).sorted().joined(separator: "\n")

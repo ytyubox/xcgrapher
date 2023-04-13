@@ -21,10 +21,8 @@ public class XCGrapherModuleImportPlugin {
     return [importInfo]
   }
 
-  public func makeArrows(from processingResults: [Any]) throws -> [XCGrapherArrow] {
+  public func makeArrows(from processingResults: [ImportInfo]) throws -> [XCGrapherArrow] {
     processingResults
-      // This is safe because we only ever returned an `ImportInfo` from the process(x:) functions above
-      .map { $0 as! ImportInfo }
 
       // For every item returned from a process(x:) function, make an edge (arrow) from the importing module to the
       // imported module.

@@ -15,6 +15,9 @@ public struct XCGrapherImport {
     /// The module `XCGrapherImport.name` is a Cocoapods framework.
     case cocoapods
 
+    /// The module `XCGrapherImport.name` is a Swift Package Manager framework. but from local Package.
+    case local
+
     /// The module `XCGrapherImport.name` is a Swift Package Manager framework.
     case spm
 

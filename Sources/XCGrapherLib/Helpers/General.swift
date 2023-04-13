@@ -45,17 +45,17 @@ private func logPrefix(file: String) -> String {
 
 private enum Colors {
   static var red: String {
-    if amIBeingDebugged {return ""}
+    if amIBeingDebugged { return "" }
     return "\u{001B}[0;31m"
   }
 
   static var dim: String {
-    if amIBeingDebugged {return ""}
+    if amIBeingDebugged { return "" }
     return "\u{001B}[2m"
   }
 
   static var reset: String {
-    if amIBeingDebugged {return ""}
+    if amIBeingDebugged { return "" }
     return "\u{001B}[0;0m"
   }
 }

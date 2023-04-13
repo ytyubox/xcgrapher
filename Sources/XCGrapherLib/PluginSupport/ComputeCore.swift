@@ -1,6 +1,6 @@
 import Foundation
 
-class PluginSupport {
+class ComputeCore {
   let plugin: XCGrapherModuleImportPlugin = .init()
 
   var swiftPackageManager: SwiftPackageManager?
@@ -102,7 +102,7 @@ class PluginSupport {
 
 // MARK: - Recursive Functions
 
-private extension PluginSupport {
+private extension ComputeCore {
   func recurseSwiftPackages(
     from module: String,
     importedBy importer: String,
@@ -218,7 +218,7 @@ private extension PluginSupport {
 
 // MARK: - Plugin Caller Proxies
 
-private extension PluginSupport {
+private extension ComputeCore {
   func plugin_process(library: XCGrapherImport) throws -> [ImportInfo] {
     guard library.importerName != library.moduleName else { return [] } // Filter when the library imports itself
 
@@ -239,7 +239,7 @@ private extension PluginSupport {
     }
   }
 
-  func plugin_makeArrows(from processingResults: [Any]) throws -> [XCGrapherArrow] {
+  func plugin_makeArrows(from processingResults: [ImportInfo]) throws -> [XCGrapherArrow] {
     do {
       return try plugin.makeArrows(from: processingResults)
     } catch {

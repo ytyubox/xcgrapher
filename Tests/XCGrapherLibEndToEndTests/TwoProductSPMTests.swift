@@ -38,7 +38,6 @@ final class TwoProductSPMTests: XCTestCase {
     let json = try SwiftPackage(clone: root)
       .execute()
 
-
     try Approvals.verify(json)
   }
 

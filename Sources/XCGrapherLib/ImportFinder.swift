@@ -43,15 +43,15 @@ struct ImportFinder {
           $0.scanAndStoreUpToCharacters(from: CharacterSet(charactersIn: " ."))
         }
       }
-      .map({ (raw:String) -> String in
+      .map { (raw: String) -> String in
         var raw = raw
 
         if let index = raw.firstIndex(of: "/") {
           raw.removeSubrange(index...)
         }
         return raw
-      })
-      .filter({$0 != "Swift"})
+      }
+      .filter { $0 != "Swift" }
       .unique()
       .sortedAscendingCaseInsensitively()
   }
