@@ -13,5 +13,6 @@ final class ATests: XCTestCase {
   func test() async throws {
     try ComputeCore()
       .generateDigraph(target: "some", projectSourceFiles: [])
+      == Digraph(name: "")
   }
 }

@@ -29,7 +29,7 @@ class ComputeCore {
     target: String,
     projectSourceFiles: [FileManager.Path]
   ) throws -> Digraph {
-    let digraph = Digraph(name: "XCGrapher")
+    var digraph = Digraph(name: "XCGrapher")
     var nodes: [ImportInfo] = []
     let box_nodes: Box<[ImportInfo]> = .init([])
 

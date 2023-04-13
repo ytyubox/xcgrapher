@@ -7,7 +7,7 @@ import Foundation
 ///   "b" -> "c"
 /// }
 /// ```
-class Digraph {
+struct Digraph: Equatable {
   /// The name of the digraph structure
   let name: String
 
@@ -22,12 +22,12 @@ class Digraph {
   ///   - a: The element the arrow should originate from
   ///   - b: The element the arrow should point to
   ///   - color: The color of the line, e.g. `#FF0000`
-  func addEdge(from a: String, to b: String, color: String) {
+  mutating func addEdge(from a: String, to b: String, color: String) {
     edges.append(Edge(a: a, b: b, tags: color))
   }
 
   /// Removes any edge with the name `a`
-  func removeEdges(referencing a: String) {
+  mutating func removeEdges(referencing a: String) {
     edges.removeAll {
       $0.a == a || $0.b == a
     }
@@ -40,7 +40,7 @@ class Digraph {
 }
 
 extension Digraph {
-  struct Edge {
+  struct Edge: Equatable {
     let a: String
     let b: String
     let tags: String
