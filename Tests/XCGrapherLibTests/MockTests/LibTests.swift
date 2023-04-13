@@ -5,6 +5,6 @@ import XCTest
 
 final class LibTests: XCTestCase {
   func test() throws {
-    let options = XCGrapherOptions.fixture(startingPoint: .swiftPackage("Package"), target: "Hello")
+    _ = XCGrapherOptions.fixture(startingPoint: .swiftPackage("Package"), target: "Hello")
   }
 }
