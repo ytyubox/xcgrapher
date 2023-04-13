@@ -16,7 +16,7 @@ struct CocoapodsManager {
 
   init(lockFile: FileManager.Path) throws {
     lockfilePodList =
-      try Env.contentsOfFile(lockFile)
+      Env.contentsOfFile(lockFile)
         .scan {
           $0.scanUpTo(string: "PODS:")
           $0.scanAndStoreUpTo(string: "\n\n")
