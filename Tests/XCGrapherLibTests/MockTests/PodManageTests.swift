@@ -25,7 +25,7 @@ final class PodManageTests: XCTestCase {
     XCTAssertNoDifference(manager.dependencies(of: "SimpleKeychain"), [])
   }
 
-  func testFirstLevel() async throws {
+  func testGraphDependency() async throws {
     let manager = try CocoapodsManager(lockFile: podLockContent)
     XCTAssertNoDifference(manager.dependencies(), [
       .init(name: "Alamofire", version: "5.4.1"): [],
