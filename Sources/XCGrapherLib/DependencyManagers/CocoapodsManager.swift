@@ -37,13 +37,29 @@ extension CocoapodsManager: DependencyManager {
     return lockfilePodList.contains(podlockEntry)
   }
 
-  func dependencies() -> [String] {
+  struct Pod: Equatable {
+    var name: String
+    var version: String
+  }
+
+  func dependencies() -> [Pod] {
     lockfilePodList
-      .scan {
-        $0.scanUpToAndIncluding(string: "\n  - ")
-        $0.scanAndStoreUpTo(string: "\n  - ")
-      }
       .breakIntoLines()
+      .filter { $0.hasPrefix("  -") }
+      .map { str in
+        Pod(
+          name: str
+            .scan {
+              $0.scanUpToAndIncluding(string: "  - ")
+              $0.scanAndStoreUpTo(string: " (")
+            },
+          version: str.scan {
+            $0.scanUpToAndIncluding(string: "(")
+            $0.scanAndStoreUpTo(string: ")")
+          }
+        )
+
+      }
   }
 
   func dependencies(of module: String) -> [String] {
