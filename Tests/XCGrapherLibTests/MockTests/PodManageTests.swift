@@ -28,16 +28,16 @@ final class PodManageTests: XCTestCase {
   func testFirstLevel() async throws {
     let manager = try CocoapodsManager(lockFile: podLockContent)
     XCTAssertNoDifference(manager.dependencies(), [
-      CocoapodsManager.Pod(name: "Alamofire", version: "5.4.1"),
-      CocoapodsManager.Pod(name: "Auth0", version: "1.32.0"),
-      CocoapodsManager.Pod(name: "JWTDecode", version: "2.6.0"),
-      CocoapodsManager.Pod(name: "Moya", version: "14.0.0"),
-      CocoapodsManager.Pod(name: "Moya/Core", version: "14.0.0"),
-      CocoapodsManager.Pod(name: "NSObject_Rx", version: "5.2.0"),
-      CocoapodsManager.Pod(name: "RxCocoa", version: "6.0.0"),
-      CocoapodsManager.Pod(name: "RxRelay", version: "6.0.0"),
-      CocoapodsManager.Pod(name: "RxSwift", version: "6.0.0"),
-      CocoapodsManager.Pod(name: "SimpleKeychain", version: "0.12.2"),
+      .init(name: "Alamofire", version: "5.4.1"): [],
+      .init(name: "Auth0", version: "1.32.0"): ["JWTDecode", "SimpleKeychain"],
+      .init(name: "JWTDecode", version: "2.6.0"): [],
+      .init(name: "Moya", version: "14.0.0"): ["Moya/Core"],
+      .init(name: "Moya/Core", version: "14.0.0"): ["Alamofire"],
+      .init(name: "NSObject_Rx", version: "5.2.0"): ["RxSwift"],
+      .init(name: "RxCocoa", version: "6.0.0"): ["RxRelay", "RxSwift"],
+      .init(name: "RxRelay", version: "6.0.0"): ["RxSwift"],
+      .init(name: "RxSwift", version: "6.0.0"): [],
+      .init(name: "SimpleKeychain", version: "0.12.2"): [],
     ])
   }
 }

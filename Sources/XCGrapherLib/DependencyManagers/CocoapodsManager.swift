@@ -37,12 +37,12 @@ extension CocoapodsManager: DependencyManager {
     return lockfilePodList.contains(podlockEntry)
   }
 
-  struct Pod: Equatable {
+  struct Pod: Equatable, Hashable {
     var name: String
     var version: String
   }
 
-  func dependencies() -> [Pod] {
+  func dependencies() -> [Pod: [String]] {
     lockfilePodList
       .breakIntoLines()
       .filter { $0.hasPrefix("  -") }
@@ -58,7 +58,9 @@ extension CocoapodsManager: DependencyManager {
             $0.scanAndStoreUpTo(string: ")")
           }
         )
-
+      }
+      .reduce(into: [:]) { partialResult, pod in
+        partialResult[pod] = dependencies(of: pod.name)
       }
   }
 
