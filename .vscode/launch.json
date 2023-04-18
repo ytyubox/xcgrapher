@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "name": "Debug xcgrapher",
+            "program": "${workspaceFolder:xcgrapher}/.build/debug/xcgrapher",
+            "args": [],
+            "cwd": "${workspaceFolder:xcgrapher}",
+            "preLaunchTask": "swift: Build Debug xcgrapher"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "name": "Release xcgrapher",
+            "program": "${workspaceFolder:xcgrapher}/.build/release/xcgrapher",
+            "args": [],
+            "cwd": "${workspaceFolder:xcgrapher}",
+            "preLaunchTask": "swift: Build Release xcgrapher"
+        }
+    ]
+}
