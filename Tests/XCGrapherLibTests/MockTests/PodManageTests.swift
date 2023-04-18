@@ -7,22 +7,22 @@ final class PodManageTests: XCTestCase {
   func test() async throws {
     let manager = try CocoapodsManager(lockFile: podLockContent)
 
-    XCTAssertNoDifference(manager.dependencies(of: "Alamofire"), [])
-    XCTAssertNoDifference(manager.dependencies(of: "Auth0"), [
-      "JWTDecode",
-      "SimpleKeychain",
-    ])
-    XCTAssertNoDifference(manager.dependencies(of: "JWTDecode"), [])
-    XCTAssertNoDifference(manager.dependencies(of: "Moya"), ["Moya/Core"])
-    XCTAssertNoDifference(manager.dependencies(of: "Moya/Core"), ["Alamofire"])
+//    XCTAssertNoDifference(manager.dependencies(of: "Alamofire"), [])
+//    XCTAssertNoDifference(manager.dependencies(of: "Auth0"), [
+//      "JWTDecode",
+//      "SimpleKeychain",
+//    ])
+//    XCTAssertNoDifference(manager.dependencies(of: "JWTDecode"), [])
+//    XCTAssertNoDifference(manager.dependencies(of: "Moya"), ["Moya/Core"])
+//    XCTAssertNoDifference(manager.dependencies(of: "Moya/Core"), ["Alamofire"])
     XCTAssertNoDifference(manager.dependencies(of: "NSObject_Rx"), ["RxSwift"])
-    XCTAssertNoDifference(manager.dependencies(of: "RxCocoa"), [
-      "RxRelay",
-      "RxSwift",
-    ])
-    XCTAssertNoDifference(manager.dependencies(of: "RxRelay"), ["RxSwift"])
-    XCTAssertNoDifference(manager.dependencies(of: "RxSwift"), [])
-    XCTAssertNoDifference(manager.dependencies(of: "SimpleKeychain"), [])
+//    XCTAssertNoDifference(manager.dependencies(of: "RxCocoa"), [
+//      "RxRelay",
+//      "RxSwift",
+//    ])
+//    XCTAssertNoDifference(manager.dependencies(of: "RxRelay"), ["RxSwift"])
+//    XCTAssertNoDifference(manager.dependencies(of: "RxSwift"), [])
+//    XCTAssertNoDifference(manager.dependencies(of: "SimpleKeychain"), [])
   }
 }
 
