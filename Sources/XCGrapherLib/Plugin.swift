@@ -15,7 +15,7 @@ public class XCGrapherModuleImportPlugin {
     let importInfo = ImportInfo(
       importedModuleName: library.moduleName,
       importerModuleName: library.importerName,
-      color: library.moduleType.customColor
+      manager: library.moduleType.rawValue
     )
 
     return [importInfo]
@@ -30,7 +30,7 @@ public class XCGrapherModuleImportPlugin {
         XCGrapherArrow(
           origin: $0.importerModuleName,
           destination: $0.importedModuleName,
-          color: $0.color
+          color: $0.manager
         )
       }
   }

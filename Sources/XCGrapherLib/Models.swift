@@ -1,16 +1,16 @@
 import Foundation
 
 public struct ImportInfo {
-  public init(importedModuleName: String, importerModuleName: String, color: String, remote: Remote? = nil) {
+  public init(importedModuleName: String, importerModuleName: String, manager: String, remote: Remote? = nil) {
     self.importedModuleName = importedModuleName
     self.importerModuleName = importerModuleName
-    self.color = color
+    self.manager = manager
     self.remote = remote
   }
 
   public let importedModuleName: String
   public let importerModuleName: String
-  public let color: String
+  public let manager: String
   public let remote: Remote?
 }
 

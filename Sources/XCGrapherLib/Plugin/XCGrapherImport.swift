@@ -3,9 +3,8 @@ import Foundation
 
 /// Describes an `import X`.
 public struct XCGrapherImport {
-
   /// The type of module being imported.
-  public enum ModuleType {
+  public enum ModuleType: String {
     /// The module is the main target from the --target argument
     case target
 
@@ -43,5 +42,4 @@ public struct XCGrapherImport {
     self.moduleType = moduleType
     self.importerType = importerType
   }
-
 }
