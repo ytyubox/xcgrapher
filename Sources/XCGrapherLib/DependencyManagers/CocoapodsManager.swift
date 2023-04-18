@@ -37,6 +37,15 @@ extension CocoapodsManager: DependencyManager {
     return lockfilePodList.contains(podlockEntry)
   }
 
+  func dependencies() -> [String] {
+    lockfilePodList
+      .scan {
+        $0.scanUpToAndIncluding(string: "\n  - ")
+        $0.scanAndStoreUpTo(string: "\n  - ")
+      }
+      .breakIntoLines()
+  }
+
   func dependencies(of module: String) -> [String] {
     // Parse the lockfile, looking for entries indented underneath `module`
     lockfilePodList
