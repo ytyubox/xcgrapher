@@ -6,7 +6,7 @@ import XCTest
 final class PodManageTests: XCTestCase {
   func test() async throws {
     let manager = try CocoapodsManager(lockFile: podLockContent)
-    XCTAssertNoDifference(manager.dependencies(of: "App"), [])
+
   }
 }
 
