@@ -151,12 +151,15 @@ private extension ComputeCore {
     if swiftPackageManager?.isManaging(module: module) == true {
       // `module` is a Swift Package and `importer` is either a Swift Package or the main --target
       let nodes =
-        try plugin_process(library: XCGrapherImport(
-          moduleName: module,
-          importerName: importer,
-          moduleType: .spm,
-          importerType: importerType
-        ))
+        try plugin_process(
+          library:
+          XCGrapherImport(
+            moduleName: module,
+            importerName: importer,
+            moduleType: .spm,
+            importerType: importerType
+          )
+        )
       nodeList.append(contentsOf: nodes)
       box_nodeList.value.append(contentsOf: nodes)
 
