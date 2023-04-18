@@ -43,7 +43,6 @@ class ComputeCore {
     projectSourceFiles: [FileManager.Path]
   ) throws -> Digraph {
     var digraph = Digraph(name: title)
-    var nodes: [ImportInfo] = []
     let box_nodes: Box<[ImportInfo]> = .init([])
 
     // MARK: - Main Target
@@ -63,7 +62,6 @@ class ComputeCore {
 
       let _nodes = try plugin_process(file: pluginFile)
       box_nodes.value.append(contentsOf: _nodes)
-      nodes.append(contentsOf: _nodes)
     }
 
     for module in targetImports {
@@ -76,7 +74,6 @@ class ComputeCore {
           from: module,
           importedBy: target,
           importerType: .target,
-          building: &nodes,
           building: box_nodes,
           skipping: &previouslyEncounteredModules
         )
@@ -90,7 +87,6 @@ class ComputeCore {
           from: module,
           importedBy: target,
           importerType: .target,
-          building: &nodes,
           building: box_nodes,
           skipping: &previouslyEncounteredModules
         )
@@ -107,7 +103,7 @@ class ComputeCore {
             moduleType: .apple,
             importerType: .target
           ))
-        nodes.append(contentsOf: _nodes)
+
         box_nodes.value.append(contentsOf: _nodes)
       }
 
@@ -120,14 +116,13 @@ class ComputeCore {
             moduleType: .other,
             importerType: .target
           ))
-        nodes.append(contentsOf: _nodes)
         box_nodes.value.append(contentsOf: _nodes)
       }
     }
 
     // MARK: - Finish up
 
-    let edges = try plugin_makeArrows(from: nodes)
+    let edges = try plugin_makeArrows(from: box_nodes.value)
     for edge in Set(edges) {
       digraph.addEdge(from: edge.origin, to: edge.destination, color: edge.color)
     }
@@ -144,7 +139,6 @@ private extension ComputeCore {
     from module: String,
     importedBy importer: String,
     importerType: XCGrapherImport.ModuleType,
-    building nodeList: inout [ImportInfo],
     building box_nodeList: Box<[ImportInfo]>,
     skipping modulesToSkip: inout Set<String>
   ) throws {
@@ -160,7 +154,6 @@ private extension ComputeCore {
             importerType: importerType
           )
         )
-      nodeList.append(contentsOf: nodes)
       box_nodeList.value.append(contentsOf: nodes)
 
       guard !modulesToSkip.contains(module) else { return }
@@ -181,7 +174,6 @@ private extension ComputeCore {
         )
 
         let _nodes = try plugin_process(file: pluginFile)
-        nodeList.append(contentsOf: _nodes)
         box_nodeList.value.append(contentsOf: _nodes)
       }
 
@@ -192,7 +184,6 @@ private extension ComputeCore {
           from: _module,
           importedBy: module,
           importerType: .spm,
-          building: &nodeList,
           building: box_nodeList,
           skipping: &modulesToSkip
         )
@@ -210,7 +201,6 @@ private extension ComputeCore {
             importerType: importerType
           )
         )
-      nodeList.append(contentsOf: _nodes)
       box_nodeList.value.append(contentsOf: _nodes)
     } else if unknownManager?.isManaging(module: module) == true {
       modulesToSkip.insert(module)
@@ -225,7 +215,6 @@ private extension ComputeCore {
             importerType: importerType
           )
         )
-      nodeList.append(contentsOf: _nodes)
       box_nodeList.value.append(contentsOf: _nodes)
     }
   }
@@ -234,7 +223,6 @@ private extension ComputeCore {
     from module: String,
     importedBy importer: String,
     importerType: XCGrapherImport.ModuleType,
-    building nodeList: inout [ImportInfo],
     building box_nodeList: Box<[ImportInfo]>,
     skipping modulesToSkip: inout Set<String>
   ) throws {
@@ -244,7 +232,6 @@ private extension ComputeCore {
       moduleType: .cocoapods,
       importerType: importerType
     ))
-    nodeList.append(contentsOf: _nodes)
     box_nodeList.value.append(contentsOf: _nodes)
 
     guard !modulesToSkip.contains(module) else { return }
@@ -257,7 +244,6 @@ private extension ComputeCore {
         from: podImport,
         importedBy: module,
         importerType: .cocoapods,
-        building: &nodeList,
         building: box_nodeList,
         skipping: &modulesToSkip
       )
