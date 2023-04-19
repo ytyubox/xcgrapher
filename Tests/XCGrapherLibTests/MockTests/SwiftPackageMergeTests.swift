@@ -15,7 +15,7 @@ final class SwiftPackageMergeTests: XCTestCase {
       ),
       [
         "Core": ["CasePaths"],
-        "Kingfisher": [],
+        "kingfisher": [],
         "SomePackage": ["Core", "Kingfisher", "Moya", "Alamofire"],
         "SomePackageTests": ["SomePackage"],
         "alamofire": [],
