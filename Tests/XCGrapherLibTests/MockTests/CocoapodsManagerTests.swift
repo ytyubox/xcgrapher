@@ -3,7 +3,7 @@ import CustomDump
 import XCTest
 
 @MainActor
-final class PodManageTests: XCTestCase {
+final class CocoapodsManagerTests: XCTestCase {
   func test() async throws {
     let manager = try CocoapodsManager(lockFile: podLockContent)
 
