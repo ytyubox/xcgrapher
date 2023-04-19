@@ -26,7 +26,11 @@ struct Xcodebuild: SwiftPackageDependencySource {
 extension Xcodebuild: ShellTask {
 
   var stringRepresentation: String {
-    "xcodebuild -project \"\(projectFile)\" -target \"\(target)\" -showBuildSettings"
+    """
+    xcodebuild -project "\(projectFile)" \
+    -target "\(target)" \
+    -showBuildSettings
+    """
   }
 
   var commandNotFoundInstructions: String {

@@ -4,7 +4,7 @@ import XCTest
 
 final class TwoTargetsTests: XCTestCase {
   func testDecode() throws {
-    XCTAssertEqual(
+    XCTAssertNoDifference(
       try
         JSONDecoder().decode(PackageDescription.self, from: json),
       PackageDescription(
@@ -17,6 +17,7 @@ final class TwoTargetsTests: XCTestCase {
               path: "Tests/SomePackageTests",
               sources: ["SomePackageTests.swift", "XCTestManifests.swift"],
               target_dependencies: ["SomePackage"],
+              product_dependencies: nil,
               type: "test"
             ),
           PackageDescription.Target(
@@ -24,6 +25,7 @@ final class TwoTargetsTests: XCTestCase {
             path: "Sources/SomePackage",
             sources: ["AppleImports.swift", "DependencyImports.swift", "SomePackage.swift"],
             target_dependencies: ["Core"],
+            product_dependencies: ["Kingfisher", "Moya", "Alamofire"],
             type: "library"
           ),
           PackageDescription.Target(
@@ -31,6 +33,7 @@ final class TwoTargetsTests: XCTestCase {
             path: "Sources/Core",
             sources: ["Core.swift"],
             target_dependencies: nil,
+            product_dependencies: ["CasePaths"],
             type: "library"
           ),
         ]
