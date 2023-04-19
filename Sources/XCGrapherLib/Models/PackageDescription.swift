@@ -13,6 +13,7 @@ struct PackageDescription: Decodable, Equatable {
     var path: String
     var sources: [String]
     var target_dependencies: [String]?
+    var product_dependencies:[String]?
     var type: String
   }
 

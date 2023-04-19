@@ -2,12 +2,14 @@ import Foundation
 
 struct SwiftPackage {
   let clone: FileManager.Path
+  func decode(json: Data) throws -> PackageDescription {
+    return try JSONDecoder().decode(PackageDescription.self, from: json)
+  }
 
   func targets() throws -> [PackageDescription.Target] {
-    let json = try execute()
-    let jsonData = json.data(using: .utf8)!
-    let description = try JSONDecoder().decode(PackageDescription.self, from: jsonData)
-    return description.targets
+    let json = try execute().data(using: .utf8)!
+
+    return try decode(json: json).targets
   }
 }
 
