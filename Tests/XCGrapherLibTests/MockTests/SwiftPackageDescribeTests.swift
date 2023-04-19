@@ -13,7 +13,6 @@ final class SPMTests: XCTestCase {
       let product_dep = target.product_dependencies ?? []
       g[target.name] = [target_dep, product_dep].flatMap { $0 }
     }
-    
 
     XCTAssertNoDifference(g, [
       "Core": ["CasePaths"],

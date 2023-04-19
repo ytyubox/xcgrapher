@@ -199,7 +199,7 @@ struct Pin: Codable {
 }
 
 func toDependencyResolved(_ pin: Pin) -> DependencyResolved {
-  let id: DependencyResolved.Id
+  let id: GitId
   if let tag = pin.state.version {
     id = .tag(tag, pin.state.revision)
   } else if let branch = pin.state.branch {
@@ -214,13 +214,14 @@ func toDependencyResolved(_ pin: Pin) -> DependencyResolved {
   return .init(package: pin.package, repositoryURL: pin.repositoryURL, id: id)
 }
 
+enum GitId: Equatable, Hashable {
+  case branch(String, String), tag(String, String), reversion(String), unowned(String?, String, String?)
+}
+
 struct DependencyResolved: Equatable {
   let package: String
   let repositoryURL: String
-  let id: Id
-  enum Id: Equatable {
-    case branch(String, String), tag(String, String), reversion(String), unowned(String?, String, String?)
-  }
+  let id: GitId
 }
 
 // MARK: - State
