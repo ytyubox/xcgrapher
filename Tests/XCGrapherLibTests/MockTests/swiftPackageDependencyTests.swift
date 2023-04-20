@@ -5,12 +5,15 @@ import XCTest
 @MainActor
 final class swiftPackageDependencyTests: XCTestCase {
   func testSomePackage() async throws {
-    let g = SwiftPackageManager(packages: [
-      .init(
-        describe: PackageDescription(name: "", path: "", _targets: []),
-        dependency: SomePackageDependency
-      ),
-    ])
+    let g = SwiftPackageManager(
+      packages: [
+        .init(
+          describe: PackageDescription(name: "", path: "", _targets: []),
+          dependency: SomePackageDependency
+        ),
+      ],
+      otherPackageDescriptions: []
+    )
     .groupDependency()
     XCTAssertEqual(
       g,

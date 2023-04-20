@@ -65,7 +65,8 @@ final class ATests: XCTestCase {
             ),
             dependency: Dependency(identity: "", name: "", url: "", version: "", path: "", dependencies: [])
           ),
-        ]
+        ],
+        otherPackageDescriptions: []
       ))
       .generateDigraph(
         title: "title",

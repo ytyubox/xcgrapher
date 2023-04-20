@@ -12,7 +12,8 @@ final class SwiftPackageMergeTests: XCTestCase {
             describe: SomePackageDescribe,
             dependency: SomePackageDependency
           ),
-        ]
+        ],
+        otherPackageDescriptions: []
       )
       .swiftPackageMerge(),
       [

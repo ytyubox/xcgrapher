@@ -14,7 +14,8 @@ final class SPMTests: XCTestCase {
           describe: packageDescription,
           dependency: SomePackageDependency
         ),
-      ]
+      ],
+      otherPackageDescriptions: []
     )
     .groupPackageDescription()
 
