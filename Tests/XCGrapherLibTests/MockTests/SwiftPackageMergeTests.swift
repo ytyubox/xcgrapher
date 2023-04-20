@@ -6,15 +6,12 @@ import XCTest
 final class SwiftPackageMergeTests: XCTestCase {
   func test() async throws {
     XCTAssertNoDifference(
-      SwiftPackageManager(packageDescriptions: [])
-        .swiftPackageMerge(
-          describe: [
-            "Core": ["CasePaths"],
-            "SomePackage": ["Core", "Kingfisher", "Moya", "Alamofire"],
-            "SomePackageTests": ["SomePackage"],
-          ],
-          dependency: dependency
-        ),
+      SwiftPackageManager(packageDescriptions: [
+        SomePackageDescribe,
+      ])
+      .swiftPackageMerge(
+        dependency: dependency
+      ),
       [
         "Core": ["CasePaths"],
         "kingfisher": [],

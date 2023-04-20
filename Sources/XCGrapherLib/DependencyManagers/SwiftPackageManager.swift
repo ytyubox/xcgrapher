@@ -18,7 +18,7 @@ struct SwiftPackageManager {
     }
   }
 
-  func groupPackageDescription() throws -> [String: [String]] {
+  func groupPackageDescription() -> [String: [String]] {
     var g: [String: [String]] = [:]
     for packageDescription in packageDescriptions {
       for target in packageDescription._targets {
@@ -31,10 +31,9 @@ struct SwiftPackageManager {
   }
 
   func swiftPackageMerge(
-    describe: [String: [String]],
     dependency: [Dependency_Key: [String]]
   ) -> [String: [String]] {
-    var r = describe
+    var r = groupPackageDescription()
     for (key, value) in dependency {
       if r[key.identity] != nil { continue }
       r[key.identity] = value
