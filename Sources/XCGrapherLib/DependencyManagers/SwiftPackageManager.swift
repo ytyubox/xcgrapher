@@ -33,7 +33,9 @@ struct SwiftPackageManager {
       }
       return [describe] + other
     }
-    let otherPackage = packages.map(\.dependency.path)
+    let otherPackage = try packages
+      .map(\.dependency)
+      .flatMap(recursiveLoadDescribe(dependency:))
   }
 
   func groupPackageDescription() -> [String: [String]] {
