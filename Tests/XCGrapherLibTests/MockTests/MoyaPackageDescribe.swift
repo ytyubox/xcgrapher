@@ -193,3 +193,9 @@ private let MoyaPackageDescribeJSON =
     "tools_version" : "5.0"
   }
   """.data(using: .utf8)!
+
+@testable import XCGrapherLib
+
+var moyaPackageDescribe: PackageDescription {
+  try! JSONDecoder().decode(PackageDescription.self, from: MoyaPackageDescribeJSON)
+}
