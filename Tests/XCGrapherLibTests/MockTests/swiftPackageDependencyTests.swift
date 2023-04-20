@@ -2,32 +2,16 @@ import CustomDump
 @testable import XCGrapherLib
 import XCTest
 
-func groupDependency(dep: Dependency) -> [Dependency_Key: [String]] {
-  var g: [Dependency_Key: [String]] = [:]
-  func re(dep: Dependency) {
-    let key = Dependency_Key(
-      identity: dep.identity,
-      name: dep.name,
-      url: dep.url,
-      version: dep.version,
-      path: dep.path
-    )
-    if g[key] != nil { return }
-    g[key] = dep.dependencies.map(\.identity)
-    for d in dep.dependencies {
-      re(dep: d)
-    }
-  }
-  for d in dep.dependencies {
-    re(dep: d)
-  }
-  return g
-}
-
 @MainActor
 final class swiftPackageDependencyTests: XCTestCase {
   func testSomePackage() async throws {
-    let g = groupDependency(dep: SomePackageDependency)
+    let g = SwiftPackageManager(packages: [
+      .init(
+        describe: PackageDescription(name: "", path: "", _targets: []),
+        dependency: SomePackageDependency
+      ),
+    ])
+    .groupDependency(dep: SomePackageDependency)
     XCTAssertEqual(
       g,
       [
@@ -72,5 +56,4 @@ final class swiftPackageDependencyTests: XCTestCase {
       ]
     )
   }
-
 }
