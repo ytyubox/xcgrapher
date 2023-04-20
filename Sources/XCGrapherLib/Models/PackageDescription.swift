@@ -8,6 +8,8 @@ struct PackageDescription: Decodable, Equatable {
     _targets.map { postHandler($0, path: path) }
   }
 
+  var products: [Product]
+
   struct Target: Decodable, Equatable {
     var name: String
     var path: String
@@ -18,7 +20,11 @@ struct PackageDescription: Decodable, Equatable {
   }
 
   enum CodingKeys: String, CodingKey {
-    case name, path, _targets = "targets"
+    case name, path, _targets = "targets", products
+  }
+
+  struct Product: Decodable, Equatable {
+    var name: String
   }
 }
 

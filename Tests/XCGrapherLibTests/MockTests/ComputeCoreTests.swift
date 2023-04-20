@@ -61,7 +61,8 @@ final class ATests: XCTestCase {
                   sources: [],
                   type: ""
                 ),
-              ]
+              ],
+              products: []
             ),
             dependency: Dependency(identity: "", name: "", url: "", version: "", path: "", dependencies: [])
           ),

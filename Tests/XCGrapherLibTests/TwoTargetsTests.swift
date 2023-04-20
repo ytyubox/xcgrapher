@@ -36,6 +36,10 @@ final class TwoTargetsTests: XCTestCase {
             product_dependencies: ["CasePaths"],
             type: "library"
           ),
+        ],
+        products: [
+          PackageDescription.Product(name: "SomePackage"),
+          PackageDescription.Product(name: "Core"),
         ]
       )
     )

@@ -8,7 +8,7 @@ final class swiftPackageDependencyTests: XCTestCase {
     let g = SwiftPackageManager(
       packages: [
         .init(
-          describe: PackageDescription(name: "", path: "", _targets: []),
+          describe: PackageDescription(name: "", path: "", _targets: [], products: []),
           dependency: SomePackageDependency
         ),
       ],

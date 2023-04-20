@@ -52,6 +52,9 @@ struct SwiftPackageManager {
         g[target.name] = [target_dep, product_dep].flatMap { $0 }
       }
     }
+    for description in otherPackageDescriptions {
+      g[description.name] = description.products.map(\.name)
+    }
     return g
   }
 
