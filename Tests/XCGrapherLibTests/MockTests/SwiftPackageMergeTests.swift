@@ -13,7 +13,9 @@ final class SwiftPackageMergeTests: XCTestCase {
             dependency: SomePackageDependency
           ),
         ],
-        otherPackageDescriptions: []
+        otherPackageDescriptions: [
+          moyaPackageDescribe,
+        ]
       )
       .swiftPackageMerge(),
       [
