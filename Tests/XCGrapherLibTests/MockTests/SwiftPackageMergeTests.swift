@@ -17,10 +17,10 @@ final class SwiftPackageMergeTests: XCTestCase {
       .swiftPackageMerge(),
       [
         "Core": ["CasePaths"],
-        "kingfisher": [],
         "SomePackage": ["Core", "Kingfisher", "Moya", "Alamofire"],
         "SomePackageTests": ["SomePackage"],
         "alamofire": [],
+        "kingfisher": [],
         "moya": ["alamofire", "reactiveswift", "rxswift"],
         "reactiveswift": [],
         "rxswift": [],
