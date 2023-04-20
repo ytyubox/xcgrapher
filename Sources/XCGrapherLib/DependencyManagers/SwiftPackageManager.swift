@@ -25,6 +25,15 @@ struct SwiftPackageManager {
           dependency: try SwiftShowDependency(clone: $0).loadDependency()
         )
       }
+    func recursiveLoadDescribe(dependency: Dependency) throws -> [PackageDescription] {
+      let describe = try SwiftPackage(clone: dependency.path).packageDescription()
+      var other: [PackageDescription] = []
+      for dependency in dependency.dependencies {
+        other.append(contentsOf: try recursiveLoadDescribe(dependency: dependency))
+      }
+      return [describe] + other
+    }
+    let otherPackage = packages.map(\.dependency.path)
   }
 
   func groupPackageDescription() -> [String: [String]] {
