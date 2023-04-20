@@ -1,17 +1,33 @@
 import Foundation
 
 struct SwiftPackageManager {
-  internal init(knownSPMTargets: [PackageDescription.Target]) {
-    self.knownSPMTargets = knownSPMTargets
+  init(packageDescriptions: [PackageDescription]) {
+    self.packageDescriptions = packageDescriptions
   }
 
-  let knownSPMTargets: [PackageDescription.Target]
+  let packageDescriptions: [PackageDescription]
+
+  var knownSPMTargets: [PackageDescription.Target] {
+    packageDescriptions.flatMap(\.targets)
+  }
 
   /// - Parameter packageClones: A list of directories, each a cloned SPM dependency.
   init(packageClones: [FileManager.Path]) throws {
-    knownSPMTargets = try packageClones.flatMap {
-      try SwiftPackage(clone: $0).targets()
+    packageDescriptions = try packageClones.map {
+      try SwiftPackage(clone: $0).packageDescription()
     }
+  }
+
+  func groupPackageDescription() throws -> [String: [String]] {
+    var g: [String: [String]] = [:]
+    for packageDescription in packageDescriptions {
+      for target in packageDescription._targets {
+        let target_dep = target.target_dependencies ?? []
+        let product_dep = target.product_dependencies ?? []
+        g[target.name] = [target_dep, product_dep].flatMap { $0 }
+      }
+    }
+    return g
   }
 }
 
@@ -37,7 +53,7 @@ struct LocalSwiftPackageManager {
   /// - Parameter packageClones: A list of directories, each a cloned SPM dependency.
   init(packageClones: [FileManager.Path]) throws {
     knownSPMTargets = try packageClones.flatMap {
-      try SwiftPackage(clone: $0).targets()
+      try SwiftPackage(clone: $0).packageDescription().targets
     }
   }
 }

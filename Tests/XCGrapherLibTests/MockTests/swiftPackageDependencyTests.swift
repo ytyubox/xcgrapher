@@ -1120,7 +1120,7 @@ let SPMDependency =
 
   """.data(using: .utf8)!
 
-let SomePackageDependencyJSON =
+private let SomePackageDependencyJSON =
   """
   {
     "identity": "somepackage",

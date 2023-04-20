@@ -118,7 +118,7 @@ private func source(_ options: XCGrapherOptions) throws -> [String] {
     return try xcodeproj.compileSourcesList()
   case let .swiftPackage(packagePath):
     let package = SwiftPackage(clone: packagePath)
-    guard let target = try package.targets().first(where: { $0.name == options.target }) else {
+    guard let target = try package.packageDescription().targets.first(where: { $0.name == options.target }) else {
       throw die("Could not locate target '\(options.target)'")
     }
     return target.sources

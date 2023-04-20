@@ -3,30 +3,22 @@ import Foundation
 @testable import XCGrapherLib
 import XCTest
 
-func groupPackageDescription(_ package: PackageDescription) -> [String: [String]] {
-  var g: [String: [String]] = [:]
-  for target in package._targets {
-    let target_dep = target.target_dependencies ?? []
-    g[target.name] = target_dep
-  }
-  return g
-}
-
 @MainActor
 final class SPMTests: XCTestCase {
   func testSomePackage() async throws {
-    let package = try SwiftPackage(clone: "").decode(json: SomePackageSPMJSON)
-    let g = groupPackageDescription(package)
+    let packageDescription = try JSONDecoder().decode(PackageDescription.self, from: SomePackageDescribeJSON)
+    let package = SwiftPackageManager(packageDescriptions: [packageDescription])
+    let g = try package.groupPackageDescription()
 
     XCTAssertNoDifference(g, [
-      "Core": [],
-      "SomePackage": ["Core"],
+      "Core": ["CasePaths"],
+      "SomePackage": ["Core", "Kingfisher", "Moya", "Alamofire"],
       "SomePackageTests": ["SomePackage"],
     ])
   }
 }
 
-private let SomePackageSPMJSON =
+private let SomePackageDescribeJSON =
   """
   {
     "dependencies" : [
