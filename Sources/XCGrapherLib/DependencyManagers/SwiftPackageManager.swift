@@ -29,6 +29,18 @@ struct SwiftPackageManager {
     }
     return g
   }
+
+  func swiftPackageMerge(
+    describe: [String: [String]],
+    dependency: [Dependency_Key: [String]]
+  ) -> [String: [String]] {
+    var r = describe
+    for (key, value) in dependency {
+      if r[key.identity] != nil { continue }
+      r[key.identity] = value
+    }
+    return r
+  }
 }
 
 extension SwiftPackageManager: DependencyManager {

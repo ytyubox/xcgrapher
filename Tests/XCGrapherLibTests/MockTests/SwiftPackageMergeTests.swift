@@ -6,14 +6,15 @@ import XCTest
 final class SwiftPackageMergeTests: XCTestCase {
   func test() async throws {
     XCTAssertNoDifference(
-      swiftPackageMerge(
-        describe: [
-          "Core": ["CasePaths"],
-          "SomePackage": ["Core", "Kingfisher", "Moya", "Alamofire"],
-          "SomePackageTests": ["SomePackage"],
-        ],
-        dependency: dependency
-      ),
+      SwiftPackageManager(packageDescriptions: [])
+        .swiftPackageMerge(
+          describe: [
+            "Core": ["CasePaths"],
+            "SomePackage": ["Core", "Kingfisher", "Moya", "Alamofire"],
+            "SomePackageTests": ["SomePackage"],
+          ],
+          dependency: dependency
+        ),
       [
         "Core": ["CasePaths"],
         "kingfisher": [],
@@ -31,18 +32,6 @@ final class SwiftPackageMergeTests: XCTestCase {
 struct Lib: Hashable {
   var name: String
   var id: GitId?
-}
-
-func swiftPackageMerge(
-  describe: [String: [String]],
-  dependency: [Dependency_Key: [String]]
-) -> [String: [String]] {
-  var r = describe
-  for (key, value) in dependency {
-    if r[key.identity] != nil { continue }
-    r[key.identity] = value
-  }
-  return r
 }
 
 private let dependency =
