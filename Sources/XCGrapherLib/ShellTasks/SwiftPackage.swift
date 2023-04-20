@@ -11,17 +11,6 @@ struct SwiftPackage {
 
     return try decode(json: json)
   }
-
-//  func groupPackageDescription() throws -> [String: [String]] {
-//    let package = try decode(json: execute().data(using: .utf8)!)
-//    var g: [String: [String]] = [:]
-//    for target in package._targets {
-//      let target_dep = target.target_dependencies ?? []
-//      let product_dep = target.product_dependencies ?? []
-//      g[target.name] = [target_dep, product_dep].flatMap { $0 }
-//    }
-//    return g
-//  }
 }
 
 extension SwiftPackage: ShellTask {

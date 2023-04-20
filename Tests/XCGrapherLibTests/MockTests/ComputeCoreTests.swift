@@ -39,28 +39,31 @@ final class ATests: XCTestCase {
   func testSPM() async throws {
     XCTAssertNoDifference(
       try ComputeCore(swiftPackageManager: .init(
-        packageDescriptions: [
+        packages: [
           .init(
-            name: "some",
-            path: "",
-            _targets:
-            [
-              .init(
-                name: "A",
-                path: "",
-                sources:
-                [
-                  "import B",
-                ],
-                type: ""
-              ),
-              .init(
-                name: "B",
-                path: "",
-                sources: [],
-                type: ""
-              ),
-            ]
+            describe: .init(
+              name: "some",
+              path: "",
+              _targets:
+              [
+                .init(
+                  name: "A",
+                  path: "",
+                  sources:
+                  [
+                    "import B",
+                  ],
+                  type: ""
+                ),
+                .init(
+                  name: "B",
+                  path: "",
+                  sources: [],
+                  type: ""
+                ),
+              ]
+            ),
+            dependency: Dependency(identity: "", name: "", url: "", version: "", path: "", dependencies: [])
           ),
         ]
       ))

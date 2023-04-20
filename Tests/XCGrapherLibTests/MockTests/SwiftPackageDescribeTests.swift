@@ -7,8 +7,16 @@ import XCTest
 final class SPMTests: XCTestCase {
   func testSomePackage() async throws {
     let packageDescription = SomePackageDescribe
-    let graph = SwiftPackageManager(packageDescriptions: [packageDescription])
-      .groupPackageDescription()
+    let graph = SwiftPackageManager(
+      packages:
+      [
+        .init(
+          describe: packageDescription,
+          dependency: SomePackageDependency
+        ),
+      ]
+    )
+    .groupPackageDescription()
 
     XCTAssertNoDifference(
       graph,

@@ -6,27 +6,31 @@ struct SwiftPackageManager {
     var dependency: Dependency
   }
 
-  init(packageDescriptions: [PackageDescription]) {
-    self.packageDescriptions = packageDescriptions
+  init(packages: [Package]) {
+    self.packages = packages
   }
 
-  let packageDescriptions: [PackageDescription]
+  let packages: [Package]
 
   var knownSPMTargets: [PackageDescription.Target] {
-    packageDescriptions.flatMap(\.targets)
+    packages.flatMap(\.describe.targets)
   }
 
   /// - Parameter packageClones: A list of directories, each a cloned SPM dependency.
   init(packageClones: [FileManager.Path]) throws {
-    packageDescriptions = try packageClones.map {
-      try SwiftPackage(clone: $0).packageDescription()
-    }
+    packages =
+      try packageClones.map {
+        .init(
+          describe: try SwiftPackage(clone: $0).packageDescription(),
+          dependency: try SwiftShowDependency(clone: $0).loadDependency()
+        )
+      }
   }
 
   func groupPackageDescription() -> [String: [String]] {
     var g: [String: [String]] = [:]
-    for packageDescription in packageDescriptions {
-      for target in packageDescription._targets {
+    for packageDescription in packages {
+      for target in packageDescription.describe._targets {
         let target_dep = target.target_dependencies ?? []
         let product_dep = target.product_dependencies ?? []
         g[target.name] = [target_dep, product_dep].flatMap { $0 }

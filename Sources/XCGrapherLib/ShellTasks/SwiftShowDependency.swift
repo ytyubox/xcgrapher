@@ -6,6 +6,26 @@
 //
 
 import Foundation
+struct SwiftShowDependency {
+  let clone: String
+
+  func loadDependency() throws -> Dependency {
+    let json = try execute().data(using: .utf8)!
+    return try JSONDecoder().decode(Dependency.self, from: json)
+  }
+}
+
+extension SwiftShowDependency: ShellTask {
+  var stringRepresentation: String {
+    """
+    swift package --package-path "\(clone)" show --type json
+    """
+  }
+
+  var commandNotFoundInstructions: String {
+    "Missing command 'swift'"
+  }
+}
 
 struct Dependency: Codable {
   let identity, name: String

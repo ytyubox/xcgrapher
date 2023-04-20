@@ -6,9 +6,14 @@ import XCTest
 final class SwiftPackageMergeTests: XCTestCase {
   func test() async throws {
     XCTAssertNoDifference(
-      SwiftPackageManager(packageDescriptions: [
-        SomePackageDescribe,
-      ])
+      SwiftPackageManager(
+        packages: [
+          .init(
+            describe: SomePackageDescribe,
+            dependency: SomePackageDependency
+          ),
+        ]
+      )
       .swiftPackageMerge(
         dependency: dependency
       ),
