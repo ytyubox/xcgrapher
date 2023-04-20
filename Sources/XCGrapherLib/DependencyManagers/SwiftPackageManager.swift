@@ -39,7 +39,7 @@ struct SwiftPackageManager {
     return g
   }
 
-  func groupDependency(dep: Dependency) -> [Dependency_Key: [String]] {
+  func groupDependency() -> [Dependency_Key: [String]] {
     var g: [Dependency_Key: [String]] = [:]
     func re(dep: Dependency) {
       let key = Dependency_Key(
@@ -55,17 +55,17 @@ struct SwiftPackageManager {
         re(dep: d)
       }
     }
-    for d in dep.dependencies {
-      re(dep: d)
+    for package in packages {
+      for d in package.dependency.dependencies {
+        re(dep: d)
+      }
     }
     return g
   }
 
-  func swiftPackageMerge(
-    dependency: [Dependency_Key: [String]]
-  ) -> [String: [String]] {
+  func swiftPackageMerge() -> [String: [String]] {
     var r = groupPackageDescription()
-    for (key, value) in dependency {
+    for (key, value) in groupDependency() {
       if r[key.identity] != nil { continue }
       r[key.identity] = value
     }

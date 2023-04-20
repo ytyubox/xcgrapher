@@ -14,9 +14,7 @@ final class SwiftPackageMergeTests: XCTestCase {
           ),
         ]
       )
-      .swiftPackageMerge(
-        dependency: dependency
-      ),
+      .swiftPackageMerge(),
       [
         "Core": ["CasePaths"],
         "kingfisher": [],

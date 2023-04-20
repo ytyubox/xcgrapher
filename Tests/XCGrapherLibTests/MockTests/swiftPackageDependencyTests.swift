@@ -11,7 +11,7 @@ final class swiftPackageDependencyTests: XCTestCase {
         dependency: SomePackageDependency
       ),
     ])
-    .groupDependency(dep: SomePackageDependency)
+    .groupDependency()
     XCTAssertEqual(
       g,
       [
