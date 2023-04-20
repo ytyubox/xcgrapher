@@ -80,11 +80,8 @@ struct SwiftPackageManager {
   }
 
   func swiftPackageMerge() -> [String: [String]] {
-    var r = groupPackageDescription()
-    for (key, value) in groupDependency() {
-      if r[key.identity] != nil { continue }
-      r[key.identity] = value
-    }
+    let r = groupPackageDescription()
+
     return r
   }
 }

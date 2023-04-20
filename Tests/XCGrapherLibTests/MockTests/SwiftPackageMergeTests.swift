@@ -20,12 +20,6 @@ final class SwiftPackageMergeTests: XCTestCase {
         "Core": ["CasePaths"],
         "SomePackage": ["Core", "Kingfisher", "Moya", "Alamofire"],
         "SomePackageTests": ["SomePackage"],
-        // lower case is wrong
-        "alamofire": [],
-        "kingfisher": [],
-        "moya": ["alamofire", "reactiveswift", "rxswift"],
-        "reactiveswift": [],
-        "rxswift": [],
       ]
     )
   }
