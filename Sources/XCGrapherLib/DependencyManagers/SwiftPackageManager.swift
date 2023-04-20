@@ -3,7 +3,7 @@ import Foundation
 struct SwiftPackageManager {
   struct Package {
     var describe: PackageDescription
-    var dependency: Dependency_Key
+    var dependency: Dependency
   }
 
   init(packageDescriptions: [PackageDescription]) {
