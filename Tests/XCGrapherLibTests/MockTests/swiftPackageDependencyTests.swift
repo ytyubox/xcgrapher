@@ -2,19 +2,6 @@ import CustomDump
 @testable import XCGrapherLib
 import XCTest
 
-struct Dependency: Codable {
-  let identity, name: String
-  let url: String
-  let version, path: String
-  let dependencies: [Dependency]
-}
-
-struct Dependency_Key: Hashable {
-  let identity, name: String
-  let url: String
-  let version, path: String
-}
-
 func groupDependency(dep: Dependency) -> [Dependency_Key: [String]] {
   var g: [Dependency_Key: [String]] = [:]
   func re(dep: Dependency) {

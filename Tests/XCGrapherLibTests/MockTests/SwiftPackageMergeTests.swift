@@ -1,4 +1,5 @@
 import CustomDump
+@testable import XCGrapherLib
 import XCTest
 
 @MainActor
