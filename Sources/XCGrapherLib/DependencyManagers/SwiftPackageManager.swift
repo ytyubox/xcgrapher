@@ -1,6 +1,11 @@
 import Foundation
 
 struct SwiftPackageManager {
+  struct Package {
+    var describe: PackageDescription
+    var dependency: Dependency_Key
+  }
+
   init(packageDescriptions: [PackageDescription]) {
     self.packageDescriptions = packageDescriptions
   }
