@@ -6,7 +6,10 @@ struct SwiftPackageManager {
     var dependency: Dependency
   }
 
-  init(packages: [Package], otherPackageDescriptions: [PackageDescription]) {
+  init(
+    packages: [Package],
+    otherPackageDescriptions: [PackageDescription]
+  ) {
     self.packages = packages
     self.otherPackageDescriptions = otherPackageDescriptions
   }
@@ -38,7 +41,6 @@ struct SwiftPackageManager {
     otherPackageDescriptions = try packages
       .map(\.dependency)
       .flatMap(recursiveLoadDescribe(dependency:))
-
   }
 
   func groupPackageDescription() -> [String: [String]] {
