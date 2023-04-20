@@ -6,9 +6,9 @@ import XCTest
 @MainActor
 final class SPMTests: XCTestCase {
   func testSomePackage() async throws {
-    let packageDescription = try JSONDecoder().decode(PackageDescription.self, from: SomePackageDescribeJSON)
+    let packageDescription = SomePackageDescribe
     let package = SwiftPackageManager(packageDescriptions: [packageDescription])
-    let g = try package.groupPackageDescription()
+    let g = package.groupPackageDescription()
 
     XCTAssertNoDifference(g, [
       "Core": ["CasePaths"],

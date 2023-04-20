@@ -8,7 +8,7 @@
 import Foundation
 @testable import XCGrapherLib
 
-let SomePackageDescribeJSON =
+private let SomePackageDescribeJSON =
   """
   {
     "dependencies" : [
