@@ -18,7 +18,7 @@ struct SwiftShowDependency {
 extension SwiftShowDependency: ShellTask {
   var stringRepresentation: String {
     """
-    swift package --package-path "\(clone)" show --type json
+    swift package --package-path "\(clone)" show-dependencies --format json
     """
   }
 

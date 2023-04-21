@@ -3,7 +3,7 @@ import XCTest
 @testable import XCGrapherLib
 
 /// `sut` fail to execute `dot`, however we don't care as we are just reading the output text file
-final class XCGrapherSPMTests: XCTestCase {
+final class XCGrapherSPMTests: EndToEndTests {
   private var sut: ((XCGrapherOptions) throws -> String)!
   private var options: XCGrapherOptions!
 

@@ -81,10 +81,7 @@ public enum XCGrapher {
 
       // MARK: - Writing
 
-      let digraphOutput = "/tmp/xcgrapher.dot"
       let build = digraph.build()
-      try build.data(using: .utf8)!
-        .write(to: URL(fileURLWithPath: digraphOutput))
       Log("Result written to", options.output)
       return build
     }

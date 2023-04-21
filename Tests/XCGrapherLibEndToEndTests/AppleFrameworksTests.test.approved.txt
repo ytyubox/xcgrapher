@@ -111,6 +111,8 @@ GameKit
 GameplayKit
 GLKit
 GLUT
+GPUTools
+GPUToolsCore
 GroupActivities
 GSS
 HealthKit
@@ -173,6 +175,7 @@ MLCompute
 MobileCoreServices
 ModelIO
 ModuleBase
+MTLToolsDeviceSupport
 MultipeerConnectivity
 MusicKit
 NaturalLanguage

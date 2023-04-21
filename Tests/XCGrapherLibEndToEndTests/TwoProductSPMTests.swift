@@ -1,9 +1,17 @@
 import ApprovalTests_Swift
 @testable import XCGrapherLib
 import XCTest
+class EndToEndTests: XCTestCase {
+  override func setUpWithError() throws {
+    Env.contentsOfFile = { try! String(contentsOfFile: $0) }
+  }
 
-/// `sut` fail to execute `dot`, however we don't care as we are just reading the output text file
-final class TwoProductSPMTests: XCTestCase {
+  override func tearDownWithError() throws {
+    Env.contentsOfFile = { $0 }
+  }
+}
+
+final class TwoProductSPMTests: EndToEndTests {
   private func sut(_ options: XCGrapherOptions) throws -> String {
     try XCGrapher.run(with: options)
   }

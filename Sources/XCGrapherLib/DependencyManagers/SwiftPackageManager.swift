@@ -18,7 +18,7 @@ struct SwiftPackageManager {
   let otherPackageDescriptions: [PackageDescription]
 
   var knownSPMTargets: [PackageDescription.Target] {
-    package.describe.targets
+    package.describe.targets + otherPackageDescriptions.flatMap(\.targets)
   }
 
   /// - Parameter packageClones: A list of directories, each a cloned SPM dependency.
