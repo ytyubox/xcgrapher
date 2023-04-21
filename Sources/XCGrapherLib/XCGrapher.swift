@@ -24,7 +24,6 @@ public enum XCGrapher {
       var swiftPackageDependencies = try swiftPackageDependencySource.swiftPackageDependencies()
 
       if options.startingPoint.isSPM {
-//        swiftPackageDependencies.append(options.startingPoint.path)
       } else {
         let localPackages = try XcodeprojGetLocalPackages(projectFile: options.startingPoint.path).localPackages()
         if localPackages.isEmpty == false {
