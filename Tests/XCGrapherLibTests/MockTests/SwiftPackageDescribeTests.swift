@@ -8,13 +8,13 @@ final class SPMTests: XCTestCase {
   func testSomePackage() async throws {
     let packageDescription = SomePackageDescribe
     let graph = SwiftPackageManager(
-      packages:
-      [
-        .init(
-          describe: packageDescription,
-          dependency: SomePackageDependency
-        ),
-      ],
+      package:
+
+      .init(
+        describe: packageDescription,
+        dependency: SomePackageDependency
+      ),
+
       otherPackageDescriptions: []
     )
     .groupPackageDescription()

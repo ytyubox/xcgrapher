@@ -7,29 +7,27 @@ struct SwiftPackageManager {
   }
 
   init(
-    packages: [Package],
+    package: Package,
     otherPackageDescriptions: [PackageDescription]
   ) {
-    self.packages = packages
+    self.package = package
     self.otherPackageDescriptions = otherPackageDescriptions
   }
 
-  let packages: [Package]
+  let package: Package
   let otherPackageDescriptions: [PackageDescription]
 
   var knownSPMTargets: [PackageDescription.Target] {
-    packages.flatMap(\.describe.targets)
+    package.describe.targets
   }
 
   /// - Parameter packageClones: A list of directories, each a cloned SPM dependency.
-  init(packageClones: [FileManager.Path]) throws {
-    packages =
-      try packageClones.map {
-        .init(
-          describe: try SwiftPackage(clone: $0).packageDescription(),
-          dependency: try SwiftShowDependency(clone: $0).loadDependency()
-        )
-      }
+  init(package: FileManager.Path, checkouts: [FileManager.Path]) throws {
+    self.package = .init(
+      describe: try SwiftPackage(clone: package).packageDescription(),
+      dependency: try SwiftShowDependency(clone: package).loadDependency()
+    )
+
     func recursiveLoadDescribe(dependency: Dependency) throws -> [PackageDescription] {
       let describe = try SwiftPackage(clone: dependency.path).packageDescription()
       var other: [PackageDescription] = []
@@ -38,20 +36,19 @@ struct SwiftPackageManager {
       }
       return [describe] + other
     }
-    otherPackageDescriptions = try packages
-      .map(\.dependency)
-      .flatMap(recursiveLoadDescribe(dependency:))
+    otherPackageDescriptions = try checkouts
+      .map { try SwiftPackage(clone: $0).packageDescription() }
   }
 
   func groupPackageDescription() -> [String: [String]] {
     var g: [String: [String]] = [:]
-    for packageDescription in packages {
-      for target in packageDescription.describe._targets {
-        let target_dep = target.target_dependencies ?? []
-        let product_dep = target.product_dependencies ?? []
-        g[target.name] = [target_dep, product_dep].flatMap { $0 }
-      }
+
+    for target in package.describe._targets {
+      let target_dep = target.target_dependencies ?? []
+      let product_dep = target.product_dependencies ?? []
+      g[target.name] = [target_dep, product_dep].flatMap { $0 }
     }
+
     for description in otherPackageDescriptions {
       g[description.name] = description.products.map(\.name)
     }
@@ -74,11 +71,11 @@ struct SwiftPackageManager {
         re(dep: d)
       }
     }
-    for package in packages {
-      for d in package.dependency.dependencies {
-        re(dep: d)
-      }
+
+    for d in package.dependency.dependencies {
+      re(dep: d)
     }
+
     return g
   }
 

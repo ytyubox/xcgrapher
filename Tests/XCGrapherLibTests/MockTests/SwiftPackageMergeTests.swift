@@ -7,12 +7,11 @@ final class SwiftPackageMergeTests: XCTestCase {
   func test() async throws {
     XCTAssertNoDifference(
       SwiftPackageManager(
-        packages: [
-          .init(
-            describe: SomePackageDescribe,
-            dependency: SomePackageDependency
-          ),
-        ],
+        package:
+        .init(
+          describe: SomePackageDescribe,
+          dependency: SomePackageDependency
+        ),
         otherPackageDescriptions: [
           moyaPackageDescribe,
         ]

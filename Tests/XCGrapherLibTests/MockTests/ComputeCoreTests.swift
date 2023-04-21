@@ -39,34 +39,33 @@ final class ATests: XCTestCase {
   func testSPM() async throws {
     XCTAssertNoDifference(
       try ComputeCore(swiftPackageManager: .init(
-        packages: [
-          .init(
-            describe: .init(
-              name: "some",
-              path: "",
-              _targets:
-              [
-                .init(
-                  name: "A",
-                  path: "",
-                  sources:
-                  [
-                    "import B",
-                  ],
-                  type: ""
-                ),
-                .init(
-                  name: "B",
-                  path: "",
-                  sources: [],
-                  type: ""
-                ),
-              ],
-              products: []
-            ),
-            dependency: Dependency(identity: "", name: "", url: "", version: "", path: "", dependencies: [])
+        package: .init(
+          describe: .init(
+            name: "some",
+            path: "",
+            _targets:
+            [
+              .init(
+                name: "A",
+                path: "",
+                sources:
+                [
+                  "import B",
+                ],
+                type: ""
+              ),
+              .init(
+                name: "B",
+                path: "",
+                sources: [],
+                type: ""
+              ),
+            ],
+            products: []
           ),
-        ],
+          dependency: Dependency(identity: "", name: "", url: "", version: "", path: "", dependencies: [])
+        ),
+
         otherPackageDescriptions: []
       ))
       .generateDigraph(

@@ -6,12 +6,11 @@ import XCTest
 final class swiftPackageDependencyTests: XCTestCase {
   func testSomePackage() async throws {
     let g = SwiftPackageManager(
-      packages: [
-        .init(
-          describe: PackageDescription(name: "", path: "", _targets: [], products: []),
-          dependency: SomePackageDependency
-        ),
-      ],
+      package:
+      .init(
+        describe: PackageDescription(name: "", path: "", _targets: [], products: []),
+        dependency: SomePackageDependency
+      ),
       otherPackageDescriptions: []
     )
     .groupDependency()
