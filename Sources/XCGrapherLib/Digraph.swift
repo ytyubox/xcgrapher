@@ -11,6 +11,7 @@ struct Digraph: Equatable {
   /// The name of the digraph structure
   let name: String
 
+  var dependencies: [Dependency_Key: [String]]
   var edges: [Edge] = []
 
   /// Adds an arrow line from `a` to `b` in the graph.
