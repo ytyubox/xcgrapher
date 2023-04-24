@@ -24,8 +24,25 @@ struct Digraph: Equatable {
   }
 
   func build() -> String {
-    indentedEdgeStrings
-      .joined(separator: "\n")
+    """
+    \(
+      indentedEdgeStrings
+        .joined(separator: "\n")
+    )
+    \(dependenciesDescription)
+    """
+  }
+
+  var dependenciesDescription: String {
+    var s: [String] = []
+    for key in dependencies.keys.sorted(by: { $0.identity < $1.identity }) {
+      s.append(
+        """
+        \(key.identity)<<\(key.url)@\(key.version)>>
+        """
+      )
+    }
+    return s.joined(separator: "\n")
   }
 }
 
