@@ -32,6 +32,22 @@ final class TwoProductSPMTests: EndToEndTests {
     try Approvals.verify(digraph)
   }
 
+  func testSomeAppSPM_JSON() throws {
+    // GIVEN we only pass --spm to xcgrapher
+
+    let digraph = try sut(option(spm: true, json: true))
+
+    try Approvals.verify(digraph)
+  }
+
+  func testSomeAppAppleAndSPM_JSON() throws {
+    // WHEN we generate a digraph
+
+    let digraph = try sut(option(apple: true, spm: true, json:true))
+
+    try Approvals.verify(digraph)
+  }
+
   func test_SPMRaw_ComputeCheckoutsDirectory() throws {
     let builder = SwiftBuild(packagePath: root, product: "SomePackage")
     try Approvals.verify(builder.computeCheckoutsDirectory())
@@ -80,7 +96,8 @@ private func option(
   apple: Bool = false,
   spm: Bool = false,
   pods: Bool = false,
-  force: Bool = false
+  force: Bool = false,
+  json:Bool = false
 ) -> XCGrapherOptions {
   .fixture(
     startingPoint: .swiftPackage(root),
@@ -88,7 +105,8 @@ private func option(
     apple: apple,
     spm: spm,
     pods: pods,
-    force: force
+    force: force,
+    json: json
   )
 }
 

@@ -34,7 +34,7 @@ struct Dependency: Codable {
   let dependencies: [Dependency]
 }
 
-struct Dependency_Key: Hashable {
+struct Dependency_Key: Hashable, Codable {
   let identity, name: String
   let url: String
   let version, path: String

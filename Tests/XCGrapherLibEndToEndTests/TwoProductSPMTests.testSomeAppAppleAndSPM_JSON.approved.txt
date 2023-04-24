@@ -1,0 +1,288 @@
+{
+  "dependencies" : [
+    {
+      "identity" : "alamofire",
+      "name" : "Alamofire",
+      "relationship" : [
+
+      ],
+      "url" : "https:\/\/github.com\/Alamofire\/Alamofire.git",
+      "version" : "5.4.3"
+    },
+    {
+      "identity" : "kingfisher",
+      "name" : "Kingfisher",
+      "relationship" : [
+
+      ],
+      "url" : "https:\/\/github.com\/onevcat\/Kingfisher.git",
+      "version" : "6.3.0"
+    },
+    {
+      "identity" : "moya",
+      "name" : "Moya",
+      "relationship" : [
+        "alamofire",
+        "reactiveswift",
+        "rxswift"
+      ],
+      "url" : "https:\/\/github.com\/Moya\/Moya.git",
+      "version" : "14.0.0"
+    },
+    {
+      "identity" : "reactiveswift",
+      "name" : "ReactiveSwift",
+      "relationship" : [
+
+      ],
+      "url" : "https:\/\/github.com\/Moya\/ReactiveSwift.git",
+      "version" : "6.1.0"
+    },
+    {
+      "identity" : "rxswift",
+      "name" : "RxSwift",
+      "relationship" : [
+
+      ],
+      "url" : "https:\/\/github.com\/ReactiveX\/RxSwift.git",
+      "version" : "5.1.3"
+    },
+    {
+      "identity" : "swift-case-paths",
+      "name" : "swift-case-paths",
+      "relationship" : [
+        "xctest-dynamic-overlay"
+      ],
+      "url" : "https:\/\/github.com\/pointfreeco\/swift-case-paths",
+      "version" : "0.14.1"
+    },
+    {
+      "identity" : "xctest-dynamic-overlay",
+      "name" : "xctest-dynamic-overlay",
+      "relationship" : [
+
+      ],
+      "url" : "https:\/\/github.com\/pointfreeco\/xctest-dynamic-overlay",
+      "version" : "0.8.4"
+    }
+  ],
+  "edges" : [
+    {
+      "a" : "Alamofire",
+      "b" : "Combine",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Alamofire",
+      "b" : "CoreServices",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Alamofire",
+      "b" : "Foundation",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Alamofire",
+      "b" : "MobileCoreServices",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Alamofire",
+      "b" : "SystemConfiguration",
+      "tags" : "apple"
+    },
+    {
+      "a" : "CasePaths",
+      "b" : "Foundation",
+      "tags" : "apple"
+    },
+    {
+      "a" : "CasePaths",
+      "b" : "XCTestDynamicOverlay",
+      "tags" : "spm"
+    },
+    {
+      "a" : "Core",
+      "b" : "CasePaths",
+      "tags" : "spm"
+    },
+    {
+      "a" : "Core",
+      "b" : "Foundation",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Kingfisher",
+      "b" : "Accelerate",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Kingfisher",
+      "b" : "AppKit",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Kingfisher",
+      "b" : "AVKit",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Kingfisher",
+      "b" : "Combine",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Kingfisher",
+      "b" : "CoreGraphics",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Kingfisher",
+      "b" : "CoreImage",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Kingfisher",
+      "b" : "CoreServices",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Kingfisher",
+      "b" : "Foundation",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Kingfisher",
+      "b" : "ImageIO",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Kingfisher",
+      "b" : "MobileCoreServices",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Kingfisher",
+      "b" : "SwiftUI",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Kingfisher",
+      "b" : "TVUIKit",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Kingfisher",
+      "b" : "UIKit",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Kingfisher",
+      "b" : "WatchKit",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Moya",
+      "b" : "Alamofire",
+      "tags" : "spm"
+    },
+    {
+      "a" : "Moya",
+      "b" : "AppKit",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Moya",
+      "b" : "Foundation",
+      "tags" : "apple"
+    },
+    {
+      "a" : "Moya",
+      "b" : "UIKit",
+      "tags" : "apple"
+    },
+    {
+      "a" : "SomePackage",
+      "b" : "Alamofire",
+      "tags" : "spm"
+    },
+    {
+      "a" : "SomePackage",
+      "b" : "Core",
+      "tags" : "spm"
+    },
+    {
+      "a" : "SomePackage",
+      "b" : "CoreGraphics",
+      "tags" : "apple"
+    },
+    {
+      "a" : "SomePackage",
+      "b" : "Foundation",
+      "tags" : "apple"
+    },
+    {
+      "a" : "SomePackage",
+      "b" : "Kingfisher",
+      "tags" : "spm"
+    },
+    {
+      "a" : "SomePackage",
+      "b" : "Moya",
+      "tags" : "spm"
+    },
+    {
+      "a" : "XCTestDynamicOverlay",
+      "b" : "Foundation",
+      "tags" : "apple"
+    },
+    {
+      "a" : "XCTestDynamicOverlay",
+      "b" : "XCTest",
+      "tags" : "apple"
+    }
+  ],
+  "products" : {
+    "Alamofire" : [
+      "Alamofire"
+    ],
+    "Core" : [
+      "CasePaths"
+    ],
+    "Kingfisher" : [
+      "Kingfisher"
+    ],
+    "Moya" : [
+      "Moya",
+      "ReactiveMoya",
+      "RxMoya"
+    ],
+    "ReactiveSwift" : [
+      "ReactiveSwift"
+    ],
+    "RxSwift" : [
+      "RxSwift",
+      "RxCocoa",
+      "RxRelay",
+      "RxBlocking",
+      "RxTest"
+    ],
+    "SomePackage" : [
+      "Core",
+      "Kingfisher",
+      "Moya",
+      "Alamofire"
+    ],
+    "SomePackageTests" : [
+      "SomePackage"
+    ],
+    "swift-case-paths" : [
+      "CasePaths",
+      "swift-case-paths-benchmark"
+    ],
+    "xctest-dynamic-overlay" : [
+      "XCTestDynamicOverlay"
+    ]
+  }
+}

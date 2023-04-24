@@ -61,7 +61,7 @@ public enum XCGrapher {
 
     if options.json {
       let encoder = JSONEncoder()
-      encoder.outputFormatting = .prettyPrinted
+      encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
       let data = try encoder.encode(digraph.json())
       if options.output.isEmpty,
          let text = String(data: data, encoding: .utf8) {

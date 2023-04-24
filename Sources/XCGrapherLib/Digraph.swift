@@ -12,7 +12,7 @@ struct Digraph: Equatable {
   let name: String
 
   var dependencies: [Dependency_Key: [String]] = [:]
-  var idNameMapping:[String:[String]] = [:]
+  var idNameMapping: [String: [String]] = [:]
   var edges: [Edge] = []
 
   /// Adds an arrow line from `a` to `b` in the graph.
@@ -57,7 +57,7 @@ struct Digraph: Equatable {
     for key in idNameMapping.keys.sorted() {
       s.append(
         """
-        \(key): \(idNameMapping[key]!.map{"`\($0)`"}.joined(separator: ", "))
+        \(key): \(idNameMapping[key]!.map { "`\($0)`" }.joined(separator: ", "))
         """
       )
     }
@@ -100,19 +100,59 @@ extension Digraph {
 }
 
 extension Digraph {
-  struct JSONEdge: Codable, Equatable {
+  struct JSON: Codable {
+    var edges: [JSONEdge]
+    var products: [String: [String]]
+    var dependencies: [Dep]
+  }
+
+  struct Dep: Codable, Comparable {
+    static func < (lhs: Digraph.Dep, rhs: Digraph.Dep) -> Bool {
+      lhs.identity < rhs.identity
+    }
+
+    var identity: String
+    var name: String
+    var url: String
+    var version: String
+    var relationship: [String]
+  }
+
+  struct JSONEdge: Codable, Equatable, Comparable {
+    static func < (lhs: Digraph.JSONEdge, rhs: Digraph.JSONEdge) -> Bool {
+      (
+        lhs.a.lowercased(),
+        lhs.b.lowercased(),
+        lhs.tags.lowercased()
+      )
+        <
+        (
+          rhs.a.lowercased(),
+          rhs.b.lowercased(),
+          rhs.tags.lowercased()
+        )
+    }
+
     var a: String
     var b: String
     var tags: String
   }
 
-  func json() -> [JSONEdge] {
-    edges
-      .map { edge in
-        .init(a: edge.a, b: edge.b, tags: edge.tags)
-      }
-      .sorted(by: { ($0.a.lowercased(), $0.b.lowercased()) < ($1.a.lowercased(), $1.b.lowercased())
-      })
+  func json() -> JSON {
+    let edges: [JSONEdge] =
+      edges
+        .map { edge in
+          .init(a: edge.a, b: edge.b, tags: edge.tags)
+        }
+        .sorted()
+
+    return .init(
+      edges: edges,
+      products: idNameMapping,
+      dependencies: dependencies.map { key, value in
+        Dep(identity: key.identity, name: key.name, url: key.url, version: key.version, relationship: value)
+      }.sorted()
+    )
   }
 }
 
