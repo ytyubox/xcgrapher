@@ -65,7 +65,6 @@ final class ATests: XCTestCase {
           ),
           dependency: Dependency(identity: "", name: "", url: "", version: "", path: "", dependencies: [])
         ),
-
         otherPackageDescriptions: []
       ))
       .generateDigraph(
@@ -77,6 +76,10 @@ final class ATests: XCTestCase {
       ),
       Digraph(
         name: "title",
+        idNameMapping: [
+          "A": [],
+          "B": [],
+        ],
         edges: [
           .init(a: "A", b: "B", tags: "spm"),
           .init(a: "some", b: "A", tags: "spm"),

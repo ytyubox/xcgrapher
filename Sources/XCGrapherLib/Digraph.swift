@@ -12,6 +12,7 @@ struct Digraph: Equatable {
   let name: String
 
   var dependencies: [Dependency_Key: [String]] = [:]
+  var idNameMapping:[String:[String]] = [:]
   var edges: [Edge] = []
 
   /// Adds an arrow line from `a` to `b` in the graph.
@@ -28,6 +29,7 @@ struct Digraph: Equatable {
       indentedEdgeStrings
         .joined(separator: "\n"),
       dependenciesDescription,
+      productsDescription,
     ].filter(\.isEmpty.not)
       .joined(separator: "\n\n")
   }
@@ -38,13 +40,25 @@ struct Digraph: Equatable {
       s.append(
         [
           """
-          \(key.identity)<<\(key.url)@\(key.version)>>
+          `\(key.name)`-\(key.identity)<<\(key.url)@\(key.version)>>
           """,
           dependencies[key]!.sorted().map { "`\($0)`" }
             .joined(separator: ","),
         ]
         .filter(\.isEmpty.not)
         .joined(separator: ": ")
+      )
+    }
+    return s.joined(separator: "\n")
+  }
+
+  var productsDescription: String {
+    var s: [String] = []
+    for key in idNameMapping.keys.sorted() {
+      s.append(
+        """
+        \(key): \(idNameMapping[key]!.map{"`\($0)`"}.joined(separator: ", "))
+        """
       )
     }
     return s.joined(separator: "\n")

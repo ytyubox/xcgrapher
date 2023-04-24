@@ -6,10 +6,21 @@
   "SomePackage" -> "Kingfisher"            // spm
   "SomePackage" -> "Moya"                  // spm
 
-alamofire<<https://github.com/Alamofire/Alamofire.git@5.4.3>>
-kingfisher<<https://github.com/onevcat/Kingfisher.git@6.3.0>>
-moya<<https://github.com/Moya/Moya.git@14.0.0>>: `alamofire`,`reactiveswift`,`rxswift`
-reactiveswift<<https://github.com/Moya/ReactiveSwift.git@6.1.0>>
-rxswift<<https://github.com/ReactiveX/RxSwift.git@5.1.3>>
-swift-case-paths<<https://github.com/pointfreeco/swift-case-paths@0.14.1>>: `xctest-dynamic-overlay`
-xctest-dynamic-overlay<<https://github.com/pointfreeco/xctest-dynamic-overlay@0.8.4>>
+`Alamofire`-alamofire<<https://github.com/Alamofire/Alamofire.git@5.4.3>>
+`Kingfisher`-kingfisher<<https://github.com/onevcat/Kingfisher.git@6.3.0>>
+`Moya`-moya<<https://github.com/Moya/Moya.git@14.0.0>>: `alamofire`,`reactiveswift`,`rxswift`
+`ReactiveSwift`-reactiveswift<<https://github.com/Moya/ReactiveSwift.git@6.1.0>>
+`RxSwift`-rxswift<<https://github.com/ReactiveX/RxSwift.git@5.1.3>>
+`swift-case-paths`-swift-case-paths<<https://github.com/pointfreeco/swift-case-paths@0.14.1>>: `xctest-dynamic-overlay`
+`xctest-dynamic-overlay`-xctest-dynamic-overlay<<https://github.com/pointfreeco/xctest-dynamic-overlay@0.8.4>>
+
+Alamofire: `Alamofire`
+Core: `CasePaths`
+Kingfisher: `Kingfisher`
+Moya: `Moya`, `ReactiveMoya`, `RxMoya`
+ReactiveSwift: `ReactiveSwift`
+RxSwift: `RxSwift`, `RxCocoa`, `RxRelay`, `RxBlocking`, `RxTest`
+SomePackage: `Core`, `Kingfisher`, `Moya`, `Alamofire`
+SomePackageTests: `SomePackage`
+swift-case-paths: `CasePaths`, `swift-case-paths-benchmark`
+xctest-dynamic-overlay: `XCTestDynamicOverlay`

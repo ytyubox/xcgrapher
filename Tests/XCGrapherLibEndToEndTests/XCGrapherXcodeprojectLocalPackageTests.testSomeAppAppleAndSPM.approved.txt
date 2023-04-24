@@ -25,3 +25,11 @@
   "SomeApp" -> "RealmSwift"           // spm
   "SomeApp" -> "SomeAppCore"          // spm
   "SomeApp" -> "UIKit"                // apple
+
+Charts: `Charts`, `ChartsDynamic`
+Lottie: `Lottie`
+Realm: `Realm`, `RealmSwift`
+RealmDatabase: `RealmStorage`, `RealmQueryParser`, `RealmSyncClient`, `RealmObjectStore`, `RealmCapi`, `RealmFFI`, `ObjectStoreTests`, `CapiTests`
+SomeAppCore: `SomeAppCore`
+swift-algorithms: `Algorithms`
+swift-numerics: `ComplexModule`, `Numerics`, `RealModule`, `ComplexLog1p`, `ComplexLog`

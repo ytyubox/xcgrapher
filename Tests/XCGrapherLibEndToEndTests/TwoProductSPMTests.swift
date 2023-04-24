@@ -37,6 +37,12 @@ final class TwoProductSPMTests: EndToEndTests {
     try Approvals.verify(builder.computeCheckoutsDirectory())
   }
 
+  func test_SPMRaw_root_SwiftShowDependency() throws {
+    try Approvals.verify(
+      SwiftShowDependency(clone: root).execute()
+    )
+  }
+
   func test_SPMRaw_swiftPackageDependencies() throws {
     let builder = SwiftBuild(packagePath: root, product: "SomePackage")
     try Approvals.verify(builder.swiftPackageDependencies().lines)

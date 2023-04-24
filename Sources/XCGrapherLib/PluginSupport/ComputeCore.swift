@@ -79,6 +79,7 @@ class ComputeCore {
         )
 
         digraph.dependencies = swiftPackageManager?.groupDependency() ?? [:]
+        digraph.idNameMapping = swiftPackageManager?.groupPackageDescription() ?? [:]
       }
 
       // MARK: - Cocoapods
