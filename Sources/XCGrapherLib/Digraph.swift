@@ -24,22 +24,27 @@ struct Digraph: Equatable {
   }
 
   func build() -> String {
-    """
-    \(
+    [
       indentedEdgeStrings
-        .joined(separator: "\n")
-    )
-    \(dependenciesDescription)
-    """
+        .joined(separator: "\n"),
+      dependenciesDescription,
+    ].filter(\.isEmpty.not)
+      .joined(separator: "\n\n")
   }
 
   var dependenciesDescription: String {
     var s: [String] = []
     for key in dependencies.keys.sorted(by: { $0.identity < $1.identity }) {
       s.append(
-        """
-        \(key.identity)<<\(key.url)@\(key.version)>>
-        """
+        [
+          """
+          \(key.identity)<<\(key.url)@\(key.version)>>
+          """,
+          dependencies[key]!.sorted().map { "`\($0)`" }
+            .joined(separator: ","),
+        ]
+        .filter(\.isEmpty.not)
+        .joined(separator: ": ")
       )
     }
     return s.joined(separator: "\n")
@@ -95,4 +100,8 @@ extension Digraph {
       .sorted(by: { ($0.a.lowercased(), $0.b.lowercased()) < ($1.a.lowercased(), $1.b.lowercased())
       })
   }
+}
+
+extension Bool {
+  var not: Bool { !self }
 }

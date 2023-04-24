@@ -77,6 +77,8 @@ class ComputeCore {
           building: box_nodes,
           skipping: &previouslyEncounteredModules
         )
+
+        digraph.dependencies = swiftPackageManager?.groupDependency() ?? [:]
       }
 
       // MARK: - Cocoapods
